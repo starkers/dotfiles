@@ -1,0 +1,287 @@
+zmodload zsh/zprof
+
+# export TERM="xterm-256color"
+HIST_STAMPS="yyyy-mm-dd"
+unsetopt share_history
+
+export EDITOR=vim
+export LS_COLORS
+
+function my_load_ggg(){
+  if [[ -o interactive ]]; then
+    if hash ggg 2>/dev/null; then
+      eval "$(ggg hook zsh)"
+    else
+      echo 'WARN: "ggg" binary not found in your PATH'
+    fi
+  fi
+}
+
+function my_load_profile(){
+  source ~/.profile
+}
+
+function my_load_aliases(){
+  source ~/.aliases
+}
+
+function my_load_shell_functions(){
+  source ~/.shell_functions
+}
+
+function my_load_z_and_fzf(){
+  # https://github.com/junegunn/fzf/wiki/examples#z
+
+  unalias z
+  z() {
+    if [[ -z "$*" ]]; then
+      cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+    else
+      _last_z_args="$@"
+      _z "$@"
+    fi
+  }
+
+  zz() {
+    cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+  }
+  z_last() {
+    cd "$(_z 2>&1 | tail -1 | sed 's/^[0-9,.]* *//')"
+  }
+}
+
+function fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+
+function my_nvm_load(){
+
+  if [ -e ${HOME}/.nvm/nvm.sh ]; then
+
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+    # place this after nvm initialization!
+    autoload -U add-zsh-hook
+    load-nvmrc() {
+      local node_version="$(nvm version)"
+      local nvmrc_path="$(nvm_find_nvmrc)"
+
+      if [ -n "$nvmrc_path" ]; then
+        local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+        if [ "$nvmrc_node_version" = "N/A" ]; then
+          nvm install
+        elif [ "$nvmrc_node_version" != "$node_version" ]; then
+          nvm use
+        fi
+      elif [ "$node_version" != "$(nvm version default)" ]; then
+        echo "Reverting to nvm default version"
+        nvm use default
+      fi
+    }
+    add-zsh-hook chpwd load-nvmrc
+    load-nvmrc
+  fi
+
+}
+
+function my_load_direnv(){
+  if [[ -o interactive ]] ; then
+    hash direnv 2>/dev/null && eval "$(direnv hook zsh)"
+  fi
+}
+
+function my_load_fzf(){
+  if [[ -o interactive ]] ; then
+    source ~/.fzf/shell/completion.zsh
+    source ~/.fzf/shell/key-bindings.zsh
+  fi
+}
+
+function my_load_sdkman(){
+  if [[ -o interactive ]] ; then
+    if [ -e ${HOME}/.sdkman/bin/sdkman-init.sh ] ; then
+      source "$HOME/.sdkman/bin/sdkman-init.sh"
+    fi
+  fi
+}
+
+function my_load_vte(){
+  if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    [ -e /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
+  fi
+}
+
+function my_load_keybase_stuff(){
+  KB_USER=starkers
+  KB_PLACE=/keybase/private/${KB_USER}/home/shell
+  if [ -d ${KB_PLACE} ]; then
+    source ${KB_PLACE}/*-profile.sh
+  fi
+  export PATH=/keybase/private/${KB_USER}/scripts:${PATH}
+  export CHEATPATH="/keybase/private/${KB_USER}/home/cheats"
+}
+
+
+
+# export SDKMAN_DIR="${HOME}/.sdkman"
+# [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
+# export ZSH_CUSTOM="${HOME}/.zsh_custom"
+
+# Just comment a section if you want to disable it
+SPACESHIP_PROMPT_ORDER=(
+  # time        # Time stampts section (Disabled)
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  # hg            # Mercurial section (hg_branch  + hg_status)
+  # package     # Package version (Disabled)
+  # node          # Node.js section
+  # ruby          # Ruby section
+  # elixir        # Elixir section
+  # xcode       # Xcode section (Disabled)
+  # swift         # Swift section
+  # golang        # Go section
+  # php           # PHP section
+  # rust          # Rust section
+  # haskell       # Haskell Stack section
+  # julia       # Julia section (Disabled)
+  # docker      # Docker section (Disabled)
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  # conda         # conda virtualenv section
+  # pyenv         # Pyenv section
+  # dotnet        # .NET section
+  # ember       # Ember.js section (Disabled)
+  # line_sep      # Line break
+  # kubecontext   # Kubectl context section
+  exec_time     # Execution time
+  line_sep      # Line break
+  # battery       # Battery level and status
+  # vi_mode     # Vi-mode indicator (Disabled)
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+# SPACESHIP_VENV_SYMBOL='🐍'
+
+SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(
+  # red if namespace is "kube-system"
+  red    '.*prod'
+  # else, green if "dev-01" is anywhere in the context or namespace
+  green  '.*staging'
+  # else, red if context name ends with ".k8s.local" _and_ namespace is "system"
+  # red    '\.k8s\.local \(system)$'
+  # else, yellow if the entire content is "test-" followed by digits, and no namespace is displayed
+  blue '^.*$'
+  )
+
+
+if [[ -o interactive ]]; then
+
+  zle -N fancy-ctrl-z
+  bindkey '^Z' fancy-ctrl-z
+  zstyle ":completion:*:commands" rehash 1
+  bindkey '^W' vi-backward-kill-word
+
+  ####################################################
+  ## theming etc
+  source ~/.antigen.zsh
+  antigen use oh-my-zsh
+
+  antigen bundle docker
+  antigen bundle docker-compose
+  antigen bundle git
+  antigen bundle git-flow
+  antigen bundle golang
+  antigen bundle gpg-agent
+  antigen bundle history
+  antigen bundle httpie
+  # antigen bundle kubectl
+  antigen bundle pip
+  antigen bundle systemd
+  antigen bundle virtualenv
+  antigen bundle z
+  antigen bundle zsh-users/zsh-autosuggestions
+  antigen bundle zsh-users/zsh-completions
+  antigen bundle zsh-users/zsh-syntax-highlighting
+
+  antigen bundle larkery/zsh-histdb
+  ##
+  #antigen bundle zpm-zsh/colors
+  #antigen bundle zpm-zsh/helpers
+  #antigen bundle zpm-zsh/pr-cwd
+
+  fpath=(~/.zsh/completions $fpath)
+  plugins=(docker docker-compose go golang kubectl z zsh-completions)
+  # this is required so `docker exec -it <TAB>` works.. see: https://github.com/moby/moby/commit/402caa94d23ea3ad47f814fc1414a93c5c8e7e58
+  zstyle ':completion:*:*:docker:*' option-stacking yes
+  zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+  antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
+  antigen apply
+  ####################################################
+
+  if [[ -f ~/.antigen/bundles/larkery/zsh-histdb/sqlite-history.zsh ]]; then
+    source ~/.antigen/bundles/larkery/zsh-histdb/sqlite-history.zsh
+    autoload -Uz add-zsh-hook
+  fi
+
+
+fi
+
+if [[ -o interactive ]]; then
+  my_load_aliases
+  my_load_fzf
+  my_load_keybase_stuff
+  my_load_profile
+  my_load_shell_functions
+  my_load_vte
+  my_load_z_and_fzf
+  my_load_ggg
+fi
+
+
+export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${HOME}/.bin:${PATH}"
+export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/.software/bin:${PATH}"
+export PATH="${HOME}/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:${PATH}"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+export KUBECONFIG="${HOME}/.kube/config"
+
+my_load_direnv
+
+
+hash jenv 2>/dev/null
+rc=$?
+if [  ${rc} -eq 0 ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+
+hash fnm 2>/dev/null && eval `fnm env`
+
+
+# # User configuration
+# # Always work in a tmux session if tmux is installed
+# # https://github.com/chrishunt/dot-files/blob/master/.zshrc
+# if [[ -o interactive ]] ; then
+#   if which tmux 2>&1 >/dev/null; then
+#     if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+#       NOW="$(date +%Y-%m-%d_%H%M%S)"
+#       tmux new -t hack-$NOW
+#     fi
+#   fi
+# fi
