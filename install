@@ -9,7 +9,7 @@ cd "${ROOTDIR}"
 git submodule update --init --recursive
 
 # Instruct dotbot to start ensuring symlinks + shell scripts are executed
-./dotbot/bin/dotbot -c dotbot.yaml "${@}"
+./dotbot/bin/dotbot -c dotfiles.yaml "${@}"
 
 msg(){
 cat <<EOF

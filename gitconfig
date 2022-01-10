@@ -1,0 +1,77 @@
+# vi: ft=gitconfig
+[user]
+  name = David Stark
+	email = david.stark@doddle.com
+	signingKey = 849A6BF620D953BB666EA57AFD06B2B1CFD743B7
+
+[includeIf "gitdir:~/src/github.com/doddle/"]
+  path = ~/.gitconfig-doddle
+
+[includeIf "gitdir:~/src/github.com/pusher/"]
+  path = ~/.gitconfig-pusher
+
+[push]
+  default = current
+
+## diff
+[diff]
+  tool = nvim
+[difftool]
+  prompt = false
+
+## merge
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+  ; cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+  cmd = nvim -d $BASE $LOCAL
+# set "nvim" as tool for merging
+[merge]
+  tool = nvim
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+  prompt = false
+
+[alias]
+  d   = difftool
+  co  = checkout
+  lg  = log --graph --abbrev-commit --decorate --date=relative
+  lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  pf = pull -ff
+  # credit @Mathias
+  please = push --force-with-lease
+  commend = commit --amend --no-edit
+  merc = merge --no-ff --no-edit
+  rbim = rebase --interactive master
+  rbi = rebase --interactive
+  rbm = rebase master
+  rbc = rebase --continue
+  fix = commit --fixup
+  wip = commit -m \"WIP\"
+  rpo = remote prune origin
+  rpod = remote prune origin --dry-run
+  undo = reset --soft HEAD^
+  stash-all = stash save --include-untracked
+  exec = "!exec "
+  root = rev-parse --show-toplevel
+
+[github]
+  user = starkers
+
+# keep some https credential cache
+[credential]
+  helper = cache --timeout=86400
+[core]
+  excludesfile = /home/starkers/.git_global_ignore
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+[gpg]
+  program = gpg
+[commit]
+  gpgSign = true
+[tag]
+  forceSignAnnotated = false
+[pull]
+  ff = only
+[mergetool]
+  path = nvim

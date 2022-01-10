@@ -1,0 +1,41 @@
+--- 
+- defaults:
+    link:
+      create: true
+      glob: true
+      force: false
+      relink: true
+  clean:
+  - ~/
+  - ~/.config/
+
+- link:
+    ~/.config:
+      path: 'config/*'
+      create: true
+      force: true
+      glob: true
+      relink: true
+
+
+# - defaults:
+#     link:
+#       create: true
+#       relink: true
+#       # force: true
+
+- link:
+    ~/:
+      path: "*"
+      prefix: "."
+      exclude:
+      - .git
+      - .gitmodules
+      - dotbot
+      - dotfiles.yaml
+      - install
+      - config
+      create: true
+      # force: true
+      glob: true
+      relink: true

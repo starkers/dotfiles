@@ -1,0 +1,28 @@
+# functions I reference with aliases etc..
+
+
+# should work with both bash and zsh please
+
+
+my_git_commit(){
+  echo -n "commit-msg: "
+  read REPLY
+  if [ "X$REPLY" != "X" ] ; then
+    git commit -m "$REPLY"
+  fi
+}
+
+
+my_nvm_load(){
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+
+passwd_gen(){
+  pwgen 32 1
+}
+
+# generate_password_to_clipbard(){
+#   pwgen 32 1 | xclip -selection clipboard
+# }
