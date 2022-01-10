@@ -1,48 +1,16 @@
 --- 
+
 - defaults:
     link:
       create: true
       relink: true
-      # force: true
+      force: true
+      glob: true
 
 - link:
-
-    # ~/.zshrc:
-    #   path: zshrc
-
-
-    # ~/.config/:
-    #   path: dotconf/config/**
-    ~/:
-      glob: true
-      path: "*"
-      prefix: '.'
-      exclude:
-      - .git
-      - .gitmodules
-      - dotbot
-      - dotbot.yaml
-
-      # ignore the subdirs of my stuff
-      - config/
-      - share/
-
-# - defaults:
-#     link:
-#       create: true
-#       relink: true
-#   clean: ['~']
-
-# - link:
-#   ~/.bashrc:
-#     force: true
-#     path: bashrc
-#   ~/.zshrc:
-#     force: true
-#     path: zshrc
-#   ~/.config/:
-#     glob: true
-#     path: config/*
-#     relink: true
-#     # exclude:  [ config/foo ]
+    ~/.config: 'config/*'
+      # path: config/**
+      # relink: true
+      # force: true
+      # create: true
 
