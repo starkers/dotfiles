@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -e
+ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+
+cd "${ROOTDIR}"
+
+# This will download the dotbot script into the (submodule) dir "./dotbot"
+git submodule update --init --recursive
+
+# Instruct dotbot to start ensuring symlinks + shell scripts are executed
+./dotbot/bin/dotbot -c dotbot.yaml "${@}"
+
+msg(){
+cat <<EOF
+################################################################
+#
+# Message: [ $@ ]
+#
+###############################################################
+EOF
+}
+
+
+msg "dotbot success"
+
+msg "press 'enter' to run all the tweaks/   or  '^c' to exit"
+read -sp "waiting for input..." _x && echo
+
+
+cd tweaks
+./all.sh
