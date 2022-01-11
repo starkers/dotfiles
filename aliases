@@ -12,18 +12,15 @@ alias cdD="cd ~/Downloads"
 alias cdb="cd ~/bin"
 alias cdd="cd ~/src"
 alias cdg="cd ~/src/github.com"
-alias cdh="cd ~/src/github.com/starkers/homedirectory/home"
+alias cdh="cd ~/src/github.com/starkers/dotfiles/"
 alias cdn="cd ~/.config/nvim"
-alias cdt="cd ~/Torrents"
 alias d="docker"
 alias dc='docker-compose'
 alias df="df -x squashfs" #flapak master race
 alias dnf="sudo dnf"
-# alias docker-compose='podman-compose'
 alias fastboot="sudo fastboot"
 alias g="egrep"
 alias ga="git add --all ."
-alias gc="gitcommit"
 alias gco="git checkout"
 alias gd="git d"  #call git diff with vimdiff
 alias gpl="git pull -ff"
@@ -31,6 +28,7 @@ alias gps="git push"
 alias gs="git status --short ."
 alias gss="git status --short"
 alias ipython="ipython3"
+alias k="kubectl "
 alias kaf='kubectl apply -f'
 alias kccc='kubectl config current-context'
 alias kcdc='kubectl config delete-context'
@@ -97,106 +95,10 @@ alias openvpn="sudo openvpn"
 alias pacman="sudo pacman"
 alias snap="sudo snap"
 alias ssh="ssh -A"
-alias sternalltail="stern --all-namespaces --tail 10"
 alias systemctl="sudo systemctl"
-alias t=touch
 alias tree="tree -I '*.pyc'"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-
-
-
-# function ggg(){
-#   local store="${HOME}/src"
-#   local in="$1"
-#   local outname="ggg"
-#   function gsay() { echo -e "\e[34m${outname}: $*\e[0m" >&2 ; }
-#   function gerr() { echo -e "\e[31m${outname}: ${@}\e[0m"   ; }
-#   function gdie() { gerr "$*" ; return 111 ; }
-#   function try() { gsay "$@" ; "$@" || gdie "cannot $*" ; }
-#   function gparse_git(){
-#     local chunk1="$(cut -d "@" -f 1 <<<"$1")"
-#     local chunk2="$(echo "$1" | cut -d "@" -f 2 | cut -d "/" -f 1 | cut -d ":" -f 1)"
-#     if grep -q "ssh://" <<<"$1" ; then
-#       local chunk3="$(echo "$1" | cut -d "@" -f 2 | cut -d "/" -f 2-99| sed "s+.git$++g" )"
-#     else
-#       local chunk3="$(echo "$1" | cut -d ":" -f 2 | cut -d "/" -f 1-99| sed "s+.git$++g" )"
-#     fi
-#     local dest="${store}/${chunk2}/${chunk3}"
-#     gsay "host:${chunk2}, repo:${chunk3}  -> ${dest}"
-#     if [ ! -d "${dest}" ]; then
-#       try git clone "${in}" "${dest}"
-#     fi
-#     try cd "${dest}"
-#   }
-#   function gparse_http(){
-#     local chunk2="$(echo "$1" | cut -d "/" -f 3 | cut -d ":" -f 1)"
-#     local chunk3="$(echo "$1" | cut -d "/" -f 4-99 | sed "s+.git++g" )"
-#     local dest="${store}/${chunk2}/${chunk3}"
-#     if [ ! -d "${dest}" ]; then
-#       try git clone "${in}" "${dest}"
-#     fi
-#     try cd "${dest}"
-#   }
-#   function gparse_keybase(){
-#     local chunk2="$(echo "$1" | cut -d "/" -f 4 )"
-#     local chunk3="$(echo "$1" | cut -d "/" -f 5 )"
-#     local dest="${store}/keybase/${chunk2}/${chunk3}"
-#     if [ ! -d "${dest}" ]; then
-#       try git clone "${in}" "${dest}"
-#     fi
-#     try cd "${dest}"
-#   }
-#   if grep -q "^http://" <<<"${in}" ; then
-#     gparse_http "${in}"
-#   elif grep -q "^https://" <<<"${in}" ; then
-#     gparse_http "${in}"
-#   elif grep -q "^git@" <<<"${in}"; then
-#     gparse_git "${in}"
-#   elif grep -q "^ssh://.*@" <<<"${in}"; then
-#     gparse_git "${in}"
-#   elif grep -q "^keybase://" <<<"${in}"; then
-#     gparse_keybase "${in}"
-#   else
-#     gdie "sorry couldn't match ${in} to any kind of git URL"
-#   fi
-# }
-
-# function pass(){
-#   # I don't like "pass" (yet).. I haz keybase
-#   PASS_ROOT=/keybase/private/starkers/home/pass
-#   if [ "${1}" = "show" ]; then
-#     cat "${PASS_ROOT}/${2}"
-#   fi
-#   if [ "${1}" = "edit" ]; then
-#     vim "${PASS_ROOT}/${2}"
-#   fi
-# }
-
-# function kube-diff(){
-#   local OBJ1="${1}"
-#   local OBJ2="${2}"
-#   local OBJ1_NAME="$(sed "s+/+-+g" <<<"${OBJ1}")"
-#   local OBJ2_NAME="$(sed "s+/+-+g" <<<"${OBJ2}")"
-#   function yelp(){
-#     echo "provide me with two k8s objects.. EG: $0 pod/fluentd-test-gbjbg pod/fluentd-test-k9fwj"
-#   }
-#   if grep -q "help" <<<"${OBJ1}"; then
-#     yelp
-#   else
-#     local TMP1="$(mktemp -d)"
-#     local TMP2="$(mktemp -d)"
-#     set -x
-#     kubectl get "${OBJ1}" -o yaml > "${TMP1}/${OBJ1_NAME}.yaml"
-#     kubectl get "${OBJ2}" -o yaml > "${TMP2}/${OBJ2_NAME}.yaml"
-#     vimdiff "${TMP1}/${OBJ1_NAME}.yaml" "${TMP2}/${OBJ2_NAME}.yaml"
-#     rm -rf ${TMP1} ${TMP2}
-#     set +x
-#   fi
-# }
-
-
-alias k="kubectl "
 
 alias watch1='watch  -n 1  -d --color fish -i -c '
 alias watch10='watch -n 10 -d --color fish -i -c '
