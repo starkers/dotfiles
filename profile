@@ -78,12 +78,12 @@ my_load_nvm(){
   fi
 }
 
-my_load_fnm(){
-  if [ -e $HOME/.fnm ]; then
-    export PATH=$HOME/.fnm:$PATH
-    eval "`fnm env`"
-  fi
-}
+# my_load_fnm(){
+#   if [ -e $HOME/.fnm ]; then
+#     export PATH=$HOME/.fnm:$PATH
+#     eval "`fnm env`"
+#   fi
+# }
 
 
 my_load_golang
@@ -91,8 +91,8 @@ my_load_golang
 # my_load_gemstuff
 my_load_path_home_bin
 my_load_path_krew
-my_load_fnm
-my_load_nvm
+# my_load_fnm
+# my_load_nvm
 
 my_gnome_settings(){
   #disble animations

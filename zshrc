@@ -271,7 +271,7 @@ if [  ${rc} -eq 0 ]; then
   eval "$(jenv init -)"
 fi
 
-hash fnm 2>/dev/null && eval `fnm env`
+# hash fnm 2>/dev/null && eval `fnm env`
 
 
 # # User configuration

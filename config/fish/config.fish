@@ -1,4 +1,4 @@
-# vi: ft=sh
+# vi: ft=fish
 
 
 # this section ensures the right side of the prompt stays clear
@@ -6,23 +6,20 @@ function fish_right_prompt
  #intentionally left blank
 end
 
-
+# this disables the greeting/fortune by running an empty function
 function fish_greeting
+  # should u want to do something super exciting... try maybe:
   # fortune | cowsay -f tux
 end
-
-
 
 if command -s starship > /dev/null
   starship init fish | source
 else
-  echo 'WARN: starship not installed'
+  echo '#WARN: starship not installed'
 end
 
-if test -f ~/.asdf/asdf.fish
-  source ~/.asdf/asdf.fish
+if test -f $HOME/.aliases
+  source $HOME/.aliases
 end
 
-
-# Dunno why.. by /sbin isn't part of my PATH on fedora 34
-set -x PATH /sbin/ $PATH
+fish_add_path -aP /sbin

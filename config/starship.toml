@@ -28,6 +28,7 @@ $java\
 $julia\
 $nim\
 $ocaml\
+$nodejs\
 $perl\
 $php\
 $purescript\
@@ -66,8 +67,8 @@ disabled = true
 [time]
 disabled = true
 
-[date]
-disabled = true
+# [date]
+# disabled = true
 
 # [directory]
 # trancate_to_repo = false

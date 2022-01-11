@@ -4,6 +4,7 @@ load_aliases(){
     source ~/.aliases
   fi
 }
+
 load_profile(){
   if [ -f ~/.profile ] ; then
     source ~/.profile

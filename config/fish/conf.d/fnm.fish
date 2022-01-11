@@ -2,7 +2,8 @@
 
 
 if command -s ~/.software/bin/fnm > /dev/null
-  set PATH /home/starkers/.fnm $PATH
+  set PATH $HOME/.fnm $PATH
+  fish_add_path -a $HOME/.fnm
 
 
   function find_up
@@ -27,7 +28,7 @@ if command -s ~/.software/bin/fnm > /dev/null
     set current (string replace "v" "" (fnm current))
     set target (string replace "v" "" $argv[1])
     if test $current != $target
-      ~/.software/bin/fnm use $argv[1] --log-level=quiet
+      $HOME/.software/bin/fnm use $argv[1] --log-level=quiet
     end
   end
 
@@ -41,12 +42,12 @@ if command -s ~/.software/bin/fnm > /dev/null
     end
   end
 
-  ~/.software/bin/fnm env | source
+  $HOME/.software/bin/fnm env | source
 
 # VSCode open integrated terminal does not trigger PWD hook
   if test "$TERM_PROGRAM" = "vscode"
     _fnm_autoload_hook
   end
-else
-  echo 'WARN: fnm not installed'
+# else
+#   echo '#WARN: fnm not installed'
 end
