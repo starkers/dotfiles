@@ -42,3 +42,8 @@ vim.cmd([[
 
 
 ]])
+
+-- A true classic, always returns you to the same location in a file as when you left it
+vim.cmd([[
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+]])
