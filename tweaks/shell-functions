@@ -1,0 +1,22 @@
+
+# vi: ft=sh
+
+# generic shell functions
+
+say()  { echo -e "\e[32m$9: $*\e[0m" >&2; }
+die()  { echo -e "\e[31m$*\e[0m"; exit 1; }
+try()  { echo -e "\e[33m\$ $@\e[0m"; "$@" || die "cannot $*"; }
+
+banner() {
+  echo -e "\e[96m===================================================\n= $0            $@\n===================================================\n\e[0m"
+}
+
+
+function executableInPath(){
+  hash ${dep} 2>/dev/null
+  if [ $? -gt 0 ]; then
+    # die "error.. please install ${dep} to use this script"
+    return 1
+  fi
+  return 0
+}

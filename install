@@ -4,29 +4,23 @@ set -e
 ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 cd "${ROOTDIR}"
+source ${ROOTDIR}/tweaks/shell-functions
+
+###############################################
+
+banner dotbot
 
 # This will download the dotbot script into the (submodule) dir "./dotbot"
-git submodule update --init --recursive
+try git submodule update --init --recursive
 
 # Instruct dotbot to start ensuring symlinks + shell scripts are executed
-./dotbot/bin/dotbot -c dotfiles.yaml "${@}"
+try ./dotbot/bin/dotbot -c dotfiles.yaml "${@}"
 
-msg(){
-cat <<EOF
-################################################################
-#
-# Message: [ $@ ]
-#
-###############################################################
-EOF
-}
+banner "dotbot success"
 
-
-msg "dotbot success"
-
-msg "press 'enter' to run all the tweaks/   or  '^c' to exit"
+say "press 'enter' to run all the tweaks/   or  '^c' to exit"
 read -sp "waiting for input..." _x && echo
 
 
-cd tweaks
-./all.sh
+try ./tweaks/*.sh
+
