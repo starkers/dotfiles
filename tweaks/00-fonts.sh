@@ -31,16 +31,33 @@ installNerdFont(){
   say "installing NerdFont: ${NAME}  (ver: ${VER})"
   local NAME="$1"
   local fNAME="$1.zip"
+
+  # download
   try wget https://github.com/ryanoasis/nerd-fonts/releases/download/${VER}/${fNAME} -c
+
+  # decompress
   try unzip -o "${fNAME}" -d "${FONTDIR}"
-  try rm ${FONTDIR}/*Windows*
+
+  ## delete crap
+  try find "${FONTDIR}" -name '*Windows Compatible*' -delete
+
+  ## cleanup the downloaded .zip file
   try rm ${fNAME}
 }
 
 declare -a fonts=(
+  DroidSansMono
+  # FiraCode
+  FiraMono
+  # Go-Mono
   Hack
-  SourceCodePro
+  # Hermit
+  # Meslo
+  # Noto
+  Overpass
+  # SourceCodePro
   Terminus
+  # UbuntuMono
 )
 
 for font in "${fonts[@]}"; do
