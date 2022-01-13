@@ -54,8 +54,7 @@ declare -a fonts=(
   # Hermit
   # Meslo
   # Noto
-  Overpass
-  # SourceCodePro
+  SourceCodePro
   Terminus
   # UbuntuMono
 )
@@ -64,5 +63,5 @@ for font in "${fonts[@]}"; do
   installNerdFont ${font}
 done
 
-try fc-cache -fv
+try fc-cache -f
 banner done
