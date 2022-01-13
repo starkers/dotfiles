@@ -5,6 +5,17 @@
 # any input after running this script will be treated as the git
 # message, however if no arguments/flags are passed, this script
 # simply enters into an interactive input mode
+#
+# usage:
+# - the one-liner:
+#
+#   gc "my message"
+#
+# - have a prompt to enter the message (no need to quote your input)
+#  
+#  gc
+#
+
 if [ ! X"$1" == X ]; then
   set -x
   git commit -S -m "$@"

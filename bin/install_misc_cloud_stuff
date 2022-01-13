@@ -1,0 +1,818 @@
+#!/usr/bin/env bash
+set -ou pipefail
+
+# I keep needing to download binaries or tarballs from github
+
+
+yell() { echo -e "\e[32m$fname: $*\e[0m" >&2; }
+die()  { echo -e "\e[31m$*\e[0m"; exit 1; }
+try()  { "$@" || die "cannot $*"; }
+
+
+delete_if_exists(){
+  if [ -f "$1" ]; then
+    yell rm $1
+    try rm -f "$1"
+  fi
+}
+
+
+
+generic_binary(){
+  local name="${1}"
+  local ver="${2}"
+  local url="${3}"
+  local out_dir="${software}/${name}"
+  local out_file="${name}-${ver}"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  echo $url
+  wget -O "${out_file}" "${url}" -c -L --show-progress
+  try chmod +x "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${out_file}" "${name}"
+  yell ${1} is installed and ready
+}
+
+##############################################
+#: restic
+install_restic(){
+  name=restic
+  ver="${1:-0.12.1}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="restic_${os}_${arch}-${ver}.tar.bz2"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/restic/restic/releases/download/v${ver}/restic_${ver}_${osLower}_${cpuType}.bz2
+
+  try mkdir -p "${software}/bin"
+  cat "${out_file}" | bzip2 -d > ${software}/bin/${name}
+  try chmod +x ${software}/bin/${name}
+  # try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+
+
+##############################################
+#: dag
+install_dag(){
+  name=dag
+  ver="${1:-0.1.0}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="k9s_${os}_${arch}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/devmatteini/dag/releases/download/0.1.0/dag-0.1.0.tar.gz
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}-${ver}/${name}" "${name}"
+}
+
+##############################################
+#: k9s
+install_k9s(){
+  name=k9s
+  ver="${1:-0.24.6}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="k9s_${os}_${arch}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/derailed/k9s/releases/download/v${ver}/k9s_${os}_${arch}.tar.gz
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+
+##############################################
+#: octant
+install_octant(){
+  name=octant
+  ver="${1:-0.13.1}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/vmware-tanzu/octant/releases/download/v${ver}/octant_${ver}_Linux-64bit.tar.gz
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/octant_${ver}_Linux-64bit/${name}" "${name}"
+}
+
+##############################################
+#: golandci-lint
+install_golangci-lint(){
+  name=golangci-lint
+  ver="${1:-1.27.0}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/golangci/golangci-lint/releases/download/v${ver}/golangci-lint-${ver}-linux-amd64.tar.gz -c
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/golangci-lint-${ver}-linux-amd64/${name}" "${name}"
+}
+
+##############################################
+#: kubectl-fzf
+install_kubectl-fzf(){
+  name=cache_builder
+  ver="1.0.13"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/bonnefoa/kubectl-fzf/releases/download/v${ver}/kubectl-fzf_linux_amd64.tar.gz
+  try wget -O ~/.zsh_kubect_fzf.sh https://raw.githubusercontent.com/bonnefoa/kubectl-fzf/master/kubectl_fzf.plugin.zsh
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: starship
+install_starship(){
+  name=starship
+  ver="0.48.0"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/starship/starship/releases/download/v${ver}/starship-x86_64-unknown-linux-musl.tar.gz
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+##############################################
+#: eksctl
+install_eksctl(){
+  name=eksctl
+  ver="0.20.0"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/weaveworks/eksctl/releases/download/${ver}/eksctl_Linux_amd64.tar.gz
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: krew
+install_krew(){
+  name=krew
+  ver="0.4.0"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" https://github.com/kubernetes-sigs/krew/releases/download/v${ver}/krew.tar.gz -c
+  try wget -O krew.yaml https://github.com/kubernetes-sigs/krew/releases/download/v${ver}/krew.yaml
+  try tar xf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/krew-linux_amd64" "${name}"
+  try krew install --manifest=${out_dir}/krew.yaml
+  try kubectl plugin list
+}
+
+##############################################
+#: kubespy
+install_kubespy(){
+  name=kubespy
+  ver="${1:-0.5.1}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c https://github.com/pulumi/kubespy/releases/download/v${ver}/kubespy-linux-amd64.tar.gz
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/releases/kubespy-linux-amd64/${name}" ${name}
+}
+
+##############################################
+#: drone
+install_drone(){
+  name=drone
+  ver="${1:-1.2.1}"
+  out_dir="${software}/${name}-v${ver}"
+  out_file="${name}-${ver}.tgz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" https://github.com/drone/drone-cli/releases/download/v${ver}/drone_linux_amd64.tar.gz -c
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/drone" drone
+}
+
+# ##############################################
+# #: hub
+# install_hub(){
+#   name=hub
+#   ver="2.3.0-pre9"
+#   out_dir="${software}/${name}-v${ver}"
+#   out_file="${name}-${ver}.tgz"
+#   try mkdir -p "${out_dir}"
+#   try cd "${out_dir}"
+#   try wget -O "${out_file}" https://github.com/github/hub/releases/download/v${ver}/hub-linux-amd64-${ver}.tgz -c
+#   try tar xvf "${out_file}"
+#   try mkdir -p "${software}/bin"
+#   try cd "${software}/bin"
+#   try ln -sf "${software}/hub-v${ver}/hub-linux-amd64-${ver}/bin/hub" "${name}"
+# }
+
+##############################################
+#: jb
+install_jb(){
+  name=jb
+  ver="${1:-0.4.0}"
+  url=https://github.com/jsonnet-bundler/jsonnet-bundler/releases/download/v${ver}/jb-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+
+##############################################
+#: kind
+install_kind(){
+  name=kind
+  ver="${1:-0.8.1}"
+  url=https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+
+##############################################
+#: linkerd
+install_linkerd(){
+  name=linkerd
+  ver="${1:-2.8.0}"
+  url=https://github.com/linkerd/linkerd2/releases/download/stable-${ver}/linkerd2-cli-stable-${ver}-linux
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: aws-iam-authenticator
+install_aws-iam-authenticator(){
+  name=aws-iam-authenticator
+  ver="${1:-0.5.0}"
+  url=https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${ver}/aws-iam-authenticator_${ver}_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: yq
+install_yq(){
+  name=yq
+  ver="${1:-3.3.0}"
+  url=https://github.com/mikefarah/yq/releases/download/${ver}/yq_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}" -c
+}
+
+
+##############################################
+#: lens
+install_lens(){
+  name=lens
+  ver="${1:-4.2.2}"
+  url=https://github.com/lensapp/lens/releases/download/v${ver}/Lens-${ver}.x86_64.AppImage
+  generic_binary "${name}" "${ver}" "${url}" -c
+}
+
+##############################################
+#: docker-credential-ecr-login
+install_docker-credential-ecr-login(){
+  name=docker-credential-ecr-login
+  ver="${1:-0.4.0}"
+  url=https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/${ver}/linux-amd64/docker-credential-ecr-login
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: jabba
+install_jabba(){
+  name=jabba
+  ver="${1:-0.11.2}"
+  url=https://github.com/shyiko/jabba/releases/download/${ver}/jabba-${ver}-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: terragrunt
+install_terragrunt(){
+  name=terragrunt
+  ver="${1:-0.21.6}"
+  url=https://github.com/gruntwork-io/terragrunt/releases/download/v${ver}/terragrunt_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: tanka
+install_tanka(){
+  name=tanka
+  ver="${1:-0.8.0}"
+  url=https://github.com/grafana/tanka/releases/download/v${ver}/tk-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: kompose
+install_kompose(){
+  name=kompose
+  ver="${1:-1.18.0}"
+  url=https://github.com/kubernetes/kompose/releases/download/v${ver}/kompose-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: kops
+install_kops(){
+  name=kops
+  ver="${1:-1.18.2}"
+  url=https://github.com/kubernetes/kops/releases/download/v${ver}/kops-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+# ##############################################
+# #: kind
+# install_kind(){
+#   name=kind
+#   ver="${1:-0.5.1}"
+#   url=https://github.com/kubernetes-sigs/kind/releases/download/v${ver}/kind-linux-amd64
+#   generic_binary "${name}" "${ver}" "${url}"
+# }
+
+##############################################
+#: helmfile
+install_helmfile(){
+  name=helmfile
+  ver="${1:-0.45.3}"
+  url=https://github.com/roboll/helmfile/releases/download/v${ver}/helmfile_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: deis
+install_deis(){
+  name=deis
+  ver="${1:-2.0.0}"
+  url=https://storage.googleapis.com/workflow-cli-release/v${ver}/deis-v${ver}-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: kubectl
+install_kubectl(){
+  name=kubectl
+  # find latest version:
+  local stable="$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)"
+  ver="${1:-${stable}}"
+  url=https://storage.googleapis.com/kubernetes-release/release/${ver}/bin/linux/amd64/kubectl
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: kubedb
+install_kubedb(){
+  name=kubedb
+  ver="${1:-0.11.0}"
+  url=https://github.com/kubedb/cli/releases/download/${ver}/kubedb-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+##############################################
+#: minikube
+install_minikube(){
+  name=minikube
+  ver="${1:0.27.0}"
+  url=https://storage.googleapis.com/minikube/releases/v${ver}/minikube-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: velero
+install_velero(){
+  name=velero
+  ver="${1:-1.6.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}-${osLower}-${cpuType}.tar.gz"
+  src="https://github.com/vmware-tanzu/velero/releases/download/v${ver}/velero-v${ver}-${osLower}-${cpuType}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -c -v ${src}
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/velero-v${ver}-${osLower}-${cpuType}/${name}" "${name}"
+}
+
+##############################################
+#: kubeval
+install_kubeval(){
+  name=kubeval
+  ver="${1:-0.15.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -v https://github.com/instrumenta/kubeval/releases/download/${ver}/kubeval-linux-amd64.tar.gz
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: jsonnet
+install_jsonnet(){
+  name=jsonnet
+  name2=jsonnetfmt # there are two commands
+  ver="${1:-0.15.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -v https://github.com/google/jsonnet/releases/download/v${ver}/jsonnet-bin-v${ver}-linux.tar.gz
+  try delete_if_exists "${name}"
+  try delete_if_exists "${name2}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+  try ln -sf "${out_dir}/${name2}" "${name2}"
+}
+
+##############################################
+#: kustomize
+install_kustomize(){
+  name=kustomize
+  ver="${1:-4.3.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  url=https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${ver}/kustomize_v${ver}_linux_amd64.tar.gz
+  try wget -O "${out_file}" -v ${url} -c
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: docker-credential-gcr
+install_docker-credential-gcr(){
+  name=docker-credential-gcr
+  ver="${1:-2.0.1}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -v https://github.com/GoogleCloudPlatform/docker-credential-gcr/releases/download/v${ver}/docker-credential-gcr_linux_amd64-${ver}.tar.gz -c
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: gotop
+install_gotop(){
+  name=gotop
+  ver="${1:-4.1.2}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -v https://github.com/xxxserxxx/gotop/releases/download/v${ver}/gotop_v${ver}_linux_amd64.tgz
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: topgrade
+install_topgrade(){
+  name=topgrade
+  ver="${1:-6.8.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" -v https://github.com/r-darwish/topgrade/releases/download/v${ver}/topgrade-v${ver}-x86_64-unknown-linux-musl.tar.gz -c
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: kubebuilder
+install_kubebuilder(){
+  name=kubebuilder
+  ver="${1:-2.2.0}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" https://github.com/kubernetes-sigs/kubebuilder/releases/download/v${ver}/kubebuilder_${ver}_linux_amd64.tar.gz -c
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}_${ver}_linux_amd64/bin/kubebuilder" "${name}"
+  try ln -sf "${out_dir}/${name}_${ver}_linux_amd64/bin/etcd" "etcd"
+  try ln -sf "${out_dir}/${name}_${ver}_linux_amd64/bin/kube-apiserver" "kube-apiserver"
+}
+
+##############################################
+#: saml2aws
+install_saml2aws(){
+  name=saml2aws
+  ver="${1:-2.9.1}"
+  out_dir="${software}/${name}-${ver}"
+  out_file="${name}-${ver}.tar.gz"
+  try mkdir -p "${out_dir}"
+  try cd "${out_dir}"
+  try wget -O "${out_file}" https://github.com/Versent/saml2aws/releases/download/v${ver}/saml2aws_${ver}_linux_amd64.tar.gz -c
+  try delete_if_exists "${name}"
+  try tar xvf "${out_file}"
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${out_dir}/${name}" "${name}"
+}
+
+##############################################
+#: skaffold
+install_skaffold(){
+  name=skaffold
+  ver="${1:-0.33.0}"
+  url=https://github.com/GoogleContainerTools/skaffold/releases/download/v${ver}/skaffold-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: sops
+install_sops(){
+  name=sops
+  ver="${1:-3.0.5}"
+  url=https://github.com/mozilla/sops/releases/download/${ver}/sops-${ver}.linux
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_stern(){
+  name=stern
+  ver="${1:-1.11.0}"
+  url=https://github.com/wercker/stern/releases/download/${ver}/stern_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: dive
+install_dive(){
+  name=dive
+  ver="${1:-0.10.0}"
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  fname=dive_${ver}_linux_amd64.tar.gz
+  #file to expect relative to the extraction point
+  inside_archive=dive
+  try wget https://github.com/wagoodman/dive/releases/download/v${ver}/${fname} -c
+  delete_if_exists "${name}"
+  try tar xvf ${fname}
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${inside_archive}" ${name}
+}
+
+##############################################
+#: helm2
+install_helm2(){
+  name=helm
+  ver="${1:-2.16.7}"
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  url=https://get.helm.sh/helm-v${ver}-linux-amd64.tar.gz
+  try wget ${url} -c
+  delete_if_exists "${name}"
+  try tar xvf helm-v${ver}-linux-amd64.tar.gz
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/linux-amd64/${name}" ${name}
+}
+
+##############################################
+#: helm3
+install_helm3(){
+  name=helm
+  ver="${1:-3.2.2}"
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  url=https://get.helm.sh/helm-v${ver}-linux-amd64.tar.gz
+  try wget ${url} -c
+  delete_if_exists "${name}"
+  try tar xvf helm-v${ver}-linux-amd64.tar.gz
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/linux-amd64/${name}" ${name}
+}
+
+##############################################
+#: onessl
+install_onessl(){
+  name=onessl
+  ver="${1:-0.3.0}"
+  url=https://github.com/kubepack/onessl/releases/download/${ver}/onessl-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+##############################################
+#: fnm
+install_fnm(){
+  name=fnm
+  ver="${1:-1.25.0}"
+  local zip=fnm-${ver}.zip
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try wget -c https://github.com/Schniz/fnm/releases/download/v${ver}/fnm-linux.zip -O "${zip}"
+  try unzip -o ${zip}
+  try chmod +x fnm
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/fnm" ${name}
+}
+
+##############################################
+#: op (1pass cli)
+install_op(){
+  name=op
+  ver=0.10.0
+  local zip=op_linux_amd64_v${ver}.zip
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try delete_if_exists "${zip}"
+  try wget -c https://cache.agilebits.com/dist/1P/op/pkg/v${ver}/${zip} -O "${zip}"
+  try delete_if_exists "${name}"
+  try unzip -o ${zip}
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}
+}
+
+##############################################
+#: ngrok
+install_ngrok(){
+  name=ngrok
+  ver=4VmDzA7iaHb
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try wget https://bin.equinox.io/c/${ver}/ngrok-stable-linux-amd64.zip -c
+  try delete_if_exists "${name}"
+  try unzip ngrok-stable-linux-amd64.zip
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}
+}
+
+##############################################
+#: packer
+install_packer(){
+  name=packer
+  ver=0.10.1
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try wget https://releases.hashicorp.com/packer/${ver}/packer_${ver}_linux_amd64.zip -c
+  try delete_if_exists "${name}"
+  try unzip packer_${ver}_linux_amd64.zip
+  try mkdir -p "${software}/bin"
+  try cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}
+}
+
+##############################################
+#: terraform
+install_terraform(){
+  name=terraform
+  ver="${1:-1.0.0}"
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try wget https://releases.hashicorp.com/terraform/${ver}/terraform_${ver}_linux_amd64.zip -c
+  try delete_if_exists "${name}"
+  try unzip terraform_${ver}_linux_amd64.zip
+  try mkdir -p "${software}/bin"; cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}-${ver}
+}
+
+##############################################
+#: vault
+install_vault(){
+  name=vault
+  ver="${1:-1.7.3}"
+  try mkdir -p "${software}/${name}-${ver}"
+  try cd "${software}/${name}-${ver}"
+  try wget https://releases.hashicorp.com/vault/${ver}/vault_${ver}_linux_amd64.zip -c
+  try delete_if_exists "${name}"
+  try unzip vault_${ver}_linux_amd64.zip
+  try mkdir -p "${software}/bin"; cd "${software}/bin"
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}
+  try ln -sf "${software}/${name}-${ver}/${name}" ${name}-${ver}
+}
+
+##############################################
+#: cfssljson
+install_cfssljson(){
+  name=cfssljson
+  ver="${1:-1.6.0}"
+  url=https://github.com/cloudflare/cfssl/releases/download/v${ver}/cfssl_${ver}_linux_amd64
+  # url=https://pkg.cfssl.org/R${ver}/cfssljson_linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_cfssl(){
+  name=cfssl
+  ver="${1:-1.2}"
+  url=https://pkg.cfssl.org/R${ver}/cfssl_linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_direnv(){
+  name=direnv
+  ver="${1:-2.9.0}"
+  url=https://github.com/direnv/direnv/releases/download/v${ver}/direnv.linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_fluxctl(){
+  name=fluxctl
+  ver="${1:-1.19.0}"
+  url=https://github.com/weaveworks/flux/releases/download/${ver}/fluxctl_linux_amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_kubeseal(){
+  name=kubeseal
+  ver="${1:-0.7.0}"
+  url=https://github.com/bitnami-labs/sealed-secrets/releases/download/v${ver}/kubeseal-linux-amd64
+  generic_binary "${name}" "${ver}" "${url}"
+}
+
+install_psmem(){
+  try mkdir -p "${software}/bin"; cd "${software}/bin"
+  try wget https://raw.githubusercontent.com/pixelb/ps_mem/master/ps_mem.py -O psmem -c
+  chmod +x psmem
+}
+
+
+arch="$(uname -m)"
+
+if [ "${arch}" == "x86_64" ]; then
+  export cpuType=amd64
+else
+# elif [ "${arch}" == "arm64" ]; then
+  export cpuType=${arch}
+fi
+
+
+
+os="$(uname)"
+osLower="$(echo "${os}" | tr '[:upper:]' '[:lower:]')"
+software="${HOME}/.software"
+bin="${HOME}/.bin"
+try mkdir -p "${bin}"
+try mkdir -p "${software}"
+try cd "${bin}"
+
+self="$(realpath $0)"
+fname=$(basename -- "${self}")
+
+if [ "$#" == 0 ]; then
+  echo "Usage: ${fname} <thing_to_install> <version(optional)>"
+  echo "eg:" ; echo
+  echo "${fname} terraform 0.12.3"
+  echo
+  echo "..'things' available are: "
+  grep "^#:" "$self" | cut -d " " -f 2 | sort
+else
+  yell install_$*
+  install_$*
+fi
+
