@@ -26,10 +26,16 @@ declare -a globalPlugins=(
   kubespy=0.5.1
   kustomize=4.3.0
   kubeval=0.16.0
+  nodejs=12.14.1
   starship=1.1.1
   terraform=0.12.29
   terragrunt=0.21.6
   vault=1.7.3
+)
+
+declare -a alternativeVersions=(
+  nodejs=14.18.3
+  nodejs=16.13.2
 )
 
 function pluginIsInstalled(){
@@ -55,6 +61,19 @@ for data in ${globalPlugins[@]}; do
   fi
   try asdf install ${plugin} ${ver}
   try asdf global ${plugin} ${ver}
+done
+
+for data in ${alternativeVersions[@]}; do
+  plugin="$(cut -d "=" -f 1 <<<"${data}")"
+  # banner $plugin
+  ver="$(cut -d "=" -f 2 <<<"${data}")"
+  say installing $plugin v${ver}
+  if pluginIsInstalled ${plugin} ; then
+    try asdf plugin add ${plugin}
+  else
+    say plugin: ${plugin} already added
+  fi
+  try asdf install ${plugin} ${ver}
 done
 
 
