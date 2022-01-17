@@ -7,6 +7,8 @@ vim.cmd([[
   let NERDTreeWinPos="right"
 
   "" default {'file': {'reuse': 'all', 'where': 'p'}, 'dir': {}}
-  let NERDTreeCustomOpenArgs={'file': {'reuse': 'all', 'where': 't'}, 'dir': {}}
+  let NERDTreeCustomOpenArgs={'file': {'reuse': 'currenttab', 'where': 't'}, 'dir': {}}
+
+  " let NERDTreeMapOpenInTab
 
 ]])

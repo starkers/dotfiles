@@ -9,7 +9,7 @@ require("user.treesitter")
 require("user.autopairs")
 require("user.comment")
 require("user.gitsigns")
--- require "user.nvim-tree"
+require("user.sidebar")
 require("user.nerdtree")
 require("user.bufferline")
 require("user.lualine")
@@ -19,6 +19,7 @@ require("user.impatient")
 require("user.indentline")
 require("user.alpha")
 require("user.whichkey")
+
 require("user.tweaks")
 
-require("user.sidebar")
+require("user.autocommands")

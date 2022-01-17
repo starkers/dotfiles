@@ -1,10 +1,5 @@
 vim.cmd([[
 
-  "" always return to the previous location in a file when re-opening it
-  augroup _misc
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  augroup end
-
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
@@ -45,4 +40,36 @@ vim.cmd([[
   "   autocmd BufWritePre * go vim.lsp.buf.formatting()
   "   autocmd BufWritePre * python vim.lsp.buf.formatting()
   " augroup end
+]])
+
+-- highlight what u yank
+vim.cmd([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]])
+
+-- A true classic, always returns you to the same location in a file as when you left it
+vim.cmd([[
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+]])
+
+-- GOLANG
+
+vim.cmd([[
+
+  function! CustomGoFmt()
+    let file = expand('%')
+    silent execute "!gofmt -w " . file
+    silent execute "!goimports -w " . file
+    " silent execute "!golang-lint run --fix=false " . file
+    edit!
+  endfunction
+
+  command! CustomGoFmt call CustomGoFmt()
+  augroup go_autocmd
+    autocmd BufWritePost *.go CustomGoFmt
+  augroup END
+
 ]])
