@@ -27,6 +27,7 @@ declare -a globalPlugins=(
   kustomize=4.3.0
   kubeval=0.16.0
   nodejs=12.14.1
+  ripgrep=13.0.0
   starship=1.1.1
   terraform=0.12.29
   terragrunt=0.21.6

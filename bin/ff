@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+
+# simple script to find files (with `find` and `fzf`)
+# the result is opened with `$EDITOR`
+
+files="$(find . -type f | sort| fzf)"
+
+$EDITOR ${files}
+
+#TODO: use rg to search for contents
