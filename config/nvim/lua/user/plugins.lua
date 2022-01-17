@@ -57,6 +57,8 @@ return packer.startup(function(use)
 		},
 	})
 
+	use("sidebar-nvim/sidebar.nvim")
+
 	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")

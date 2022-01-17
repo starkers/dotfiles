@@ -16,24 +16,27 @@ local path_python = vim.fn.expand("$HOME") .. "/.local/bin/"
 null_ls.setup({
 	debug = false,
 	sources = {
+
 		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+
 		formatting.black.with({
 			extra_args = { "--fast" },
 			command = path_python .. "black",
 		}),
+
 		formatting.stylua.with({
 			command = path_cargo .. "stylua",
 		}),
 
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/gofmt.lua#L10
-		formatting.gofmt.with({
-			command = path_go .. "gofmt",
-		}),
+		-- -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/gofmt.lua#L10
+		-- formatting.gofmt.with({
+		-- 	command = path_go .. "gofmt",
+		-- }),
 
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/goimports.lua#L10
-		formatting.goimports.with({
-			command = path_go .. "goimports",
-		}),
+		-- -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/goimports.lua#L10
+		-- formatting.goimports.with({
+		-- 	command = path_go .. "goimports",
+		-- }),
 
 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/terraform_fmt.lua#L10
 		formatting.terraform_fmt.with({
@@ -51,9 +54,11 @@ null_ls.setup({
 		}),
 
 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/diagnostics/golangci_lint.lua#L10
-		diagnostics.golangci_lint.with({
-			command = path_go .. "golangci-lint",
-		}),
+		-- TODO: golangci-lint + goimports + gofmt automatically? (make null-ls and lsp be friends?)
+		-- diagnostics.golangci_lint.with({
+		-- 	command = path_go .. "golangci-lint",
+		-- }),
+
 		diagnostics.flake8.with({
 			command = path_python .. "flake8",
 		}),
