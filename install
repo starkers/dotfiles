@@ -22,5 +22,12 @@ say "press 'enter' to run all the tweaks/   or  '^c' to exit"
 read -sp "waiting for input..." _x && echo
 
 
-try ./tweaks/*.sh
+## run my scripts that prep my environment
+
+for a in ./tweaks/*.sh ; do
+
+  banner ${a}
+  try ${a}
+
+done
 

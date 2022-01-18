@@ -22,10 +22,15 @@ done
 banner installing fonts
 VER=v2.1.0
 
+## where to store the fonts after install
 FONTDIR="${XDG_DATA_HOME}/fonts"
 try mkdir -p ${FONTDIR}
 
-TMPDIR="$(mktemp -d)" ; try cd ${TMPDIR}
+# storing the downloaded .zip files (to make the script idempotent)
+
+FONTSTORAGE="${HOME}/.font_storage/NerdFonts-${VER}"
+try mkdir -p "${FONTSTORAGE}"
+try cd "${FONTSTORAGE}"
 
 installNerdFont(){
   say "installing NerdFont: ${NAME}  (ver: ${VER})"
@@ -33,7 +38,7 @@ installNerdFont(){
   local fNAME="$1.zip"
 
   # download
-  try wget https://github.com/ryanoasis/nerd-fonts/releases/download/${VER}/${fNAME} -c
+  try wget -q --show-progress -c "https://github.com/ryanoasis/nerd-fonts/releases/download/${VER}/${fNAME}" -O "${fNAME}"
 
   # decompress
   try unzip -o "${fNAME}" -d "${FONTDIR}"
@@ -42,7 +47,6 @@ installNerdFont(){
   try find "${FONTDIR}" -name '*Windows Compatible*' -delete
 
   ## cleanup the downloaded .zip file
-  try rm ${fNAME}
 }
 
 declare -a fonts=(
