@@ -26,7 +26,9 @@ function my_load_aliases(){
 }
 
 function my_load_shell_functions(){
-  source ~/.shell_functions
+  if [ -e ${HOME}/.shell_functions ] ; then 
+    source ~/.shell_functions
+  fi
 }
 
 function my_load_z_and_fzf(){
@@ -131,61 +133,13 @@ function my_load_keybase_stuff(){
 
 
 
-# export SDKMAN_DIR="${HOME}/.sdkman"
-# [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+function my_load_starship(){
+  if hash starship 2>/dev/null; then
+    eval "$(starship init zsh)"
+  fi
+}
 
-# export ZSH_CUSTOM="${HOME}/.zsh_custom"
-
-# Just comment a section if you want to disable it
-SPACESHIP_PROMPT_ORDER=(
-  # time        # Time stampts section (Disabled)
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  # hg            # Mercurial section (hg_branch  + hg_status)
-  # package     # Package version (Disabled)
-  # node          # Node.js section
-  # ruby          # Ruby section
-  # elixir        # Elixir section
-  # xcode       # Xcode section (Disabled)
-  # swift         # Swift section
-  # golang        # Go section
-  # php           # PHP section
-  # rust          # Rust section
-  # haskell       # Haskell Stack section
-  # julia       # Julia section (Disabled)
-  # docker      # Docker section (Disabled)
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  # conda         # conda virtualenv section
-  # pyenv         # Pyenv section
-  # dotnet        # .NET section
-  # ember       # Ember.js section (Disabled)
-  # line_sep      # Line break
-  # kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  line_sep      # Line break
-  # battery       # Battery level and status
-  # vi_mode     # Vi-mode indicator (Disabled)
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-
-# SPACESHIP_VENV_SYMBOL='🐍'
-
-SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(
-  # red if namespace is "kube-system"
-  red    '.*prod'
-  # else, green if "dev-01" is anywhere in the context or namespace
-  green  '.*staging'
-  # else, red if context name ends with ".k8s.local" _and_ namespace is "system"
-  # red    '\.k8s\.local \(system)$'
-  # else, yellow if the entire content is "test-" followed by digits, and no namespace is displayed
-  blue '^.*$'
-  )
-
+  
 
 if [[ -o interactive ]]; then
 
@@ -194,69 +148,31 @@ if [[ -o interactive ]]; then
   zstyle ":completion:*:commands" rehash 1
   bindkey '^W' vi-backward-kill-word
 
-  ####################################################
-  ## theming etc
-  source ~/.antigen.zsh
-  antigen use oh-my-zsh
-
-  antigen bundle docker
-  antigen bundle docker-compose
-  antigen bundle git
-  antigen bundle git-flow
-  antigen bundle golang
-  antigen bundle gpg-agent
-  antigen bundle history
-  antigen bundle httpie
-  # antigen bundle kubectl
-  antigen bundle pip
-  antigen bundle systemd
-  antigen bundle virtualenv
-  antigen bundle z
-  antigen bundle zsh-users/zsh-autosuggestions
-  antigen bundle zsh-users/zsh-completions
-  antigen bundle zsh-users/zsh-syntax-highlighting
-
-  antigen bundle larkery/zsh-histdb
-  ##
-  #antigen bundle zpm-zsh/colors
-  #antigen bundle zpm-zsh/helpers
-  #antigen bundle zpm-zsh/pr-cwd
-
-  fpath=(~/.zsh/completions $fpath)
-  plugins=(docker docker-compose go golang kubectl z zsh-completions)
-  # this is required so `docker exec -it <TAB>` works.. see: https://github.com/moby/moby/commit/402caa94d23ea3ad47f814fc1414a93c5c8e7e58
-  zstyle ':completion:*:*:docker:*' option-stacking yes
-  zstyle ':completion:*:*:docker-*:*' option-stacking yes
-
-  antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
-  antigen apply
-  ####################################################
-
-  if [[ -f ~/.antigen/bundles/larkery/zsh-histdb/sqlite-history.zsh ]]; then
-    source ~/.antigen/bundles/larkery/zsh-histdb/sqlite-history.zsh
-    autoload -Uz add-zsh-hook
-  fi
-
 
 fi
 
+
+
 if [[ -o interactive ]]; then
+  my_load_starship
   my_load_aliases
   my_load_fzf
   my_load_keybase_stuff
   my_load_profile
   my_load_shell_functions
   my_load_vte
-  my_load_z_and_fzf
+  # my_load_z_and_fzf
   my_load_ggg
 fi
 
+# # TODO: why isn't this being set?
+# export SHELL=/usr/bin/zsh
 
 export PATH="${GOPATH}/bin:${PATH}"
 export PATH="${HOME}/.bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/.software/bin:${PATH}"
-export PATH="${HOME}/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:${PATH}"
+# export PATH="${HOME}/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:${PATH}"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 export KUBECONFIG="${HOME}/.kube/config"
