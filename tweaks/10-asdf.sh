@@ -4,9 +4,7 @@ ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 source ${ROOTDIR}/shell-functions
 declare -a deps=(
-	fc-cache
-	unzip
-	wget
+	asdf
 )
 
 for dep in "${deps[@]}"; do
@@ -21,13 +19,13 @@ declare -a globalPlugins=(
 	dive=0.10.0
 	dyff=1.4.7
 	fd=8.3.1
-	kops=v1.21.2
 	k9s=0.25.18
+	kops=v1.21.2
 	krew=0.4.0
 	kubectl=1.21.3
 	kubespy=0.5.1
-	kustomize=4.3.0
 	kubeval=0.16.0
+	kustomize=4.3.0
 	nodejs=12.14.1
 	ripgrep=13.0.0
 	shfmt=3.4.2
