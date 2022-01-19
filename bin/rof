@@ -3,19 +3,17 @@
 # rofi with an ok theme
 # source == unknown
 
-
 normal="#393939,#ffffff,#393939,#268bd2,#ffffff"
 # OPTS="$OPTS -color-normal ${normal}"
 
-        #-color-normal "$normal"
-        #        #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5 (Default)
-        #-color-urgent [string]                  Color scheme for urgent row
-        #        #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3 (Default)
-        #-color-active [string]                  Color scheme for active row
-        #        #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3 (Default)
-        #-color-window [string]                  Color scheme window
-        #        #fdf6e3,#002b36 (Default)
-
+#-color-normal "$normal"
+#        #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5 (Default)
+#-color-urgent [string]                  Color scheme for urgent row
+#        #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3 (Default)
+#-color-active [string]                  Color scheme for active row
+#        #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3 (Default)
+#-color-window [string]                  Color scheme window
+#        #fdf6e3,#002b36 (Default)
 
 window="#393939,#393939,#268bd2"
 # OPTS="$OPTS -color-window ${normal}"

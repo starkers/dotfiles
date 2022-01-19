@@ -12,20 +12,20 @@
 #   gc "my message"
 #
 # - have a prompt to enter the message (no need to quote your input)
-#  
+#
 #  gc
 #
 
 if [ ! X"$1" == X ]; then
-  set -x
-  git commit -S -m "$@"
-  exit 0
+	set -x
+	git commit -S -m "$@"
+	exit 0
 fi
 
 echo "##################################################################################"
 read -p "msg: " FOO
 
 if [ ! "X${FOO}" == X ]; then
-  set -x
-  git commit -S -m "${FOO}"
+	set -x
+	git commit -S -m "${FOO}"
 fi

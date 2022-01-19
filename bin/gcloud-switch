@@ -12,17 +12,18 @@
 # just run it and see..
 
 declare -a deps=(
-  awk
-  cut
-  fzf
-  gcloud
+	awk
+	cut
+	fzf
+	gcloud
 )
 
 for dep in "${deps[@]}"; do
-  hash ${dep} 2>/dev/null
-  if [ $? -gt 0 ]; then
-    echo "error.. please install ${dep} to use this script" ; exit 111
-  fi
+	hash ${dep} 2>/dev/null
+	if [ $? -gt 0 ]; then
+		echo "error.. please install ${dep} to use this script"
+		exit 111
+	fi
 done
 
 args="--height=20% --no-sort --tac"
@@ -37,7 +38,8 @@ cat <<EOF
 ###############################################
 EOF
 
-pick=$(cat <<EOF | fzf ${args}
+pick=$(
+	cat <<EOF | fzf ${args}
 account
 account-and-project
 account-project-and-cluster
@@ -47,62 +49,58 @@ project-and-cluster
 EOF
 )
 
-set_account(){
-  local SELECTED_ACCOUNT="$(gcloud auth list --format="value(account)" | fzf ${args})"
-  echo "[] exec: gcloud config set account ${SELECTED_ACCOUNT}"
-  gcloud config set account ${SELECTED_ACCOUNT}
+set_account() {
+	local SELECTED_ACCOUNT="$(gcloud auth list --format="value(account)" | fzf ${args})"
+	echo "[] exec: gcloud config set account ${SELECTED_ACCOUNT}"
+	gcloud config set account ${SELECTED_ACCOUNT}
 }
 
-
-set_project(){
-  local RAW="$(gcloud alpha projects list | fzf ${args})"
-  local RAW_PROJECT="$(echo ${RAW} | awk '{print $1}')"
-  if [ ! "X${PROJECT_CURRENT}" == "X${RAW_PROJECT}" ]; then
-    echo "[] exec: gcloud config set project ${RAW_PROJECT}"
-    gcloud config set project ${RAW_PROJECT}
-  fi
+set_project() {
+	local RAW="$(gcloud alpha projects list | fzf ${args})"
+	local RAW_PROJECT="$(echo ${RAW} | awk '{print $1}')"
+	if [ ! "X${PROJECT_CURRENT}" == "X${RAW_PROJECT}" ]; then
+		echo "[] exec: gcloud config set project ${RAW_PROJECT}"
+		gcloud config set project ${RAW_PROJECT}
+	fi
 }
 
-set_cluster(){
-  PROJECT_CURRENT="$(gcloud config get-value project)"
-  local RAW="$(gcloud container clusters list 2>/dev/null | egrep "RUNNING|STATUS" | fzf ${args})"
-  local RAW_NAME="$(echo ${RAW} | awk '{print $1}')"
-  # local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}' | cut -d "-" -f 1-2)"
-  local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}' )"
-  echo "[] exec: gcloud beta container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}"
-  gcloud beta container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}
+set_cluster() {
+	PROJECT_CURRENT="$(gcloud config get-value project)"
+	local RAW="$(gcloud container clusters list 2>/dev/null | egrep "RUNNING|STATUS" | fzf ${args})"
+	local RAW_NAME="$(echo ${RAW} | awk '{print $1}')"
+	# local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}' | cut -d "-" -f 1-2)"
+	local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}')"
+	echo "[] exec: gcloud beta container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}"
+	gcloud beta container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}
 }
-
-
 
 case $pick in
-  account)
-    echo "picked account"
-    set_account
-    ;;
-  account-and-project)
-    echo "picked account"
-    set_account
-    set_project
-    ;;
-  account-project-and-cluster)
-    echo "picked account"
-    set_account
-    set_project
-    set_cluster
-    ;;
-  project)
-    echo "picked project"
-    set_project
-    ;;
-  cluster)
-    echo "picked cluster"
-    set_cluster
-    ;;
-  project-and-cluster)
-    echo "picked project + cluster"
-    set_project
-    set_cluster
-    ;;
+account)
+	echo "picked account"
+	set_account
+	;;
+account-and-project)
+	echo "picked account"
+	set_account
+	set_project
+	;;
+account-project-and-cluster)
+	echo "picked account"
+	set_account
+	set_project
+	set_cluster
+	;;
+project)
+	echo "picked project"
+	set_project
+	;;
+cluster)
+	echo "picked cluster"
+	set_cluster
+	;;
+project-and-cluster)
+	echo "picked project + cluster"
+	set_project
+	set_cluster
+	;;
 esac
-

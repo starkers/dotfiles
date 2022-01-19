@@ -9,15 +9,18 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 -- default path for locally installed languages
+-- local path_asdf = vim.fn.expand("$HOME") .. "/.asdf/shims"
 local path_cargo = vim.fn.expand("$HOME") .. "/.cargo/bin/"
-local path_go = vim.fn.expand("$GOPATH") .. "/bin/"
+-- local path_go = vim.fn.expand("$GOPATH") .. "/bin/"
 local path_python = vim.fn.expand("$HOME") .. "/.local/bin/"
 
 null_ls.setup({
 	debug = false,
 	sources = {
 
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+		formatting.prettier.with({
+			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+		}),
 
 		formatting.black.with({
 			extra_args = { "--fast" },
@@ -26,6 +29,10 @@ null_ls.setup({
 
 		formatting.stylua.with({
 			command = path_cargo .. "stylua",
+		}),
+
+		formatting.shfmt.with({
+			-- command = path_asdf .. "smfmt",
 		}),
 
 		-- -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/gofmt.lua#L10

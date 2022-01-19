@@ -2,9 +2,9 @@
 ###############################################################################
 # Author:      David Stark
 # Vim:         ts=4 et sw=4 sts=4
-# Notes:       
+# Notes:
 ###############################################################################
-set -o nounset                              # Treat unset variables as an error
+set -o nounset # Treat unset variables as an error
 
 #!/bin/bash
 awk 'BEGIN{
@@ -20,5 +20,3 @@ awk 'BEGIN{
     }
     printf "\n";
 }'
-
-

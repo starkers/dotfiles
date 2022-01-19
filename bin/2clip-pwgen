@@ -3,17 +3,16 @@
 len="${1:-32}"
 
 # generate a random passwd
-generate(){
-  cat /dev/urandom | tr -dc 'a-zA-Z0-9_' | fold -w "${len}" | head -n 1
+generate() {
+	cat /dev/urandom | tr -dc 'a-zA-Z0-9_' | fold -w "${len}" | head -n 1
 }
-
 
 # generate passwords until at least one `_` is inside the output
 while true; do
-  pass="$(generate)"
-  if grep -q \_ <<<"${pass}"; then
-    break
-  fi
+	pass="$(generate)"
+	if grep -q \_ <<<"${pass}"; then
+		break
+	fi
 done
 
 # ensure no trailing newline
