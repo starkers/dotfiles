@@ -1,6 +1,8 @@
 # vi: ft=fish
 
-if command -s kubecolor > /dev/null
-  alias kubectl=kubecolor
+if status is-interactive
+  if command -s kubecolor > /dev/null
+    alias kubectl=kubecolor
+  end
 end
 

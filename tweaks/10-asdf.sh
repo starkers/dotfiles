@@ -19,6 +19,7 @@ declare -a globalPlugins=(
 	dive=0.10.0
 	dyff=1.4.7
 	fd=8.3.1
+	helm=3.7.2
 	k9s=0.25.18
 	kops=v1.21.2
 	krew=0.4.0

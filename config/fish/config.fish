@@ -12,10 +12,12 @@ function fish_greeting
   # fortune | cowsay -f tux
 end
 
-if command -s starship > /dev/null
-  starship init fish | source
-else
-  echo '#WARN: starship not installed'
+if status is-interactive
+  if command -s starship > /dev/null
+    starship init fish | source
+  else
+    echo '#WARN: starship not installed'
+  end
 end
 
 if test -f $HOME/.aliases
