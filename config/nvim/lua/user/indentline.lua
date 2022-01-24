@@ -13,7 +13,9 @@ vim.g.indent_blankline_filetype_exclude = {
 	"NvimTree",
 	"Trouble",
 }
-vim.g.indentLine_enabled = 1
+-- TODO..  this doesn't working.. disabling it via vim.cmd
+-- vim.g.indentLine_enabled = 0
+vim.cmd([[ let g:indent_blankline_enabled = v:false ]])
 -- vim.g.indent_blankline_char = "│"
 vim.g.indent_blankline_char = "▏"
 -- vim.g.indent_blankline_char = "▎"
