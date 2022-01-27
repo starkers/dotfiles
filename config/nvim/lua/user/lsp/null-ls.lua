@@ -18,10 +18,6 @@ null_ls.setup({
 	debug = false,
 	sources = {
 
-		formatting.prettier.with({
-			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-		}),
-
 		formatting.black.with({
 			extra_args = { "--fast" },
 			command = path_python .. "black",
@@ -55,9 +51,15 @@ null_ls.setup({
 			to_stdin = true,
 		}),
 
-		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/eslint.lua#L19
-		formatting.eslint.with({
-			command = "eslint",
+		-- -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/eslint.lua#L19
+		-- formatting.eslint.with({
+		-- 	command = "eslint",
+		-- 	prefer_local = "node_modules/.bin",
+		-- }),
+
+		formatting.prettier.with({
+			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+			prefer_local = "node_modules/.bin",
 		}),
 
 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/diagnostics/golangci_lint.lua#L10
@@ -66,21 +68,47 @@ null_ls.setup({
 		-- 	command = path_go .. "golangci-lint",
 		-- }),
 
+		-- diagnostics.eslint.with({
+		-- 	prefer_local = "node_modules/.bin",
+		-- 	command = "eslint",
+		-- }),
+
 		diagnostics.flake8.with({
 			command = path_python .. "flake8",
 		}),
+
+		-- no more
 	},
 
 	-- auto-formatting
 	-- See: https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/README.md?plain=1#L214-L228
 	on_attach = function(client)
-		if client.resolved_capabilities.document_formatting then
-			vim.cmd([[
-        augroup LspFormatting
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-        augroup END
-        ]])
+		-- src: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/436#issuecomment-995322408
+		-- prefer null-ls for formatting if available
+		if not is_null and null_can_format then
+			-- disable formatting for ls
+			print("formatting disabled for ls")
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+		elseif is_null and not null_can_format then
+			-- disable formatting for null-ls
+			print("formatting disabled for null")
+			client.supports_method = function(--[[ method ]])
+				return false
+			end
+		else
+			-- use client for formatting
+			print("formatting enabled")
+			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		end
+
+		-- if client.resolved_capabilities.document_formatting then
+		-- 	vim.cmd([[
+		--     augroup LspFormatting
+		--         autocmd! * <buffer>
+		--         autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+		--     augroup END
+		--     ]])
+		-- end
 	end,
 })
