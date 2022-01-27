@@ -71,3 +71,5 @@ keymap("n", "<C-_>", ":lua require('Comment.api').toggle_current_linewise()<CR>"
 
 -- keymap("n", "<Tab>", ":bnext", opts)
 -- keymap("n", "<S-Tab>", ":bprevious", opts)
+
+keymap("n", "<C-f>", "<cmd>NERDTree %<CR>", opts)
