@@ -23,6 +23,7 @@ function my_load_profile(){
 
 function my_load_aliases(){
   source ~/.aliases
+  source ~/.aliases-other
 }
 
 function my_load_shell_functions(){
