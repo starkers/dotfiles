@@ -16,6 +16,9 @@ done
 #############################################################
 
 declare -a globalPlugins=(
+	# ag=1.0.3
+	# python=3.6.15
+	bat=0.19.0
 	dive=0.10.0
 	dyff=1.4.7
 	fd=8.3.1
@@ -29,9 +32,12 @@ declare -a globalPlugins=(
 	kubeval=0.16.0
 	kustomize=4.3.0
 	nodejs=12.14.1
+	python=3.8.8
 	ripgrep=13.0.0
 	shfmt=3.4.2
+	jq=1.6
 	starship=1.1.1
+	stern=1.20.1
 	terraform=0.12.29
 	terragrunt=0.21.6
 	vault=1.7.3

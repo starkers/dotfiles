@@ -1,0 +1,4 @@
+[/]
+per-window=false
+sources=[('xkb', 'gb')]
+xkb-options=['terminate:ctrl_alt_bksp', 'caps:escape']

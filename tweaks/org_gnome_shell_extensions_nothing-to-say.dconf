@@ -1,0 +1,4 @@
+[/]
+icon-visibility='always'
+keybinding-toggle-mute=['<Super>Space', 'Pause']
+play-feedback-sounds=false

@@ -2,10 +2,18 @@
 
 # generic shell functions
 
-say() { echo -e "\e[32m$9: $*\e[0m" >&2; }
+say() {
+	set +u
+	echo -e "\e[32m$9: $*\e[0m" >&2
+}
 die() {
+	set +u
 	echo -e "\e[31m$*\e[0m"
 	exit 1
+}
+err() {
+	set +u
+	echo -e "\e[31m$*\e[0m"
 }
 try() {
 	echo -e "\e[33m\$ $@\e[0m"

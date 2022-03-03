@@ -1,0 +1,12 @@
+[keybindings]
+close=['<Super>w']
+switch-applications=@as []
+switch-input-source=@as []
+switch-input-source-backward=@as []
+switch-windows=['<Alt>Tab']
+toggle-maximized=['<Super>Up']
+
+[preferences]
+mouse-button-modifier='<Super>'
+resize-with-right-button=true
+visual-bell=false

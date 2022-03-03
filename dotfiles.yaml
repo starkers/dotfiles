@@ -48,9 +48,15 @@
   # - mkdir -p ~/.config/mc
   # - cp -rvp mc/* ~/.config/mc/.
 
+  - [git submodule update --init --recursive, Installing submodules]                                                 
+
+
   - mkdir -p ~/.ssh
   - rsync -va /keybase/private/starkers/home/ssh/ ~/.ssh/ --exclude=known_hosts --exclude=google_compute_known_hosts
   - chmod 0700 ~/.ssh/
   - chmod 0600 ~/.ssh/id_*
-  - [git submodule update --init --recursive, Installing submodules]                                                 
+
+  - mkdir -p ~/.aws
+
+  - rsync -va /keybase/private/starkers/home/aws/ ~/.aws/
 
