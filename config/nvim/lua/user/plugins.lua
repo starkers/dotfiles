@@ -68,11 +68,7 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
-	--  use "folke/which-key.nvim"
-	use({
-		"zeertzjq/which-key.nvim",
-		branch = "patch-1",
-	})
+	use("folke/which-key.nvim")
 
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

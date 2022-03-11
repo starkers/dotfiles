@@ -13,6 +13,7 @@ local diagnostics = null_ls.builtins.diagnostics
 local path_cargo = vim.fn.expand("$HOME") .. "/.cargo/bin/"
 -- local path_go = vim.fn.expand("$GOPATH") .. "/bin/"
 local path_python = vim.fn.expand("$HOME") .. "/.local/bin/"
+local path_asdf = vim.fn.expand("$HOME") .. "/.asdf/shims/"
 
 null_ls.setup({
 	debug = false,
@@ -20,7 +21,7 @@ null_ls.setup({
 
 		formatting.black.with({
 			extra_args = { "--fast" },
-			command = path_python .. "black",
+			command = path_asdf .. "black",
 		}),
 
 		formatting.stylua.with({

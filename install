@@ -21,13 +21,11 @@ banner "dotbot success"
 say "press 'enter' to run all the tweaks/   or  '^c' to exit"
 read -sp "waiting for input..." _x && echo
 
-
 ## run my scripts that prep my environment
+try cd ${ROOTDIR}/tweaks
+for a in *.sh; do
 
-for a in ./tweaks/*.sh ; do
-
-  banner ${a}
-  try ${a}
+	banner ./${a}
+	try ./${a}
 
 done
-

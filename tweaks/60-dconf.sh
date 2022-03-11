@@ -24,6 +24,8 @@ EOF
 	exit 0
 }
 
+try cd ${ROOTDIR}
+
 if [ "X$1" == X ]; then
 	for i in ${mappings[@]}; do
 		confPath="$(cut -d ":" -f 1 <<<"${i}")"
