@@ -24,4 +24,16 @@ if test -f $HOME/.aliases
   source $HOME/.aliases
 end
 
+if test -z "$XDG_DATA_HOME"
+  set -Ux XDG_DATA_HOME $HOME/.local/share
+end
+
+
+set -Ux CHEATCOLORS "true"
+set -Ux AWS_SDK_LOAD_CONFIG 1
+set -Ux CHEATPATH /keybase/private/starkers/home/cheats
+set -Ux TF_PLUGIN_CACHE_DIR $HOME/.tf_cache
+
+
 fish_add_path -aP /sbin
+
