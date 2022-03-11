@@ -1,7 +1,7 @@
 # vi: ft=fish
 
 
-if command -s ~/.software/bin/fnm > /dev/null
+if command -s fnm > /dev/null
   set PATH $HOME/.fnm $PATH
   fish_add_path -a $HOME/.fnm
 
@@ -28,7 +28,7 @@ if command -s ~/.software/bin/fnm > /dev/null
     set current (string replace "v" "" (fnm current))
     set target (string replace "v" "" $argv[1])
     if test $current != $target
-      $HOME/.software/bin/fnm use $argv[1] --log-level=quiet
+      fnm use $argv[1] --log-level=quiet
     end
   end
 
@@ -42,7 +42,7 @@ if command -s ~/.software/bin/fnm > /dev/null
     end
   end
 
-  $HOME/.software/bin/fnm env | source
+  fnm env | source
 
 # VSCode open integrated terminal does not trigger PWD hook
   if test "$TERM_PROGRAM" = "vscode"
