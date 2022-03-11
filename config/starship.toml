@@ -92,7 +92,7 @@ disabled = true
 
 
 [git_branch]
-symbol = "🌱 "
+symbol = " "
 # truncation_length = 4
 truncation_symbol = ""
 
@@ -104,12 +104,11 @@ truncation_symbol = ""
 
 [git_commit]
 commit_hash_length = 4
-tag_symbol = "🔖 "
+tag_symbol = "ﰗ "
 
 
 
 
-[nodejs]
+# [nodejs]
 # format = "via [🤖 $version](bold green) "
-format = "[$symbol($version )]($style)"
-
+# # format = "[ $symbol($version )]($style)"
