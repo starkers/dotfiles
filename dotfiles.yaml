@@ -32,10 +32,11 @@
       exclude:
       - .git
       - .gitmodules
+      - config
       - dotbot
       - dotfiles.yaml
       - install
-      - config
+      - packer-snapshots
       create: true
       # force: true
       glob: true
@@ -60,3 +61,5 @@
 
   - rsync -va /keybase/private/starkers/home/aws/ ~/.aws/
 
+- link:
+    ~/.cache/nvim/packer.nvim: 'packer-snapshots'
