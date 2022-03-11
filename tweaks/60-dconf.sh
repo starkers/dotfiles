@@ -40,7 +40,9 @@ elif [ X${1} == Xdump ]; then
 		confPath="$(cut -d ":" -f 1 <<<"${i}")"
 		confFile="$(echo "${confPath}.dconf" | sed 's+/++1; s+/+_+g; s+_.dconf+.dconf+1')"
 		say dumping $confPath
-		try dconf dump "$confPath" >"$confFile"
+		set -e
+		dconf dump "$confPath" >"$confFile"
+		set +e
 	done
 else
 	usage
