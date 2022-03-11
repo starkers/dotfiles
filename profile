@@ -29,6 +29,9 @@ my_load_path_home_bin(){
   if [ -d "${HOME}/.software/bin" ] ; then
     export PATH="${HOME}/.software/bin:${PATH}"
   fi
+  if [ -d "${HOME}/.asdf/shims"] ; then
+    export PATH="${HOME}/.asdf/shims:${PATH}"
+  fi
 }
 
 # my_load_gemstuff(){
@@ -108,6 +111,7 @@ if egrep -q "i3|xinitrc|sway" <<<"${DESKTOP_SESSION}" ; then
 fi
 
 export CHEATCOLORS=true
+export CHEATPATH="/keybase/private/starkers/home/cheats"
 
 
 #vf() { fzf | xargs -r -I % $EDITOR % ;}
