@@ -29,7 +29,7 @@ my_load_path_home_bin(){
   if [ -d "${HOME}/.software/bin" ] ; then
     export PATH="${HOME}/.software/bin:${PATH}"
   fi
-  if [ -d "${HOME}/.asdf/shims"] ; then
+  if [ -d "${HOME}/.asdf/shims" ] ; then
     export PATH="${HOME}/.asdf/shims:${PATH}"
   fi
 }

@@ -35,5 +35,8 @@ set -Ux CHEATPATH /keybase/private/starkers/home/cheats
 set -Ux TF_PLUGIN_CACHE_DIR $HOME/.tf_cache
 
 
+# krew
+set -gx PATH $PATH $HOME/.krew/bin
+
 fish_add_path -aP /sbin
 

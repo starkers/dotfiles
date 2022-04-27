@@ -9,12 +9,13 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
-  "shell",
-  "git_repos",
+  "containers",
   "gcloud",
-  "vim",
+  "git_repos",
   "node",
   "pnpm",
+  "shell",
+  "vim",
   ]
 
 # Run specific steps - same options as the command line flag

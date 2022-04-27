@@ -36,6 +36,7 @@
       - dotbot
       - dotfiles.yaml
       - install
+      - mc
       - packer-snapshots
       create: true
       # force: true
@@ -46,8 +47,10 @@
   # - mkdir -p ~/.config/autostart
   # - rsync -va autostart/ ~/.config/autostart/ --inplace
 
-  # - mkdir -p ~/.config/mc
-  # - cp -rvp mc/* ~/.config/mc/.
+  - mkdir -p ~/.config/mc
+  - cp -rvp mc/* ~/.config/mc/.
+  - mkdir -p ~/.local/share/mc
+  - cp -rvp mc/* ~/.local/share/mc/.
 
   - [git submodule update --init --recursive, Installing submodules]                                                 
 
