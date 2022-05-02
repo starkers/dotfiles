@@ -58,10 +58,15 @@ null_ls.setup({
 		-- 	prefer_local = "node_modules/.bin",
 		-- }),
 
-		formatting.prettier.with({
-			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+    -- format with vanilla 'eslint' please
+    formatting.eslint.with({
 			prefer_local = "node_modules/.bin",
-		}),
+      -- extra_args = { "--fix-dry-run", "--format", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+    }),
+		--formatting.prettier.with({
+		--	extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+		--	prefer_local = "node_modules/.bin",
+		--}),
 
 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/diagnostics/golangci_lint.lua#L10
 		-- TODO: golangci-lint + goimports + gofmt automatically? (make null-ls and lsp be friends?)
@@ -69,10 +74,11 @@ null_ls.setup({
 		-- 	command = path_go .. "golangci-lint",
 		-- }),
 
-		-- diagnostics.eslint.with({
-		-- 	prefer_local = "node_modules/.bin",
-		-- 	command = "eslint",
-		-- }),
+    -- vanilla eslint diagnostics also
+		diagnostics.eslint.with({
+			prefer_local = "node_modules/.bin",
+			command = "eslint",
+		}),
 
 		diagnostics.flake8.with({
 			command = path_python .. "flake8",
