@@ -68,5 +68,10 @@ for font in "${fonts[@]}"; do
 	installNerdFont ${font}
 done
 
+## copy in my personal (paid-for) fonts
+#- https://tosche.net/fonts/comic-code
+#- https://fonts.ilovetypography.com/fonts/tabular-type-foundry/comic-code
+
+try cp /keybase/private/starkers/fonts/* ${FONTDIR}
 try fc-cache -f
 banner done
