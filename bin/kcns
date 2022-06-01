@@ -47,6 +47,30 @@
 #
 # kcns
 
+# "say"  just says stuff
+say() {
+	echo -e "\e[32m: $*\e[0m" >&2
+}
+
+# "die" will accept some input, say it.. and the exit with an error return-code of 1
+die() {
+	echo -e "\e[31m$*\e[0m"
+	exit 1
+}
+
+# "err" is like die (its red) but without exiting
+err() {
+	echo -e "\e[31m# err: $*\e[0m"
+}
+
+# "try" accepts a command line to run.. it will run that ocmmand and "die" if that failed
+#       most importantly it lets you see whats being run cleanly and lets you select when
+#       failure should be checked for
+try() {
+	echo -e "\e[33m\$ $@\e[0m"
+	"$@" || die "cannot $*"
+}
+
 set -e
 
 function usage() {
@@ -80,11 +104,14 @@ function pick_namespace() {
 }
 
 function get_current_user() {
-	local NAME="$(kubectl config view -o jsonpath='{.users[0].name}' 2>/dev/null)"
+	say please select a username
+	DATA="$(kubectl config view -o jsonpath='{.users[*].name}' 2>/dev/null | sed "s+ +\n+g" | fzf)"
+	# say kubectl config view -o jsonpath='{.users[0].name}'
+	# local NAME="$(kubectl config view -o jsonpath='{.users[0].name}' 2>/dev/null)"
 	if [ $? -gt 0 ]; then
 		echo nil
 	else
-		echo ${NAME}
+		echo ${DATA}
 	fi
 }
 
@@ -101,7 +128,7 @@ function get_current_cluster() {
 }
 
 function config_set_context() {
-	kubectl \
+	try kubectl \
 		config set-context \
 		"${3}" \
 		--cluster=${1} \
@@ -109,7 +136,7 @@ function config_set_context() {
 }
 
 function config_set_context_with_user() {
-	kubectl \
+	try kubectl \
 		config set-context \
 		"${3}" \
 		--cluster=${1} \
@@ -118,7 +145,7 @@ function config_set_context_with_user() {
 }
 
 function config_use_context() {
-	kubectl config use-context "${1}"
+	try kubectl config use-context "${1}"
 }
 
 ###################
