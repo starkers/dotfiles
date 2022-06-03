@@ -19,6 +19,7 @@ python 3.8.8
 richgo 0.3.6
 ripgrep 13.0.0
 shfmt 3.4.2
+sops 3.7.3
 starship 1.1.1
 stern 1.20.1
 terraform 0.12.29

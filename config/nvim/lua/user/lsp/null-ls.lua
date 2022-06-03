@@ -97,8 +97,8 @@ null_ls.setup({
     if not is_null and null_can_format then
       -- disable formatting for ls
       print("formatting disabled for ls")
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
     elseif is_null and not null_can_format then
       -- disable formatting for null-ls
       print("formatting disabled for null")

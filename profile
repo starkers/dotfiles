@@ -132,4 +132,4 @@ export AWS_SDK_LOAD_CONFIG=1
 
 # gomod athens
 export GOPROXY=http://localhost:3000
-
+export XDG_DATA_HOME=${HOME}/.local/share

@@ -4,3 +4,5 @@
 # This points at my local athens
 set -Ux GOPROXY http://localhost:3000
 
+
+fish_add_path -a $GOPATH/bin
