@@ -75,3 +75,5 @@
   ff = only
 [mergetool]
   path = nvim
+[init]
+	defaultBranch = develop
