@@ -94,7 +94,7 @@ function usage() {
 }
 
 function pick_namespace() {
-	DATA="$(kubectl get namespace -o=custom-columns=NAME:.metadata.name 2>/dev/null | grep -v ^NAME | fzf)"
+	DATA="$(kubectl get namespace -o=custom-columns=NAME:.metadata.name 2>/dev/null | sort -r | grep -v ^NAME | fzf)"
 	RC=$?
 	if [ $RC -gt 0 ]; then
 		echo "Error running 'kubectl get namespace'"
@@ -104,14 +104,24 @@ function pick_namespace() {
 }
 
 function get_current_user() {
-	say please select a username
-	DATA="$(kubectl config view -o jsonpath='{.users[*].name}' 2>/dev/null | sed "s+ +\n+g" | fzf)"
-	# say kubectl config view -o jsonpath='{.users[0].name}'
-	# local NAME="$(kubectl config view -o jsonpath='{.users[0].name}' 2>/dev/null)"
+	## gotta loop thru the contexts to fine the one with the correct name so we can extract the user used
+	local CURRENT_CONTEXT="$(kubectl config current-context)"
+	local CONTEXT_NAMES="$(kubectl config view -o=jsonpath='{.contexts[*].name}')"
+	local i=0
+	local INDEX=0
+	for a in $CONTEXT_NAMES; do
+		if [ "$a" == "$CURRENT_CONTEXT" ]; then
+			INDEX=$i
+			USER="$(kubectl config view -o=jsonpath={.contexts[${INDEX}].context.user})"
+			break
+		fi
+		((i = i + 1))
+	done
 	if [ $? -gt 0 ]; then
 		echo nil
 	else
-		echo ${DATA}
+		say current contexts username == ${USER}
+		echo ${USER}
 	fi
 }
 
