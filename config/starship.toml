@@ -3,8 +3,7 @@
 # - https://starship.rs/
 
 # Which is equivalent to
-format = """
-$username\
+format = """$username\
 $hostname\
 $shlvl\
 $kubernetes\
@@ -109,6 +108,7 @@ tag_symbol = "ﰗ "
 
 
 
-# [nodejs]
-# format = "via [🤖 $version](bold green) "
+[nodejs]
+format = ""
+#via [🤖 $version](bold green) "
 # # format = "[ $symbol($version )]($style)"
