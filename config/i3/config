@@ -1,6 +1,6 @@
 # i3 config
 
-set $term alacritty
+set $term tilix
 
 #my mod is the "Meta/Super/Windows/Apple" button
 set $mod Mod4
@@ -15,10 +15,11 @@ set $mod Mod4
 
 
 # XRESOURCES
-set $fg_active "#363535"
+# set $fg_active "#363535"
 set $fg "#000000"
 set $bg "#000000"
 set $text "#a3a0a0"
+set $fg_active "#33ffb9"
 
 # CLASS                 BORDER         BACK    TEXT    INDICATOR
 client.focused          $fg     $fg_active     $text     $fg
@@ -61,14 +62,14 @@ gaps outer $outer
 # gaps outer $default_gaps_outer
 
 
-set $thick 2
+set $thick 4
 # i3-gaps-rounded only
 # border_radius 6
 
 
 # toggle gaps
-bindsym $mod+Shift+g exec compton; gaps inner all set $inner; gaps outer all set $outer
-bindsym $mod+g exec compton; gaps inner all set 0; gaps outer all set 0
+bindsym $mod+Shift+g exec picom; gaps inner all set $inner; gaps outer all set $outer
+bindsym $mod+g exec picom; gaps inner all set 0; gaps outer all set 0
 
 
 workspace_auto_back_and_forth yes
@@ -84,8 +85,9 @@ for_window [class="^.*"] border pixel $thick
 
 hide_edge_borders both
 
-font pango:Hack Nerd Font Regular 9
-# font pango:Noto Sans 8
+# font pango:Hack Nerd Font Regular 9
+# font pango:Hack Nerd Font Regular 9
+font pango:ComicCode Nerd Font Regular 9
 
 
 bindsym $mod+1           workspace   $ws1
@@ -125,7 +127,7 @@ bindsym $mod+Shift+Up    move        up    25px
 bindsym $mod+Shift+a     focus       child
 bindsym $mod+a           focus       parent
 
-bindsym $mod+Shift+c     reload
+bindsym $mod+Shift+c     rELoad
 bindsym $mod+Shift+r     restart
 bindsym $mod+Tab         workspace back_and_forth
 bindsym $mod+f           fullscreen
@@ -198,7 +200,7 @@ bindsym $mod+Return           exec --no-startup-id $term
 
 # start dmenu (a program launcher)
 bindsym $mod+Shift+d          exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
-bindsym $mod+d                exec rofi -lines 18 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Hack 16'
+bindsym $mod+d                exec rofi -lines 18 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'ComicCode 16'
 bindsym $mod+p                exec --no-startup-id $HOME/.bin/passwd_gen_2_clipboard  #actualy just runs: /usr/bin/pwgen 32 1 | /usr/bin/xclip -selection clipboard
 bindsym $mod+l                exec --no-startup-id $HOME/.config/i3/scripts/i3exit lock
 # bindsym $mod+p                exec --no-startup-id $HOME/.config/i3/scripts/i3exit suspend
@@ -213,7 +215,7 @@ bindsym XF86AudioMute         exec --no-startup-id pactl $HOME/.config/i3/script
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl $HOME/.config/i3/scripts/audio_volume.sh inc
 
 
-exec        --no-startup-id compton -b
+exec        --no-startup-id picom
 # exec        --no-startup-id /usr/bin/gnome-keyring-daemon --daemonize --login &
 exec        --no-startup-id /usr/bin/setxkbmap gb &
 exec        --no-startup-id /usr/bin/setxkbmap -option "terminate:ctrl_alt_bksp"
@@ -223,6 +225,10 @@ exec        --no-startup-id /usr/bin/xinput set-prop "SynPS/2 Synaptics TouchPad
 exec        --no-startup-id /usr/bin/xinput set-prop "DLL06E4:01 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 # for the MateBookX Pro 2018
 exec        --no-startup-id /usr/bin/xinput set-prop "SYNA1D31:00 06CB:CD48 Touchpad" "libinput Tapping Enabled" 1
+
+# for workstation (no accel.. aiming matters)
+exec        --no-startup-id /usr/bin/xinput "Kingsis Peripherals ZOWIE Gaming mouse" "libinput Accel Profile Enabled" 0, 1
+
 
 exec        --no-startup-id /usr/bin/setxkbmap -layout gb
 
@@ -234,6 +240,6 @@ exec        --no-startup-id nm-applet &
 # exec        --no-startup-id volumeicon &
 exec        --no-startup-id run_keybase &
 exec        --no-startup-id copyq &
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpapers/default &
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper &
 
 
