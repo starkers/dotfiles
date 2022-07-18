@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if hash "kubecolor" 2>/dev/null; then
+	CMD="kubecolor"
+else
+	CMD="kubectl"
+fi
+$CMD top $@ --use-protocol-buffers

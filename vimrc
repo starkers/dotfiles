@@ -395,7 +395,7 @@ nmap <C-_> :Commentary<CR>
 "nnoremap <C-Right> W
 
 
-set mouse=
+set mouse=a
 nnoremap <S-up>    :resize -1<cr>
 nnoremap <S-down>  :resize +1<cr>
 nnoremap <S-left>  :vertical resize -3<cr>

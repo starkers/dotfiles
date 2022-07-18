@@ -13,7 +13,7 @@ disable = [
   "gcloud",
   "git_repos",
   "node",
-  "pnpm",
+  "pip3",
   "shell",
   "vim",
   ]

@@ -3,8 +3,9 @@ local wezterm = require 'wezterm';
 return {
   -- color_scheme = "Dracula",
   -- color_scheme = "OceanicMaterial",
-  color_scheme = "OneHalfDark",
-  -- color_scheme = "AtomOneLight",
+  color_scheme = "Mathias",
+  -- color_scheme = "OneHalfDark",
+  -- color_scheme = "OneDark",
   font = wezterm.font("ComicCode Nerd Font"),
   keys = {
 
