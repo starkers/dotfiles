@@ -23,6 +23,7 @@ declare -a globalPlugins=(
 	dyff=1.4.7
 	fd=8.3.1
 	fzf=0.29.0
+	golangci-lint=1.47.2
 	helm=3.7.2
 	k9s=0.25.18
 	kops=v1.21.2
