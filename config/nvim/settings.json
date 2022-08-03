@@ -1,0 +1,3 @@
+{
+  "vim.opt": { "sessionoptions": ["buffers", "curdir", "tabpages", "winsize"] }
+}
