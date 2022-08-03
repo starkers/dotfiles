@@ -102,9 +102,28 @@ return packer.startup(function(use)
   use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 
-  -- Telescope
-  use("nvim-telescope/telescope.nvim")
+  -- use({
+  --   "preservim/nerdtree",
+  --   requires = {
+  --     "ryanoasis/vim-devicons",
+  --     "Xuyuanp/nerdtree-git-plugin",
+  --     "tiagofumo/vim-nerdtree-syntax-highlight",
+  --   },
+  -- })
 
+  -- Telescope
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+            {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make"
+      },
+      -- {
+      --   "nvim-telescope/telescope-dap.nvim"
+      -- }
+    }
+  })
   -- Treesitter
   use({
     "nvim-treesitter/nvim-treesitter",
