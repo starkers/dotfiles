@@ -20,10 +20,12 @@ pluto 5.4.1
 python 3.8.8
 richgo 0.3.10
 ripgrep 13.0.0
+shellcheck 0.7.2
 shfmt 3.4.2
 sops 3.7.3
 starship 1.1.1
 stern 1.20.1
+stylua 0.14.1
 terraform 0.12.29
 terragrunt 0.21.6
 vault 1.7.3

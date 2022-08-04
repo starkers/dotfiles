@@ -39,8 +39,8 @@ function M.process_local_plugins(spec)
     if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. "/" .. name] then
       if M.has_local(name) then
         return local_pkg
-      else
-        util.error("Local package " .. name .. " not found")
+      -- else
+      --   util.error("Local package " .. name .. " not found")
       end
     end
     return spec

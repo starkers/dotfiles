@@ -6,11 +6,18 @@ function M.setup(options)
     debounce = 150,
     save_after_format = false,
     sources = {
+
+      -- -- TODO: test more eslint
+      -- nls.builtins.formatting.eslint.with({
+      --   prefer_local = "node_modules/.bin",
+      --   -- command = "vscode-eslint-language-server --stdio",
+      -- }),
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.fish_indent,
       nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
       -- nls.builtins.formatting.eslint_d,
+      nls.builtins.diagnostics.golangci_lint, -- golangci_lint diagnostics
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.markdownlint,
       nls.builtins.diagnostics.selene,

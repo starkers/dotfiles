@@ -12,6 +12,8 @@ wk.setup({
   key_labels = { ["<leader>"] = "SPC" },
 })
 
+util.nnoremap("<C-_>", ":lua require('Comment.api').toggle_current_linewise()<CR>")
+
 -- Move to window using the <ctrl> movement keys
 util.nmap("<left>", "<C-w>h")
 util.nmap("<down>", "<C-w>j")
@@ -72,13 +74,6 @@ util.nnoremap("=t", "<cmd>TableFormat<cr>")
 -- better indenting
 util.vnoremap("<", "<gv")
 util.vnoremap(">", ">gv")
-
-util.nnoremap("<space>cu", function()
-  local number = math.random(math.pow(2, 127) + 1, math.pow(2, 128))
-  return "i" .. string.format("%.0f", number)
-end, {
-  expr = true,
-})
 
 wk.register({
   ["]"] = {
@@ -152,7 +147,7 @@ local leader = {
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
-    h = { name = "+hunk" },
+    -- h = { name = "+hunk" },
   },
   ["h"] = {
     name = "+help",
@@ -190,6 +185,10 @@ local leader = {
     h = { "<cmd>Telescope command_history<cr>", "Command History" },
     m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
     r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
+    t = {
+      "[[<Plug>(comment_toggle_linewise_count)]]",
+      "test",
+    },
   },
   f = {
     name = "+file",
@@ -217,6 +216,7 @@ local leader = {
       require("config.lsp.formatting").toggle,
       "Format on Save",
     },
+    g = { "<cmd>:call ToggleGitSigns()<CR>", "Git Signs" },
     s = {
       function()
         util.toggle("spell")
@@ -229,13 +229,15 @@ local leader = {
       end,
       "Word Wrap",
     },
-    n = {
-      function()
-        util.toggle("relativenumber", true)
-        util.toggle("number")
-      end,
-      "Line Numbers",
-    },
+    n = { "<cmd>:call NumberToggle()<CR>", "Line Numbers" },
+    -- TODO: rewrite NumberToggle() into lua "for the learn"
+    -- n = {
+    --   function()
+    --     util.toggle("relativenumber", true)
+    --     util.toggle("number")
+    --   end,
+    --   "Line Numbers",
+    -- },
   },
   ["<tab>"] = {
     name = "workspace",
@@ -255,6 +257,7 @@ local leader = {
   [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
   [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
+  ["-"] = { "<cmd>:call TrimWhitespace()<CR>", "Trim whitespace" },
   q = {
     name = "+quit/session",
     q = { "<cmd>:qa<cr>", "Quit" },

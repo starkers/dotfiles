@@ -4,7 +4,7 @@ set -e
 ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
 cd "${ROOTDIR}"
-source ${ROOTDIR}/tweaks/shell-functions
+source "${ROOTDIR}/tweaks/shell-functions"
 
 ###############################################
 
@@ -19,13 +19,14 @@ try ./dotbot/bin/dotbot -c dotfiles.yaml "${@}"
 banner "dotbot success"
 
 say "press 'enter' to run all the tweaks/   or  '^c' to exit"
-read -sp "waiting for input..." _x && echo
+read -r -sp "waiting for input..." _x && echo
+echo "$_x" > /dev/null
 
 ## run my scripts that prep my environment
-try cd ${ROOTDIR}/tweaks
+try cd "${ROOTDIR}/tweaks"
 for a in *.sh; do
 
-	banner ./${a}
-	try ./${a}
+	banner "./${a}"
+	try "./${a}"
 
 done

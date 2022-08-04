@@ -24,7 +24,8 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
-  use({ "folke/workspace.nvim", module = "workspace" })
+  -- TODO: whats workspace? maybe personal repo of folke?
+  -- use({ "folke/workspace.nvim", module = "workspace" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
     "rcarriga/nvim-notify",
@@ -113,8 +114,9 @@ local function plugins(use)
     end,
   })
 
-  use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
-
+  -- TODO: test re-introducing this
+  -- use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
+  --
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -291,19 +293,22 @@ local function plugins(use)
 
   use({ "npxbr/glow.nvim", cmd = "Glow" })
 
-  use({
-    "plasticboy/vim-markdown",
-    requires = "godlygeek/tabular",
-    ft = "markdown",
-  })
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-    ft = "markdown",
-    cmd = { "MarkdownPreview" },
-  })
+  -- TODO: fix markdown for TS?
+  -- TS markdown compilations is giving me grief..
+  -- use({
+  --   "plasticboy/vim-markdown",
+  --   requires = "godlygeek/tabular",
+  --   ft = "markdown",
+  -- })
+
+  -- use({
+  --   "iamcco/markdown-preview.nvim",
+  --   run = function()
+  --     vim.fn["mkdp#util#install"]()
+  --   end,
+  --   ft = "markdown",
+  --   cmd = { "MarkdownPreview" },
+  -- })
 
   -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
 

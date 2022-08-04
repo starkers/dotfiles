@@ -1,4 +1,4 @@
-require("workspace").setup()
+-- require("workspace").setup()
 require("lua-dev").setup()
 
 require("nvim-lsp-installer").setup({
@@ -22,13 +22,14 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
-  ansiblels = {},
+  -- ansiblels = {},
   bashls = {},
   clangd = {},
   cssls = {},
   dockerls = {},
   eslint = {},
   html = {},
+  gopls = {},
   jsonls = {},
   pyright = {},
   rust_analyzer = {
@@ -43,9 +44,20 @@ local servers = {
       },
     },
   },
-  sumneko_lua = {},
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- stop moaning about vim global..
+          globals = { "vim" },
+        },
+      },
+    },
+  },
+  tflint = {},
   tsserver = {},
   vimls = {},
+  vuels = {},
   -- tailwindcss = {},
 }
 

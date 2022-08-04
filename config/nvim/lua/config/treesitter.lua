@@ -14,9 +14,9 @@ local function setup()
       "html",
       "javascript",
       "jsonc",
-      "latex",
+      -- "latex", -- I'll never use this realistically
       "lua",
-      "markdown",
+      -- "markdown", --TODO: fix me
       "python",
       "regex",
       "rust",

@@ -8,7 +8,7 @@ vim.bo.undofile = true ]]
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
-vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
+-- vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
 vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
@@ -19,7 +19,7 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
 -- vim.opt.foldmethod = "expr" -- TreeSitter folding
-vim.opt.guifont = "FiraCode Nerd Font:h12"
+vim.opt.guifont = "ComicCode Nerd Font:h12"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.hidden = true -- Enable modified buffers in background
@@ -115,7 +115,7 @@ cmd([[
   autocmd InsertEnter,WinLeave * set nocursorline
 ]])
 
--- go to last loc when opening a buffer
+-- A true classic, always returns you to the same location in a file as when you left it
 cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
 ]])
@@ -126,3 +126,78 @@ cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 -- windows to close with "q"
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
 vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
+
+-- I never care to recover swap files, they're just rarely handy
+vim.cmd([[autocmd SwapExists * let v:swapchoice = "e"]])
+
+-- command to toggle git signs
+vim.cmd([[
+  function! ToggleGitSigns()
+    if(&signcolumn == "yes")
+      set signcolumn=no
+      "" Gitsigns toggle_signs<cr>
+    else
+      set signcolumn=yes
+      "" Gitsigns toggle_signs<cr>
+    endif
+  endfunction
+]])
+
+-- function that does a three-way toggle between:
+-- - relative numbers
+-- - numbers
+-- - nonumbers
+vim.cmd([[
+  function! NumberToggle()
+    if(&number == 1)
+      if (&relativenumber == 1)
+        set norelativenumber
+        " echom "showing absolute line numbers"
+      else
+        set norelativenumber
+        set nonu
+        " echom "disabling line numbers"
+      endif
+    else
+      " echom "enabling line-numbers"
+      set relativenumber
+      set number
+    endif
+  endfunction
+
+  "" set the default
+  set relativenumber
+]])
+
+-- simple whitespace trim I've used for years
+-- TODO: automatically run this
+vim.cmd([[
+  "" TODO: maybe use this plugin instead?
+  "" https://github.com/ntpeters/vim-better-whitespace
+  function! TrimWhitespace()
+      let l:save = winsaveview()
+      %s/\s\+$//e
+      call winrestview(l:save)
+  endfun
+]])
+
+-- local mappings = {
+--   ["-"] = {
+--     name = "Ui Tweaks",
+--     n = { "<cmd>:call NumberToggle()<CR>", "numbers/relativenu/none" },
+--     g = { "<cmd>:call ToggleGitSigns()<CR>", "Git Signs" },
+--     i = { "<cmd>IndentBlanklineToggle<CR>", "indent blankline" },
+--     w = { "<cmd>:call TrimWhitespace()<CR>", "Trim whitespace" },
+--   },
+-- }
+--
+-- local opts = {
+--   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+--   mode = "n", -- NORMAL mode
+--   noremap = true, -- use `noremap` when creating keymaps
+--   nowait = true, -- use `nowait` when creating keymaps
+--   prefix = "<leader>",
+--   silent = true, -- use `silent` when creating keymaps
+-- }
+--
+-- which_key.register(mappings, opts)
