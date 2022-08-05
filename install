@@ -20,7 +20,7 @@ banner "dotbot success"
 
 say "press 'enter' to run all the tweaks/   or  '^c' to exit"
 read -r -sp "waiting for input..." _x && echo
-echo "$_x" > /dev/null
+echo "$_x" >/dev/null
 
 ## run my scripts that prep my environment
 try cd "${ROOTDIR}/tweaks"
