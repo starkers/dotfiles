@@ -20,7 +20,7 @@ end
 function M.format()
   if M.autoformat then
     vim.lsp.buf.formatting()
-    util.info("document formatted", "Formatting")
+    util.info("ran: vim.lsp.buf.formatting()", "Formatting")
   end
 end
 

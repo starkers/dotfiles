@@ -10,16 +10,43 @@ function M.setup(options)
       -- -- TODO: test more eslint
       -- nls.builtins.formatting.eslint.with({
       --   prefer_local = "node_modules/.bin",
-      --   -- command = "vscode-eslint-language-server --stdio",
+      --   command = "vscode-eslint-language-server --stdio",
       -- }),
+      --
+      --
+
+      -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/c62050977ca017ba9dc252ca82532ef94105b096/lua/null-ls/builtins/formatting/terraform_fmt.lua#L10
+      nls.builtins.formatting.terraform_fmt.with({
+        command = "terraform",
+        args = {
+          "fmt",
+          "-",
+        },
+        to_stdin = true,
+      }),
+
+      -- format with vanilla 'eslint' please
+      nls.builtins.formatting.eslint.with({
+        prefer_local = "node_modules/.bin",
+        extra_args = { "--fix-dry-run", "--format", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+      }),
+
+      nls.builtins.formatting.black.with({
+        extra_args = { "--fast" },
+      }),
+
+      nls.builtins.formatting.shfmt,
+      -- nls.builtins.formatting.vue,
       nls.builtins.formatting.prettierd,
-      nls.builtins.formatting.stylua,
+      -- nls.builtins.formatting.stylua,  --works but let normal LSP handle lua
       nls.builtins.formatting.fish_indent,
       nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
       -- nls.builtins.formatting.eslint_d,
       nls.builtins.diagnostics.golangci_lint, -- golangci_lint diagnostics
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.markdownlint,
+      nls.builtins.diagnostics.flake8,
+
       nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
     },
