@@ -7,10 +7,14 @@ import json
 # python3 -m pip install --user pydymenu
 from pydymenu import fzf
 
+
 def logGood(input):
     print("good: {}".format(input))
+
+
 def logBad(input):
     print("bad : {}".format(input))
+
 
 def aksLogin(clusterName, resourceGroup, admin=True):
     command = [
@@ -21,7 +25,7 @@ def aksLogin(clusterName, resourceGroup, admin=True):
         "--name",
         clusterName,
         "--resource-group",
-        resourceGroup
+        resourceGroup,
     ]
     if admin:
         command.append("--admin")
@@ -36,12 +40,13 @@ def aksLogin(clusterName, resourceGroup, admin=True):
         logBad(result.stderr)
         sys.exit(1)
 
+
 def getClusters():
     command = [
-            "az",
-            "aks",
-            "list",
-            ]
+        "az",
+        "aks",
+        "list",
+    ]
     print("Running command:")
     print(*command)
     result = subprocess.run(command, stdout=subprocess.PIPE)
@@ -59,20 +64,20 @@ if __name__ == "__main__":
     data = json.loads(clusterListRawJson)
     clusterClount = len(data)
     if clusterClount == 0:
-        logGood("no clusters see.. please examine output of 'az aks list' to diagnose")
+        logGood("no clusters seen, check output of 'az aks list' to diagnose")
         sys.exit(0)
     else:
         with_dict = {}
         for cluster in data:
             # logGood(cluster['dnsPrefix'])
-            name = cluster['name']
+            name = cluster["name"]
             # logGood(cluster['location'])
             # logGood(cluster['nodeResourceGroup'])
-            rg = cluster['resourceGroup']
+            rg = cluster["resourceGroup"]
             # items.append(cluster['name'])
             with_dict[name] = rg
         print(with_dict)
-        
+
         choice = fzf(
             [name for name, _ in with_dict.items()],
             prompt="Which option? ",
@@ -80,9 +85,9 @@ if __name__ == "__main__":
         if choice:
             resourceGroup = with_dict[choice[0]]
             name = choice[0]
-            print("you selected: cluster: {}, resouceGroup: {}".format(
-                name, resourceGroup))
+            print(
+                "you selected: cluster: {}, resouceGroup: {}".format(
+                    name, resourceGroup))
             aksLogin(name, resourceGroup, admin=True)
         else:
             print("No selection made.")
-
