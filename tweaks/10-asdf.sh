@@ -33,13 +33,13 @@ declare -a globalPlugins=(
 	kubespy=0.5.1
 	kubeval=0.16.0
 	kustomize=4.3.0
-	nodejs=12.14.1
+	# nodejs=12.14.1
 	# python=3.8.8
 	ripgrep=13.0.0
-  shellcheck=0.7.2
+	shellcheck=0.7.2
 	shfmt=3.4.2
 	sops=3.7.3
-  stylua=0.14.1
+	stylua=0.14.1
 	starship=1.1.1
 	stern=1.20.1
 	terraform=0.12.29
@@ -48,8 +48,8 @@ declare -a globalPlugins=(
 )
 
 declare -a alternativeVersions=(
-	nodejs=14.18.3
-	nodejs=16.13.2
+	# nodejs=14.18.3
+	# nodejs=16.13.2
 )
 
 function pluginIsInstalled() {

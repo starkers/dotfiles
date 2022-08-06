@@ -15,7 +15,6 @@ kubectl 1.21.3
 kubespy 0.5.1
 kubeval 0.16.0
 kustomize 4.3.0
-nodejs 12.14.1
 pluto 5.4.1
 python 3.8.8
 richgo 0.3.10
