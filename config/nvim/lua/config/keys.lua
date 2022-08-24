@@ -98,7 +98,7 @@ vim.api.nvim_exec(
 
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]],
+]] ,
   false
 )
 
@@ -192,8 +192,8 @@ local leader = {
   },
   f = {
     name = "+file",
-    t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    f = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+    F = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
     z = "Zoxide",
@@ -217,6 +217,7 @@ local leader = {
       "Format on Save",
     },
     g = { "<cmd>:call ToggleGitSigns()<CR>", "Git Signs" },
+    m = { "<cmd>:call ToggleMouse()<CR>", "Mouse" },
     s = {
       function()
         util.toggle("spell")

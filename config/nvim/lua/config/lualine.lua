@@ -1,9 +1,9 @@
 local function clock()
-  return " " .. os.date("%H:%M")
+  return " " .. os.date("%H:%M:%S")
 end
 
 local function holidays()
-  return "🌴🌊"
+  return "🌊"
   -- return "🎅🎄🌟🎁"
 end
 

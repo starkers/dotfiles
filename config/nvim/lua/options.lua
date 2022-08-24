@@ -143,6 +143,18 @@ vim.cmd([[
   endfunction
 ]])
 
+-- command to toggle mouse off or "=a"
+vim.cmd([[
+  function! ToggleMouse()
+    if(&mouse == "a")
+      set mouse=
+    else
+      set mouse=a
+    endif
+  endfunction
+]])
+
+
 -- function that does a three-way toggle between:
 -- - relative numbers
 -- - numbers

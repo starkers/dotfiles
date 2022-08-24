@@ -32,18 +32,18 @@ local servers = {
   gopls = {},
   jsonls = {},
   pyright = {},
-  rust_analyzer = {
-    settings = {
-      ["rust-analyzer"] = {
-        cargo = { allFeatures = true },
-        -- enable clippy on save
-        checkOnSave = {
-          command = "clippy",
-          extraArgs = { "--no-deps" },
-        },
-      },
-    },
-  },
+  -- rust_analyzer = {
+  --   settings = {
+  --     ["rust-analyzer"] = {
+  --       cargo = { allFeatures = true },
+  --       -- enable clippy on save
+  --       checkOnSave = {
+  --         command = "clippy",
+  --         extraArgs = { "--no-deps" },
+  --       },
+  --     },
+  --   },
+  -- },
   sumneko_lua = {
     settings = {
       Lua = {
@@ -55,8 +55,11 @@ local servers = {
     },
   },
   tflint = {},
+
   tsserver = {},
+
   vimls = {},
+  -- volar = {},
   vuels = {},
   -- tailwindcss = {},
 }

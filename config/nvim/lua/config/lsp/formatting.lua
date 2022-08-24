@@ -19,8 +19,11 @@ end
 
 function M.format()
   if M.autoformat then
-    vim.lsp.buf.formatting()
-    util.info("ran: vim.lsp.buf.formatting()", "Formatting")
+    vim.lsp.buf.format({
+      timeout_ms = 2000, -- TODO: had to make this longer for vue.. debug me
+      -- async = true
+    })
+    -- util.info("ran: vim.lsp.buf.format()", "Formatting")
   end
 end
 
@@ -30,8 +33,10 @@ function M.setup(client, buf)
 
   local enable = false
   if nls.has_formatter(ft) then
+    -- util.info("null-ls formatter called", "Formatting")
     enable = client.name == "null-ls"
   else
+    -- util.info("not using null-ls", "Formatting")
     enable = not (client.name == "null-ls")
   end
 
