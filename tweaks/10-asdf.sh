@@ -2,13 +2,13 @@
 
 ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
-source ${ROOTDIR}/shell-functions
+source "${ROOTDIR}/shell-functions"
 declare -a deps=(
 	asdf
 )
 
 for dep in "${deps[@]}"; do
-	if ! executableInPath ${dep}; then
+	if ! executableInPath "${dep}"; then
 		die "please install '${dep}' to continue"
 	fi
 done
@@ -23,7 +23,7 @@ declare -a globalPlugins=(
 	dyff=1.4.7
 	fd=8.3.1
 	fzf=0.29.0
-	golangci-lint=1.47.2
+	golangci-lint=1.48.0
 	helm=3.7.2
 	jq=1.6
 	k9s=0.25.18
