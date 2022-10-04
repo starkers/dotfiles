@@ -1,14 +1,14 @@
 # vi: ft=gitconfig
 [user]
   name = David Stark
-  email = david.stark@doddle.com
-  signingKey = 849A6BF620D953BB666EA57AFD06B2B1CFD743B7
+  email = david.stark@acmecorp.com
+  signingKey = B1212121212BBBBBBBBBBBBBBBBBBB
 
 [push]
   default = simple
 
 [github]
-  user = starkers
+  user = myaccountname
 
 # keep some https credential cache
 [credential]
