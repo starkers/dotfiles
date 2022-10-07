@@ -14,13 +14,14 @@ for dep in "${deps[@]}"; do
 done
 
 declare -a flathub=(
-  com.github.Murmele.Gittyup
-	# com.axosoft.GitKraken
+	com.axosoft.GitKraken
 	com.bitwarden.desktop
-	# com.discordapp.Discord
+	com.discordapp.Discord
 	com.slack.Slack
 	com.spotify.Client
-	# us.zoom.Zoom
+	us.zoom.Zoom
+  com.jetbrains.GoLand
+  com.mattjakeman.ExtensionManager
 )
 
 try flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
