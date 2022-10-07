@@ -51,11 +51,11 @@ function M.setup(options)
       -- nls.builtins.formatting.eslint_d,
       nls.builtins.diagnostics.golangci_lint, -- golangci_lint diagnostics
       nls.builtins.diagnostics.shellcheck,
-      nls.builtins.diagnostics.markdownlint,
+      -- nls.builtins.diagnostics.markdownlint,  -- TODO
       nls.builtins.diagnostics.flake8,
       -- nls.builtins.diagnostics.vuels,
 
-      nls.builtins.diagnostics.selene,
+      -- nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
     },
     on_attach = options.on_attach,

@@ -62,21 +62,22 @@ function M.setup(client, bufnr)
   util.nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
   util.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
 
-  local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
-  trigger_chars = { "," }
-  for _, c in ipairs(trigger_chars) do
-    util.inoremap(c, function()
-      vim.defer_fn(function()
-        pcall(vim.lsp.buf.signature_help)
-      end, 0)
-      return c
-    end, {
-      noremap = true,
-      silent = true,
-      buffer = bufnr,
-      expr = true,
-    })
-  end
+  -- TODO: I'm not sure why but this was causing me issues sometime on insert mode
+  -- local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
+  -- trigger_chars = { "," }
+  -- for _, c in ipairs(trigger_chars) do
+  --   util.inoremap(c, function()
+  --     vim.defer_fn(function()
+  --       pcall(vim.lsp.buf.signature_help)
+  --     end, 0)
+  --     return c
+  --   end, {
+  --     noremap = true,
+  --     silent = true,
+  --     buffer = bufnr,
+  --     expr = true,
+  --   })
+  -- end
 
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.documentFormatting then
