@@ -2,13 +2,13 @@
 
 ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 
-source ${ROOTDIR}/shell-functions
+source "${ROOTDIR}/shell-functions"
 declare -a deps=(
 	asdf
 )
 
 for dep in "${deps[@]}"; do
-	if ! executableInPath ${dep}; then
+	if ! executableInPath "${dep}"; then
 		die "please install '${dep}' to continue"
 	fi
 done
@@ -16,38 +16,41 @@ done
 #############################################################
 
 declare -a globalPlugins=(
-	# ag=1.0.3
-	# python=3.6.15
-	bat=0.19.0
-	dive=0.10.0
-	dyff=1.4.7
-	fd=8.3.1
-	fzf=0.29.0
-	golangci-lint=1.47.2
-	helm=3.7.2
-	k9s=0.25.18
-	kops=v1.21.2
-	krew=0.4.0
-	kubectl=1.21.3
-	kubespy=0.5.1
-	kubeval=0.16.0
-	kustomize=4.3.0
-	nodejs=12.14.1
-	# python=3.8.8
-	ripgrep=13.0.0
-	shfmt=3.4.2
-	sops=3.7.3
-	jq=1.6
-	starship=1.1.1
-	stern=1.20.1
-	terraform=0.12.29
-	terragrunt=0.21.6
-	vault=1.7.3
+  # ag=1.0.3
+  # python=3.6.15
+  bat=0.19.0
+  dive=0.10.0
+  dyff=1.4.7
+  fd=8.3.1
+  fzf=0.29.0
+  golangci-lint=1.48.0
+  helm=3.7.2
+  jq=1.6
+  k9s=0.25.18
+  kops=v1.21.2
+  krew=0.4.0
+  kubectl=1.21.3
+  kubespy=0.5.1
+  kubeval=0.16.0
+  kustomize=4.3.0
+  #nodejs=12.14.1
+  # python=3.8.8
+  ripgrep=13.0.0
+  shellcheck=0.7.2
+  shfmt=3.4.2
+  sops=3.7.3
+  stylua=0.14.1
+  starship=1.1.1
+  stern=1.20.1
+  terraform=0.12.29
+  terragrunt=0.21.6
+  vault=1.7.3
+  zoxide=0.8.3
 )
 
 declare -a alternativeVersions=(
-	nodejs=14.18.3
-	nodejs=16.13.2
+	# nodejs=14.18.3
+	# nodejs=16.13.2
 )
 
 function pluginIsInstalled() {

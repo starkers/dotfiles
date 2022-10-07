@@ -4,11 +4,8 @@
 	email = david@starkers.org
 	signingKey = 849A6BF620D953BB666EA57AFD06B2B1CFD743B7
 
-[includeIf "gitdir:~/src/github.com/doddle/"]
-  path = ~/.gitconfig-doddle
-
-[includeIf "gitdir:~/src/github.com/pusher/"]
-  path = ~/.gitconfig-pusher
+[includeIf "gitdir:~/src/github.com/acmecorp/"]
+  path = ~/.gitconfig-acmecorp
 
 [push]
   default = current
@@ -23,7 +20,8 @@
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
   ; cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
-  cmd = nvim -d $BASE $LOCAL
+  ; cmd = nvim -d $BASE $LOCAL
+  cmd = nvim -d "$LOCAL" "$BASE"
 # set "nvim" as tool for merging
 [merge]
   tool = nvim
@@ -71,8 +69,8 @@
   gpgSign = true
 [tag]
   forceSignAnnotated = false
-[pull]
-  ff = only
+; [pull]
+;   ff = only
 [mergetool]
   path = nvim
 [init]

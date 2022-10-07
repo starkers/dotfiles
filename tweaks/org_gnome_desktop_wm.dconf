@@ -9,6 +9,7 @@ switch-windows-backward=['<Shift><Alt>Tab']
 toggle-maximized=['<Super>Up']
 
 [preferences]
+button-layout='appmenu:minimize,maximize,close'
 mouse-button-modifier='<Super>'
 resize-with-right-button=true
 visual-bell=false

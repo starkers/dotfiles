@@ -1,0 +1,8 @@
+[/]
+clock-show-seconds=true
+color-scheme='prefer-dark'
+font-antialiasing='grayscale'
+font-hinting='slight'
+gtk-theme='Adwaita-dark'
+show-battery-percentage=true
+toolkit-accessibility=false

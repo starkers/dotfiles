@@ -11,6 +11,7 @@ declare -a mappings=(
 	/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
 	/org/gnome/shell/extensions/kube-config/
 	/org/gnome/shell/extensions/nothing-to-say/
+	/org/gnome/desktop/interface/
 )
 
 function usage() {

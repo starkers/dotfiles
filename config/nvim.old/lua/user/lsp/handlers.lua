@@ -39,9 +39,9 @@ M.setup = function()
     border = "rounded",
   })
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+  -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  --   border = "rounded",
+  -- })
 end
 
 local function lsp_highlight_document(client)
@@ -78,8 +78,10 @@ local function lsp_keymaps(bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 
 
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" }})<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" }})<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d',
+    '<cmd>lua vim.diagnostic.goto_prev({ float = { border = "rounded" }})<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d',
+    '<cmd>lua vim.diagnostic.goto_next({ float = { border = "rounded" }})<CR>', opts)
 
 
   vim.api.nvim_buf_set_keymap(
