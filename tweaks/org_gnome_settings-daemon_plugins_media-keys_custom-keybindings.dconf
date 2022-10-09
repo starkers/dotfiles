@@ -12,3 +12,8 @@ name='copyq show'
 binding='Print'
 command='flameshot gui'
 name='flameshot gui'
+
+[custom3]
+binding='<Super>d'
+command='rof'
+name='rof'
