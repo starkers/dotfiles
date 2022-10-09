@@ -4,11 +4,11 @@ command='tilix'
 name='tilix'
 
 [custom1]
+binding='<Alt>space'
+command='copyq show'
+name='copyq show'
+
+[custom2]
 binding='Print'
 command='flameshot gui'
 name='flameshot gui'
-
-[custom2]
-binding='<Primary>space'
-command='copyq show'
-name='copyq show'

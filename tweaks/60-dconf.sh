@@ -8,6 +8,7 @@ declare -a mappings=(
 	/org/gnome/desktop/input-sources/
 	/org/gnome/desktop/peripherals/keyboard/
 	/org/gnome/desktop/wm/
+  /org/gnome/settings-daemon/plugins/media-keys/
 	/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
 	/org/gnome/shell/extensions/kube-config/
 	/org/gnome/shell/extensions/nothing-to-say/

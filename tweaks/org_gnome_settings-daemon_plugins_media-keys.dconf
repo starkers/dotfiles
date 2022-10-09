@@ -1,0 +1,17 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+
+[custom-keybindings/custom0]
+binding='<Super>Return'
+command='tilix'
+name='tilix'
+
+[custom-keybindings/custom1]
+binding='<Alt>space'
+command='copyq show'
+name='copyq show'
+
+[custom-keybindings/custom2]
+binding='Print'
+command='flameshot gui'
+name='flameshot gui'

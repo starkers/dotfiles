@@ -1,4 +1,5 @@
 [keybindings]
+activate-window-menu=@as []
 close=['<Super>w']
 switch-applications=@as []
 switch-applications-backward=['<Shift><Super>Tab']
