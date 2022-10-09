@@ -4,15 +4,15 @@ ROOTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 source ${ROOTDIR}/shell-functions
 
 declare -a mappings=(
-	/com/gexperts/Tilix/
-	/org/gnome/desktop/input-sources/
-	/org/gnome/desktop/peripherals/keyboard/
-	/org/gnome/desktop/wm/
+  /com/gexperts/Tilix/
+  /org/gnome/desktop/input-sources/
+  /org/gnome/desktop/peripherals/keyboard/
+  /org/gnome/desktop/wm/
   /org/gnome/settings-daemon/plugins/media-keys/
-	/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
-	/org/gnome/shell/extensions/kube-config/
-	/org/gnome/shell/extensions/nothing-to-say/
-	/org/gnome/desktop/interface/
+  /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/
+  /org/gnome/shell/extensions/kube-config/
+  /org/gnome/shell/extensions/nothing-to-say/
+  /org/gnome/desktop/interface/
 )
 
 function usage() {

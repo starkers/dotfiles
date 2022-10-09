@@ -22,17 +22,13 @@ export MY_OS="$(uname -s)"
 #   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # }
 
-# my_load_path_home_bin(){
-#   if [ -d "${HOME}/.bin" ] ; then
-#     export PATH="${HOME}/.bin:${HOME}/.bin/vendor/bin/:${PATH}"
-#   fi
-#   if [ -d "${HOME}/.software/bin" ] ; then
-#     export PATH="${HOME}/.software/bin:${PATH}"
-#   fi
-#   if [ -d "${HOME}/.asdf/shims" ] ; then
-#     export PATH="${HOME}/.asdf/shims:${PATH}"
-#   fi
-# }
+export PATH="$HOME/.bin:$PATH"
+# export PATH="${HOME}/.bin/vendor/bin/:${PATH}"
+export PATH="$HOME/.bin/vendor/bin/:$PATH"
+export PATH="$HOME/.software/bin:$PATH"
+  # if [ -d "${HOME}/.asdf/shims" ] ; then
+  #   export PATH="${HOME}/.asdf/shims:${PATH}"
+  # fi
 
 # my_load_gemstuff(){
 #   #TODO: dirty, fix me up.. evaluate+learn rbenv or something else please
@@ -128,12 +124,8 @@ export TERRAGRUNT_DOWNLOAD="$HOME/.terragrunt_download"
 
 export AWS_SDK_LOAD_CONFIG=1
 
-# gomod athens
-export GOPROXY=http://localhost:3000
-
 export XDG_DATA_HOME=$HOME/.local/share/
 
 
-sudo xrandr --newmode "1920x1280_60.00" 206.25 1920 2056 2256 2592 1280 1283 1293 1327 -hsync +vsync
-
-sudo xrandr --addmode eDP-1 "1920x1280_60.00"
+# sudo xrandr --newmode "1920x1280_60.00" 206.25 1920 2056 2256 2592 1280 1283 1293 1327 -hsync +vsync
+# sudo xrandr --addmode eDP-1 "1920x1280_60.00"
