@@ -1,0 +1,6 @@
+theme = "onedark"
+
+# See: https://docs.helix-editor.com/configuration.html
+[editor]
+line-number = "relative"
+mouse = false

@@ -41,6 +41,7 @@ function M.setup(options)
       }),
 
       nls.builtins.formatting.shfmt,
+      nls.builtins.formatting.goimports,
       -- nls.builtins.formatting.vue,
       -- nls.builtins.formatting.vuels,
       -- nls.builtins.formatting.volar,

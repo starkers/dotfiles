@@ -36,3 +36,4 @@ terragrunt 0.21.6
 vault 1.7.3
 yq 4.27.2
 zoxide 0.8.3
+deno 1.26.1

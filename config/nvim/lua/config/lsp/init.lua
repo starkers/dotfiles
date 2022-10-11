@@ -26,6 +26,7 @@ local servers = {
   bashls = {},
   clangd = {},
   cssls = {},
+  denols = {},
   dockerls = {},
   eslint = {},
   html = {},
@@ -79,5 +80,5 @@ for server, opts in pairs(servers) do
   require("lspconfig")[server].setup(opts)
 end
 
---require("config.lsp.null-ls").setup(options)
+require("config.lsp.null-ls").setup(options)
 -- require("config.lsp.install").setup(servers, options)

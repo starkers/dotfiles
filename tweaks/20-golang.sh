@@ -17,7 +17,9 @@ done
 #############################################################
 
 declare -a globalPlugins=(
-	github.com/starkers/ggg@latest
+	# github.com/starkers/ggg@latest
+	golang.org/x/tools/cmd/goimports@latest
+	#github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.0
 )
 
 for data in ${globalPlugins[@]}; do
