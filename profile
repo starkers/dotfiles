@@ -1,4 +1,3 @@
-
 # # if running bash
 # if [ -n "${BASH_VERSION}" ]; then
 #   # include .bashrc if it exists
@@ -6,6 +5,12 @@
 #     . "${HOME}/.bashrc"
 #   fi
 # fi
+
+if grep -E -q MACH-WX9-PCB /sys/class/dmi/id/board_name; then
+	echo "detected Matebook Pro X"
+# sudo xrandr --newmode "1920x1280_60.00" 206.25 1920 2056 2256 2592 1280 1283 1293 1327 -hsync +vsync
+# sudo xrandr --addmode eDP-1 "1920x1280_60.00"
+fi
 
 export EDITOR="$(which nvim)"
 export MY_OS="$(uname -s)"
@@ -26,9 +31,9 @@ export PATH="$HOME/.bin:$PATH"
 # export PATH="${HOME}/.bin/vendor/bin/:${PATH}"
 export PATH="$HOME/.bin/vendor/bin/:$PATH"
 export PATH="$HOME/.software/bin:$PATH"
-  # if [ -d "${HOME}/.asdf/shims" ] ; then
-  #   export PATH="${HOME}/.asdf/shims:${PATH}"
-  # fi
+# if [ -d "${HOME}/.asdf/shims" ] ; then
+#   export PATH="${HOME}/.asdf/shims:${PATH}"
+# fi
 
 # my_load_gemstuff(){
 #   #TODO: dirty, fix me up.. evaluate+learn rbenv or something else please
@@ -82,7 +87,6 @@ export PATH="$HOME/.software/bin:$PATH"
 #   fi
 # }
 
-
 # my_load_golang
 # # my_load_pip
 # # my_load_gemstuff
@@ -107,13 +111,11 @@ export PATH="$HOME/.software/bin:$PATH"
 export CHEATCOLORS=true
 export CHEATPATH="/keybase/private/starkers/home/cheats"
 
-
 #vf() { fzf | xargs -r -I % $EDITOR % ;}
 
 export ANSIBLE_NOCOWS=1
 export FZF_DEFAULT_COMMAND='ag -l --nogroup  --nocolor --hidden -g ""'
 export FLUX_FORWARD_NAMESPACE=flux
-
 
 # https://stackoverflow.com/a/46202707
 export LIBVIRT_DEFAULT_URI="qemu:///system"
@@ -128,5 +130,3 @@ export XDG_DATA_HOME=$HOME/.local/share/
 
 export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
 
-# sudo xrandr --newmode "1920x1280_60.00" 206.25 1920 2056 2256 2592 1280 1283 1293 1327 -hsync +vsync
-# sudo xrandr --addmode eDP-1 "1920x1280_60.00"
