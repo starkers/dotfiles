@@ -1,5 +1,5 @@
 -- require("workspace").setup()
-require("lua-dev").setup()
+require("lua-dev").setup({})
 
 require("nvim-lsp-installer").setup({
   automatic_installation = true,
@@ -33,6 +33,7 @@ local servers = {
   gopls = {},
   jsonls = {},
   pyright = {},
+  rnix = {},
   -- rust_analyzer = {
   --   settings = {
   --     ["rust-analyzer"] = {

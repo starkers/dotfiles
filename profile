@@ -126,6 +126,7 @@ export AWS_SDK_LOAD_CONFIG=1
 
 export XDG_DATA_HOME=$HOME/.local/share/
 
+export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
 
 # sudo xrandr --newmode "1920x1280_60.00" 206.25 1920 2056 2256 2592 1280 1283 1293 1327 -hsync +vsync
 # sudo xrandr --addmode eDP-1 "1920x1280_60.00"
