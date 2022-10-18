@@ -18,6 +18,23 @@ local function on_attach(client, bufnr)
   -- TypeScript specific stuff
   if client.name == "typescript" or client.name == "tsserver" then
     require("config.lsp.ts-utils").setup(client)
+
+    -- NOTE: just an experiment below.. please ignore
+    -- local util = require("util")
+    -- local function file_exists(name)
+    --   local f = io.open(name, "r")
+    --   if f ~= nil then io.close(f) return true else return false end
+    -- end
+    --
+    -- -- TODO: how to disable null-ls 'eslint' and 'prettier' for deno projects?
+    -- -- is it deno?
+    -- if file_exists('deno.json') or file_exists("deno.jsonc") then
+    --   util.info("found: TypeScript(deno)", "Project Type Detection")
+    --   client.server_capabilities.document_formatting = false
+    -- else
+    --   util.info("found: TypeScript", "Project Type Detection")
+    --   require("config.lsp.ts-utils").setup(client)
+    -- end
   end
 end
 
@@ -58,6 +75,7 @@ local servers = {
   },
   tflint = {},
 
+  -- TODO: how to disable me for deno?
   tsserver = {},
 
   vimls = {},

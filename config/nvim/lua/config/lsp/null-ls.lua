@@ -9,7 +9,8 @@ function M.setup(options)
 
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 
-      -- -- TODO: test more eslint
+      -- TODO: eslint for vanilla JS but NOT deno??
+      -- TODO: test more eslint
       -- nls.builtins.formatting.eslint_d,
       nls.builtins.formatting.eslint.with({
         -- prefer_local = "node_modules/.bin",
@@ -42,6 +43,7 @@ function M.setup(options)
 
       nls.builtins.formatting.shfmt,
       nls.builtins.formatting.goimports,
+      -- nls.builtins.formatting.deno_fmt,
       -- nls.builtins.formatting.vue,
       -- nls.builtins.formatting.vuels,
       -- nls.builtins.formatting.volar,
