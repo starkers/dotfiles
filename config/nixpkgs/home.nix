@@ -2,9 +2,10 @@
 
 let
   # TODO: can these be installed declaratively?
-  # nix-channel --add nixgl https://github.com/guibou/nixGL/archive/main.tar.gz  nixgl
-  # nix-channel --add unstable https://nixos.org/channels/nixpkgs-unstable       unstable
+  # nix-channel --add https://github.com/guibou/nixGL/archive/main.tar.gz  nixgl
+  # nix-channel --add https://nixos.org/channels/nixpkgs-unstable          unstable
   nixgl = import <nixgl> { };
+  unstable = import <unstable> { };
 in
 
 {
@@ -22,11 +23,13 @@ in
     nixgl.auto.nixGLDefault
     pkgs.fortune
     pkgs.cowsay
-    (pkgs.wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
+
+    (unstable.wrapOBS {
+      plugins = with unstable.obs-studio-plugins; [
         obs-backgroundremoval
       ];
     })
+
   ];
 
 
