@@ -20,8 +20,8 @@ declare -a flathub=(
 	com.slack.Slack
 	com.spotify.Client
 	us.zoom.Zoom
-  com.jetbrains.GoLand
-  com.mattjakeman.ExtensionManager
+	# com.jetbrains.GoLand
+	com.mattjakeman.ExtensionManager
 )
 
 try flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
