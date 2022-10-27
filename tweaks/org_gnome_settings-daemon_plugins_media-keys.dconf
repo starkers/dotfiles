@@ -7,7 +7,7 @@ command='tilix'
 name='tilix'
 
 [custom-keybindings/custom1]
-binding='<Alt>space'
+binding='<Control>space'
 command='copyq show'
 name='copyq show'
 

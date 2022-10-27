@@ -1,8 +1,10 @@
 [/]
 clock-show-seconds=true
 color-scheme='prefer-dark'
+enable-hot-corners=false
 font-antialiasing='grayscale'
 font-hinting='slight'
 gtk-theme='Adwaita-dark'
+monospace-font-name='ComicCode Nerd Font 10'
 show-battery-percentage=true
 toolkit-accessibility=false
