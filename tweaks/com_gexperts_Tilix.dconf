@@ -1,16 +1,18 @@
 [/]
 control-scroll-zoom=true
-enable-wide-handle=false
+enable-wide-handle=true
 middle-click-close=false
 prompt-on-close-process=false
 quake-specific-monitor=0
 sidebar-on-right=false
 tab-position='bottom'
+terminal-title-show-when-single=false
 terminal-title-style='small'
 theme-variant='dark'
+use-overlay-scrollbar=true
 use-tabs=true
 warn-vte-config-issue=false
-window-style='borderless'
+window-style='disable-csd-hide-toolbar'
 
 [keybindings]
 session-add-down='<Primary><Shift>o'
@@ -30,20 +32,26 @@ terminal-zoom-in='<Primary>equal'
 
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
 background-color='#000000000000'
-background-transparency-percent=0
+background-transparency-percent=9
 badge-color='#AC7EA8'
 badge-color-set=false
+badge-font='Monospace 7'
+badge-text=''
+badge-use-system-font=true
 bold-color-set=false
 cursor-background-color='#A1B0B8'
+cursor-blink-mode='on'
 cursor-colors-set=false
 cursor-foreground-color='#BDC3C7'
-dim-transparency-percent=41
-font='Hack Nerd Font Mono 12'
+dim-transparency-percent=35
+font='ComicCode Nerd Font 12'
 foreground-color='#ABB2BF'
 highlight-colors-set=false
+notify-silence-enabled=true
 palette=['#000000', '#E06C75', '#98C379', '#D19A66', '#61AEEE', '#C678DD', '#56B6C2', '#ABB2BF', '#5C6370', '#E06C75', '#98C379', '#D19A66', '#62AFEE', '#C678DD', '#56B6C2', '#FFFFFF']
 scrollback-unlimited=true
 terminal-bell='icon'
+text-blink-mode='focused'
 use-system-font=false
 use-theme-colors=false
 visible-name='Default'
