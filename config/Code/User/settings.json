@@ -1,0 +1,10 @@
+{
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.fontFamily": "'ComicCode Nerd Font'",
+    "editor.fontLigatures": false,
+    "terminal.integrated.fontFamily": "'ComicCode Nerd Font'",
+    "workbench.colorTheme": "Material Deep Ocean",
+    "window.zoomLevel": 1,
+    "window.menuBarVisibility": "toggle"
+}

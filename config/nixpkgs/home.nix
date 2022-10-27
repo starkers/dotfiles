@@ -23,6 +23,7 @@ in
     nixgl.auto.nixGLDefault
     pkgs.fortune
     pkgs.cowsay
+    pkgs.hyper
 
     (unstable.wrapOBS {
       plugins = with unstable.obs-studio-plugins; [

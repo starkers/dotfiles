@@ -267,6 +267,9 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl $HOME/.config/i3/script
 
 exec        --no-startup-id picom
 # exec        --no-startup-id /usr/bin/gnome-keyring-daemon --daemonize --login &
+exec        --no-startup-id /usr/bin/gnome-keyring-daemon --start --replace --components=ssh,secrets,pkcs11 &
+# exec        --no-startup-id /usr/bin/gnome-keyring-daemon --start --replace --components=ssh,secrets,pkcs11 --login &
+
 exec        --no-startup-id /usr/bin/setxkbmap gb &
 exec        --no-startup-id /usr/bin/setxkbmap -option "terminate:ctrl_alt_bksp"
 # for the thinkpad
@@ -288,7 +291,7 @@ exec        --no-startup-id nm-applet &
 # exec        --no-startup-id blueman-applet &
 # exec        --no-startup-id redshift-gtk &
 # exec        --no-startup-id volumeicon &
-exec        --no-startup-id run_keybase &
+exec        --no-startup-id run_keybase -a &
 exec        --no-startup-id copyq &
 # exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper &
 exec_always --no-startup-id nitrogen --restore
