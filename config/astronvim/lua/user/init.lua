@@ -363,17 +363,32 @@ local config = {
 		local cmd = vim.cmd
 		cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 		-- Set up custom filetypes
-		-- vim.filetype.add {
-		--   extension = {
-		--     foo = "fooscript",
-		--   },
-		--   filename = {
-		--     ["Foofile"] = "fooscript",
-		--   },
-		--   pattern = {
-		--     ["~/%.config/foo/.*"] = "fooscript",
-		--   },
-		-- }
+
+		vim.filetype.add({
+			extension = {
+				star = "python", -- pretend starlark is python I guess
+			},
+			-- filename = {
+			-- 	["Foofile"] = "fooscript",
+			-- },
+			-- pattern = {
+			-- 	["~/%.config/foo/.*"] = "fooscript",
+			-- },
+		})
+
+		-- cmd([[
+		-- 		function! CustomGoFmt()
+		--   		let file = expand('%')
+		--   		silent execute "!gofmt -w " . file
+		--   		silent execute "!goimports -w " . file
+		--   		" silent execute "!golang-lint run --fix=false " . file
+		--   		edit!
+		-- 		endfunction
+		-- 		command! CustomGoFmt call CustomGoFmt()
+		-- 		augroup go_autocmd
+		--   		autocmd BufWritePost *.go CustomGoFmt
+		-- 		augroup END
+		-- ]])
 	end,
 }
 
