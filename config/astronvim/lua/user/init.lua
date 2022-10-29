@@ -43,12 +43,13 @@ local config = {
 	options = {
 		opt = {
 			-- set to true or false etc.
+			mouse = "",
 			clipboard = "", -- TODO: bind something to explicitly yank to clipboard
 			-- relativenumber = true, -- sets vim.opt.relativenumber
 			-- number = true, -- sets vim.opt.number
 			-- spell = false, -- sets vim.opt.spell
 			-- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-			-- wrap = false, -- sets vim.opt.wrap
+			wrap = true, -- sets vim.opt.wrap
 		},
 
 		-- g = {
@@ -132,59 +133,59 @@ local config = {
 
 	-- -- Extend LSP configuration
 	-- lsp = {
-	--         -- enable servers that you already have installed without mason
-	--         servers = {
-	--                 -- "pyright"
-	--         },
-	--         formatting = {
-	--                 -- control auto formatting on save
-	--                 format_on_save = {
-	--                         enabled = true, -- enable or disable format on save globally
-	--                         allow_filetypes = { -- enable format on save for specified filetypes only
-	--                                 "go",
-	--                                 "javascript",
-	--                                 "lua",
-	--                         },
-	--                         ignore_filetypes = { -- disable format on save for specified filetypes
-	--                                 -- "python",
-	--                         },
-	--                 },
-	--                 disabled = { -- disable formatting capabilities for the listed language servers
-	--                         -- "sumneko_lua",
-	--                 },
-	--                 timeout_ms = 1000, -- default format timeout
-	--                 -- filter = function(client) -- fully override the default formatting function
-	--                 --   return true
-	--                 -- end
-	--         },
-	--         -- easily add or disable built in mappings added during LSP attaching
-	--         mappings = {
-	--                 n = {
-	--                         -- ["<leader>lf"] = false -- disable formatting keymap
-	--                 },
-	--         },
-	--         -- add to the global LSP on_attach function
-	--         -- on_attach = function(client, bufnr)
-	--         -- end,
-	--         -- override the mason server-registration function
-	--         -- server_registration = function(server, opts)
-	--         --   require("lspconfig")[server].setup(opts)
-	--         -- end,
-	--         -- Add overrides for LSP server settings, the keys are the name of the server
-	--         ["server-settings"] = {
-	--                 -- example for addings schemas to yamlls
-	--                 -- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
-	--                 --   settings = {
-	--                 --     yaml = {
-	--                 --       schemas = {
-	--                 --         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-	--                 --         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-	--                 --         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-	--                 --       },
-	--                 --     },
-	--                 --   },
-	--                 -- },
-	--         },
+	-- 	-- enable servers that you already have installed without mason
+	-- 	servers = {
+	-- 		-- "pyright"
+	-- 	},
+	-- 	formatting = {
+	-- 		-- control auto formatting on save
+	-- 		format_on_save = {
+	-- 			enabled = true, -- enable or disable format on save globally
+	-- 			allow_filetypes = { -- enable format on save for specified filetypes only
+	-- 				"go",
+	-- 				"javascript",
+	-- 				"lua",
+	-- 			},
+	-- 			ignore_filetypes = { -- disable format on save for specified filetypes
+	-- 				-- "python",
+	-- 			},
+	-- 		},
+	-- 		disabled = { -- disable formatting capabilities for the listed language servers
+	-- 			-- "sumneko_lua",
+	-- 		},
+	-- 		timeout_ms = 1000, -- default format timeout
+	-- 		-- filter = function(client) -- fully override the default formatting function
+	-- 		--   return true
+	-- 		-- end
+	-- 	},
+	-- 	-- easily add or disable built in mappings added during LSP attaching
+	-- 	mappings = {
+	-- 		n = {
+	-- 			-- ["<leader>lf"] = false -- disable formatting keymap
+	-- 		},
+	-- 	},
+	-- 	-- add to the global LSP on_attach function
+	-- 	-- on_attach = function(client, bufnr)
+	-- 	-- end,
+	-- 	-- override the mason server-registration function
+	-- 	-- server_registration = function(server, opts)
+	-- 	--   require("lspconfig")[server].setup(opts)
+	-- 	-- end,
+	-- 	-- Add overrides for LSP server settings, the keys are the name of the server
+	-- 	["server-settings"] = {
+	-- 		-- example for addings schemas to yamlls
+	-- 		-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
+	-- 		--   settings = {
+	-- 		--     yaml = {
+	-- 		--       schemas = {
+	-- 		--         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+	-- 		--         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+	-- 		--         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+	-- 		--       },
+	-- 		--     },
+	-- 		--   },
+	-- 		-- },
+	-- 	},
 	-- },
 
 	-- Mapping data with "desc" stored directly by vim.keymap.set().
@@ -195,19 +196,36 @@ local config = {
 	mappings = {
 		-- first key is the mode
 		n = {
-			-- second key is the lefthand side of the map
-			-- mappings seen under group name "Buffer"
+			-- comment like every other gdamn editor.. Ctrl+/
+			-- TODO: how to make this "." repeatable?
+			["<C-_>"] = {
+				function()
+					require("Comment.api").toggle.linewise.current()
+				end,
+				desc = "Comment line",
+			},
+
+			-- basic buffer/tab movement (as I prefer)
 			["<C-n>"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-			-- ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-			-- ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
-			-- ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-			-- quick save
-			-- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+			["<C-Left>"] = { ":bprevious<cr>", desc = "switch buffers using Ctrl+arrow" },
+			["<C-Right>"] = { ":bnext<cr>", desc = "switch buffers using Ctrl+arrow" },
+
+			-- Move to window using arrows
+			["<left>"] = { "<C-w>h", desc = "move to window using just arrows" },
+			["<down>"] = { "<C-w>j", desc = "move to window using just arrows" },
+			["<up>"] = { "<C-w>k", desc = "move to window using just arrows" },
+			["<right>"] = { "<C-w>l", desc = "move to window using just arrows" },
+
+			-- Resize window using <ctrl> arrow keys
+			["<S-Up>"] = { ":resize +2<CR>", desc = "resize using Shift+arrow" },
+			["<S-Down>"] = { ":resize -2<CR>", desc = "resize using Shift+arrow" },
+			["<S-Left>"] = { ":vertical resize -2<CR>", desc = "resize using Shift+arrow" },
+			["<S-Right>"] = { ":vertical resize +2<CR>", desc = "resize using Shift+arrow" },
 		},
-		t = {
-			-- setting a mapping to false will disable it
-			-- ["<esc>"] = false,
-		},
+		-- t = {
+		-- 	-- setting a mapping to false will disable it
+		-- 	-- ["<esc>"] = false,
+		-- },
 	},
 
 	-- Configure plugins
@@ -321,7 +339,17 @@ local config = {
 				["<leader>"] = {
 					-- third key is the key to bring up next level and its displayed
 					-- group name in which-key top level menu
-					-- ["b"] = { name = "Buffer" },
+					["b"] = {
+						name = "Buffer",
+						["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
+						["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
+						["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
+						["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
+						["d"] = { "<cmd>:BDelete this<CR>", "Delete Buffer" },
+						["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
+						["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
+						["p"] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
+					},
 					["T"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
 				},
 			},
@@ -332,6 +360,8 @@ local config = {
 	-- augroups/autocommands and custom filetypes also this just pure lua so
 	-- anything that doesn't fit in the normal config locations above can go here
 	polish = function()
+		local cmd = vim.cmd
+		cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 		-- Set up custom filetypes
 		-- vim.filetype.add {
 		--   extension = {
