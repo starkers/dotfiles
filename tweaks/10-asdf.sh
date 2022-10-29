@@ -47,8 +47,8 @@ declare -a globalPlugins=(
 )
 
 declare -a alternativeVersions=(
-	nodejs 14.18.3
-	nodejs 16.13.2
+	# nodejs 14.18.3
+	# nodejs 16.13.2
 )
 
 function pluginIsInstalled() {
