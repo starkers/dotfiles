@@ -235,7 +235,8 @@ local config = {
 				"folke/trouble.nvim",
 				cmd = "TroubleToggle",
 			},
-			{ "navarasu/onedark.nvim" },
+			-- { "navarasu/onedark.nvim" },
+			{ "dag/vim-fish" }, -- basic fish syntax awareness
 			{
 				"ethanholz/nvim-lastplace",
 				event = "BufRead",
@@ -300,7 +301,11 @@ local config = {
 		},
 		-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
 		["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-			-- ensure_installed = { "prettier", "stylua" },
+			ensure_installed = {
+				"black",
+				-- "prettier",
+				-- "stylua",
+			},
 		},
 	},
 

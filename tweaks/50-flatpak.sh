@@ -14,7 +14,7 @@ for dep in "${deps[@]}"; do
 done
 
 declare -a flathub=(
-	com.axosoft.GitKraken
+	# com.axosoft.GitKraken  # 2022-Oct: became unstable when browsing preferences..
 	com.bitwarden.desktop
 	com.discordapp.Discord
 	com.slack.Slack
