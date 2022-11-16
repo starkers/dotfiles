@@ -22,6 +22,7 @@ declare -a globalPlugins=(
 	golang.org/x/tools/cmd/goimports@latest
 	#github.com/golangci/golangci-lint/cmd/golangci-lint@v1.50.0
 	github.com/xxxserxxx/gotop/v4/cmd/gotop@latest
+	github.com/spf13/cobra-cli@latest
 )
 
 for data in "${globalPlugins[@]}"; do
