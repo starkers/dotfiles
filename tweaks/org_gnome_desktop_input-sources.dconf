@@ -2,4 +2,4 @@
 current=uint32 0
 per-window=false
 sources=[('xkb', 'gb')]
-xkb-options=@as []
+xkb-options=['terminate:ctrl_alt_bksp', 'caps:escape']
