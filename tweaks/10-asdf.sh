@@ -16,20 +16,20 @@ done
 #############################################################
 
 declare -a globalPlugins=(
-	bat 0.19.0
+	# bat 0.19.0
 	deno 1.26.1
 	dive 0.10.0
 	direnv 2.32.1
-	dyff 1.4.7
+	# dyff 1.4.7
 	fd 8.3.1
 	fzf 0.29.0
 	golangci-lint 1.50.0
 	helm 3.7.2
 	jq 1.6
 	k9s 0.25.18
-	kops v1.21.2
-	krew 0.4.0
-	kubectl 1.21.3
+	# kops v1.21.2
+	# krew 0.4.0
+	kubectl 1.21.11
 	kubespy 0.5.1
 	kubeval 0.16.0
 	kustomize 4.3.0
@@ -40,9 +40,9 @@ declare -a globalPlugins=(
 	stylua 0.14.1
 	starship 1.1.1
 	stern 1.20.1
-	terraform 0.12.29
-	terragrunt 0.21.6
-	vault 1.7.3
+	terraform 1.3.6
+	terragrunt 0.42.3
+	# vault 1.7.3
 	zoxide 0.8.3
 )
 
