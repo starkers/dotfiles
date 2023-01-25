@@ -2,12 +2,12 @@
 [user]
   name = David Stark
   email = david.stark@ki-insurance.com
-	signingkey = ~/.ssh/id_rsa-ki2022
+  signingkey = ~/.ssh/id_rsa-ki2022
 ; [commit]
-; 	gpgsign = true
+;   gpgsign = true
 ; [gpg]
-; 	format = ssh
+;   format = ssh
 ; [gpg "ssh"]
-; 	allowedSignersFile = ~/.git_allowed_signers
+;   allowedSignersFile = ~/.git_allowed_signers
 [init]
-	defaultBranch = main
+  defaultBranch = main

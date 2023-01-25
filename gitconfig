@@ -1,23 +1,23 @@
 # vi: ft=gitconfig
 [user]
-	name = David Stark
+  name = David Stark
   email = david@starkers.org
-	signingkey = ~/.ssh/id_rsa_clovis
+  signingkey = ~/.ssh/id_rsa_clovis
 
 ;;; use SSH to sign on default
 [commit]
-	gpgsign = true
+  gpgsign = true
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-	allowedSignersFile = ~/.git_allowed_signers
+  allowedSignersFile = ~/.git_allowed_signers
 
 
 
 [push]
   default = current
 [diff]
-	tool = nvim
+  tool = nvim
 # [difftool]
 #   prompt = false
 # 
@@ -59,13 +59,13 @@
 #   root = rev-parse --show-toplevel
 # 
 [github]
-	user = starkers
+  user = starkers
 [core]
   excludesfile = /home/starkers/.git_global_ignore
 
 ; prefer SSH git over HTTP everyday
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 # ; [gpg]
 # ;   program = gpg
 # ; [commit]
@@ -77,8 +77,8 @@
 [mergetool]
   path = nvim
 [init]
-	defaultBranch = develop
+  defaultBranch = develop
 
 ;;; alternative profiles
 [includeIf "gitdir:~/src/github.com/Ki-Insurance/"]
-	path = ~/.gitconfig-Ki-Insurance
+  path = ~/.gitconfig-Ki-Insurance
