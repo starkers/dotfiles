@@ -21,3 +21,14 @@ asdf plugin-add terraform-lsp https://github.com/bartlomiejdanek/asdf-terraform-
 asdf plugin-add terragrunt https://github.com/ohmer/asdf-terragrunt
 asdf plugin-add velero https://github.com/looztra/asdf-velero
 ```
+
+
+TODO:
+
+add to ~/.ssh/config for OSX only?
+
+```
+Host *.github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+```
