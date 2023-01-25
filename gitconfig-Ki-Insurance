@@ -1,0 +1,13 @@
+# vi: ft=gitconfig
+[user]
+  name = David Stark
+  email = david.stark@ki-insurance.com
+	signingkey = ~/.ssh/id_rsa-ki2022
+; [commit]
+; 	gpgsign = true
+; [gpg]
+; 	format = ssh
+; [gpg "ssh"]
+; 	allowedSignersFile = ~/.git_allowed_signers
+[init]
+	defaultBranch = main
