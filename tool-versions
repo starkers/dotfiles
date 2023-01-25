@@ -16,7 +16,7 @@ kind 0.12.0
 kops v1.21.2
 krew 0.4.0
 kubebuilder 3.3.0
-kubectl 1.21.3
+kubectl 1.21.11
 kubespy 0.5.1
 kubeval 0.16.0
 kustomize 4.3.0
@@ -32,8 +32,8 @@ sops 3.7.3
 starship 1.1.1
 stern 1.20.1
 stylua 0.14.1
-terraform 0.12.29
-terragrunt 0.21.6
+terraform 1.3.6
+terragrunt 0.42.3
 vault 1.7.3
 yq 4.27.2
 zoxide 0.8.3
