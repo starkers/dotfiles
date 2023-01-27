@@ -288,6 +288,7 @@ local config = {
 				-- Set a formatter
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.stylua,
+				null_ls.builtins.formatting.terraform_fmt,
 				-- null_ls.builtins.formatting.prettier,
 			}
 			return config -- return final config table
@@ -303,6 +304,8 @@ local config = {
 		["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
 			ensure_installed = {
 				"black",
+				"ftlint",
+				"terraformls",
 				-- "prettier",
 				-- "stylua",
 			},
