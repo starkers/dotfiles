@@ -23,3 +23,5 @@ try gsettings set org.gnome.desktop.wm.keybindings switch-applications []
 
 # use switch-windows for ungrouped alt-tab experience
 try gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+# alt-tab across all workspaces
+try gsettings set org.gnome.shell.window-switcher current-workspace-only false
