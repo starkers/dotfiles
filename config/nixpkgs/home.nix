@@ -25,11 +25,11 @@ in
     pkgs.cowsay
     pkgs.hyper
 
-    (unstable.wrapOBS {
-      plugins = with unstable.obs-studio-plugins; [
-        obs-backgroundremoval
-      ];
-    })
+    # (unstable.wrapOBS {
+    #   plugins = with unstable.obs-studio-plugins; [
+    #     obs-backgroundremoval
+    #   ];
+    # })
 
   ];
 
