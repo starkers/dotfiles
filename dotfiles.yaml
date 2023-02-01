@@ -18,13 +18,6 @@
       glob: true
       relink: true
 
-
-# - defaults:
-#     link:
-#       create: true
-#       relink: true
-#       # force: true
-
 - link:
     ~/:
       path: "*"
@@ -38,15 +31,13 @@
       - install
       - mc
       - packer-snapshots
+      - README.md
       create: true
       # force: true
       glob: true
       relink: true
 
 - shell:
-  # - mkdir -p ~/.config/autostart
-  # - rsync -va autostart/ ~/.config/autostart/ --inplace
-
   - mkdir -p ~/.config/mc
   - cp -rvp mc/* ~/.config/mc/.
   - mkdir -p ~/.local/share/mc
@@ -55,14 +46,11 @@
   - [git submodule update --init --recursive, Installing submodules]                                                 
 
 
-  - mkdir -p ~/.ssh
-  - rsync -va /keybase/private/starkers/home/ssh/ ~/.ssh/ --exclude=known_hosts --exclude=google_compute_known_hosts
-  - chmod 0700 ~/.ssh/
-  - chmod 0600 ~/.ssh/id_*
-
-  - mkdir -p ~/.aws
-
-  - rsync -va /keybase/private/starkers/home/aws/ ~/.aws/
+  # # TODO: get ssh keys from bitwarden CLI
+  # - mkdir -p ~/.ssh
+  # # - rsync -va /keybase/private/starkers/home/ssh/ ~/.ssh/ --exclude=known_hosts --exclude=google_compute_known_hosts
+  # - chmod 0700 ~/.ssh/
+  # - chmod 0600 ~/.ssh/id_*
 
 - link:
     ~/.cache/nvim/packer.nvim: 'packer-snapshots'
