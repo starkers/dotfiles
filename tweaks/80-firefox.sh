@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 set -eu
 
-BASE="${HOME}/.mozilla/firefox"
+
+UNAME="$(uname)"
+if [ "${UNAME}" == "Darwin" ]; then
+  PROFILES="Library/Application Support/Firefox/Profiles"
+else
+  PROFILES=".mozilla/firefox"
+fi
+
+BASE="${HOME}/${PROFILES}"
 CSSURL="https://raw.githubusercontent.com/OneJaredNewman/firefoxcss/main/userChrome.css"
 
 mkdir -p "${BASE}"
