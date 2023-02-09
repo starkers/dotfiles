@@ -18,8 +18,9 @@ declare -a flathub=(
 	com.bitwarden.desktop
 	com.discordapp.Discord
 	com.slack.Slack
-	com.spotify.Client
-	us.zoom.Zoom
+	# com.spotify.Client
+	dev.alextren.Spot
+	# us.zoom.Zoom
 	# com.jetbrains.GoLand
 	com.mattjakeman.ExtensionManager
 )
