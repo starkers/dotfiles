@@ -237,6 +237,7 @@ local config = {
 			},
 			-- { "navarasu/onedark.nvim" },
 			{ "dag/vim-fish" }, -- basic fish syntax awareness
+			{ "isobit/vim-caddyfile" },
 			{
 				"ethanholz/nvim-lastplace",
 				event = "BufRead",
