@@ -44,6 +44,7 @@ declare -a globalPlugins=(
 	terragrunt 0.42.3
 	# vault 1.7.3
 	zoxide 0.8.3
+	yq 4.27.2
 )
 
 declare -a alternativeVersions=(
