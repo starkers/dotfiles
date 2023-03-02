@@ -1,4 +1,5 @@
-if command -s fnm >/dev/null
+if status is-interactive
+  if command -s fnm >/dev/null
     fnm env --use-on-cd | source
 
     # add auto-complete
@@ -8,6 +9,7 @@ if command -s fnm >/dev/null
     if test "$TERM_PROGRAM" = vscode
         _fnm_autoload_hook
     end
-else
-    echo '#WARN: fnm not installed'
+  else
+      echo '#WARN: fnm not installed'
+  end
 end
