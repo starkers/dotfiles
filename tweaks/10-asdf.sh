@@ -23,7 +23,8 @@ declare -a globalPlugins=(
 	# dyff 1.4.7
 	fd 8.3.1
 	fzf 0.29.0
-	golangci-lint 1.50.0
+	golang 1.19.7
+	golangci-lint 1.51.2
 	helm 3.7.2
 	jq 1.6
 	k9s 0.25.18

@@ -10,6 +10,8 @@
 # Disable specific steps - same options as the command line flag
 disable = [
   "containers",
+  "conda",
+  "firmware",
   "gcloud",
   "git_repos",
   "node",

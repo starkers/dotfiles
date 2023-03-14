@@ -5,9 +5,10 @@ direnv 2.32.1
 dive 0.10.0
 dyff 1.4.7
 fd 8.3.1
+flux2 0.40.2
 fzf 0.29.0
-golang 1.18.7
-golangci-lint 1.50.0
+golang 1.19.7
+golangci-lint 1.51.2
 helm 3.7.2
 jq 1.6
 k9s 0.25.18

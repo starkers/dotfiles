@@ -43,8 +43,8 @@ local config = {
 	options = {
 		opt = {
 			-- set to true or false etc.
-			mouse = "",
-			clipboard = "", -- TODO: bind something to explicitly yank to clipboard
+			mouse = "a",
+			clipboard = "unnamedplus", -- TODO: bind something to explicitly yank to clipboard
 			-- relativenumber = true, -- sets vim.opt.relativenumber
 			-- number = true, -- sets vim.opt.number
 			-- spell = false, -- sets vim.opt.spell
@@ -131,62 +131,63 @@ local config = {
 		underline = true,
 	},
 
-	-- -- Extend LSP configuration
-	-- lsp = {
-	-- 	-- enable servers that you already have installed without mason
-	-- 	servers = {
-	-- 		-- "pyright"
-	-- 	},
-	-- 	formatting = {
-	-- 		-- control auto formatting on save
-	-- 		format_on_save = {
-	-- 			enabled = true, -- enable or disable format on save globally
-	-- 			allow_filetypes = { -- enable format on save for specified filetypes only
-	-- 				"go",
-	-- 				"javascript",
-	-- 				"lua",
-	-- 			},
-	-- 			ignore_filetypes = { -- disable format on save for specified filetypes
-	-- 				-- "python",
-	-- 			},
-	-- 		},
-	-- 		disabled = { -- disable formatting capabilities for the listed language servers
-	-- 			-- "sumneko_lua",
-	-- 		},
-	-- 		timeout_ms = 1000, -- default format timeout
-	-- 		-- filter = function(client) -- fully override the default formatting function
-	-- 		--   return true
-	-- 		-- end
-	-- 	},
-	-- 	-- easily add or disable built in mappings added during LSP attaching
-	-- 	mappings = {
-	-- 		n = {
-	-- 			-- ["<leader>lf"] = false -- disable formatting keymap
-	-- 		},
-	-- 	},
-	-- 	-- add to the global LSP on_attach function
-	-- 	-- on_attach = function(client, bufnr)
-	-- 	-- end,
-	-- 	-- override the mason server-registration function
-	-- 	-- server_registration = function(server, opts)
-	-- 	--   require("lspconfig")[server].setup(opts)
-	-- 	-- end,
-	-- 	-- Add overrides for LSP server settings, the keys are the name of the server
-	-- 	["server-settings"] = {
-	-- 		-- example for addings schemas to yamlls
-	-- 		-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
-	-- 		--   settings = {
-	-- 		--     yaml = {
-	-- 		--       schemas = {
-	-- 		--         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
-	-- 		--         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-	-- 		--         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
-	-- 		--       },
-	-- 		--     },
-	-- 		--   },
-	-- 		-- },
-	-- 	},
-	-- },
+	-- Extend LSP configuration
+	lsp = {
+		-- enable servers that you already have installed without mason
+		servers = {
+			-- "pyright",
+		},
+		formatting = {
+			-- control auto formatting on save
+			format_on_save = {
+				enabled = true, -- enable or disable format on save globally
+				allow_filetypes = { -- enable format on save for specified filetypes only
+					"go",
+					"javascript",
+					"lua",
+					"python",
+				},
+				ignore_filetypes = { -- disable format on save for specified filetypes
+					-- "python",
+				},
+			},
+			disabled = { -- disable formatting capabilities for the listed language servers
+				-- "sumneko_lua",
+			},
+			timeout_ms = 1000, -- default format timeout
+			-- filter = function(client) -- fully override the default formatting function
+			--   return true
+			-- end
+		},
+		-- easily add or disable built in mappings added during LSP attaching
+		-- mappings = {
+		-- 	n = {
+		-- 		-- ["<leader>lf"] = false -- disable formatting keymap
+		-- 	},
+		-- },
+		-- add to the global LSP on_attach function
+		-- on_attach = function(client, bufnr)
+		-- end,
+		-- override the mason server-registration function
+		-- server_registration = function(server, opts)
+		--   require("lspconfig")[server].setup(opts)
+		-- end,
+		-- Add overrides for LSP server settings, the keys are the name of the server
+		["server-settings"] = {
+			-- example for addings schemas to yamlls
+			-- yamlls = { -- override table for require("lspconfig").yamlls.setup({...})
+			--   settings = {
+			--     yaml = {
+			--       schemas = {
+			--         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+			--         ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+			--         ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
+			--       },
+			--     },
+			--   },
+			-- },
+		},
+	},
 
 	-- Mapping data with "desc" stored directly by vim.keymap.set().
 	--
@@ -231,6 +232,9 @@ local config = {
 	-- Configure plugins
 	plugins = {
 		init = {
+			{ "lukoshkin/trailing-whitespace" },
+			["Darazaki/indent-o-matic"] = { disable = true },
+			{ "Vimjas/vim-python-pep8-indent" },
 			{
 				"folke/trouble.nvim",
 				cmd = "TroubleToggle",
@@ -294,9 +298,11 @@ local config = {
 			}
 			return config -- return final config table
 		end,
-		treesitter = { -- overrides `require("treesitter").setup(...)`
-			-- ensure_installed = { "lua" },
-		},
+		-- treesitter = { -- overrides `require("treesitter").setup(...)`
+		-- 	indent = {
+		-- 		enable = false,
+		-- 	},
+		-- },
 		-- use mason-lspconfig to configure LSP installations
 		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
 			-- ensure_installed = { "sumneko_lua" },
@@ -358,8 +364,10 @@ local config = {
 						["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
 						["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
 						["p"] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
+						["y"] = { "<cmd>:%!yamlfmt<CR>", "yaml fmt" },
 					},
 					["T"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+					["-"] = { "<cmd>:%!yamlfmt<CR>", "Yaml fmt" },
 				},
 			},
 		},
@@ -384,6 +392,12 @@ local config = {
 			-- 	["~/%.config/foo/.*"] = "fooscript",
 			-- },
 		})
+
+		-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+		-- 	-- group = "filetypes",
+		-- 	pattern = "*.py",
+		-- 	command = ":set expandtab tabstop=4 softtabstop=4 shiftwidth=4",
+		-- })
 
 		-- cmd([[
 		-- 		function! CustomGoFmt()
