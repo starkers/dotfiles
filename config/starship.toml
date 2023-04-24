@@ -7,7 +7,6 @@ format = """$username\
 $hostname\
 $shlvl\
 $kubernetes\
-$directory\
 $git_branch\
 $git_commit\
 $git_state\
@@ -48,7 +47,7 @@ $crystal\
 $custom\
 $cmd_duration\
 $jobs\
-$battery\
+$directory\
 $status\
 $line_break\
 $character"""
@@ -69,8 +68,9 @@ disabled = true
 # [date]
 # disabled = true
 
-# [directory]
-# trancate_to_repo = false
+[directory]
+truncation_length = 3
+truncate_to_repo = false
 
 [kubernetes]
 format = '[☸ $context ](blue)'
@@ -79,11 +79,6 @@ disabled = true
 [kubernetes.context_aliases]
 "main.play"         = "play"
 "main.tooling"      = "tooling"
-"main.eu-staging"   = "eu-staging"
-"main.eu-preprod"   = "eu-preprod"
-"main.apac-preprod" = "apac-preprod"
-"main.eu-prod"      = "eu-prod"
-"main.apac-prod"    = "apac-prod"
 
 [gcloud]
 disabled = true
@@ -92,8 +87,9 @@ disabled = true
 
 [git_branch]
 symbol = " "
-# truncation_length = 4
-truncation_symbol = ""
+truncation_length = 30
+# truncation_symbol = ""
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 # [git_commit]
 # tag_disabled = false

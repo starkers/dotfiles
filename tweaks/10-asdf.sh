@@ -39,7 +39,7 @@ declare -a globalPlugins=(
 	shfmt 3.4.2
 	sops 3.7.3
 	stylua 0.14.1
-	starship 1.1.1
+	starship 1.13.1
 	stern 1.20.1
 	terraform 1.3.6
 	terragrunt 0.42.3

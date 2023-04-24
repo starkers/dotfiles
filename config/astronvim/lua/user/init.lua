@@ -232,6 +232,7 @@ local config = {
 	-- Configure plugins
 	plugins = {
 		init = {
+			{ "Glench/Vim-Jinja2-Syntax" },
 			{ "lukoshkin/trailing-whitespace" },
 			["Darazaki/indent-o-matic"] = { disable = true },
 			{ "Vimjas/vim-python-pep8-indent" },
