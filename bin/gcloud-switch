@@ -46,6 +46,7 @@ account-project-and-cluster
 cluster
 project
 project-and-cluster
+rename-kube
 EOF
 )
 
@@ -72,6 +73,58 @@ set_cluster() {
 	local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}')"
 	echo "[] exec: gcloud container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}"
 	gcloud container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}
+	rename_kubecontext
+}
+
+rename_kubecontext(){
+  local CONTEXT="$(kubectl config current-context)"
+cat <<EOF
+##############################################
+### Rename the kube context?
+##############################################
+#
+# Current context name: "${CONTEXT}"
+#
+##############################################
+EOF
+local PICK=$(
+	cat <<EOF | fzf ${args}
+dev
+staging
+sut
+uat
+demo
+prod
+live
+sandbox
+pick my own name
+no thanks
+EOF
+)
+case $PICK in
+  "pick my own name")
+    echo "picking your own name"
+    PICK=""
+    read -r -p "Enter the new name: " PICK
+    if [ "X${PICK}" != "X" ]; then
+      echo "renaming from ${CONTEXT} -> ${PICK}"
+      kubectl config delete-context "${PICK}" 2>/dev/null
+      sed -i "s+${CONTEXT}+${PICK}+g" "${KUBECONFIG:-${HOME}/.kube/config}"
+    else
+      echo "nothing set, doing nothing"
+    fi
+    ;;
+  "no thanks")
+    echo "doing nothing"
+    ;;
+  *)
+    echo "renaming from ${CONTEXT} -> ${PICK}"
+    kubectl config delete-context "${PICK}" 2>/dev/null
+    sed -i "s+${CONTEXT}+${PICK}+g" "${KUBECONFIG:-${HOME}/.kube/config}"
+    ;;
+esac
+
+
 }
 
 case $pick in
@@ -103,4 +156,7 @@ project-and-cluster)
 	set_project
 	set_cluster
 	;;
+rename-kube)
+  rename_kubecontext
+  ;;
 esac
