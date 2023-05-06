@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+swaylock -c 0b2d39 &
+sleep 0.05
+
+systemctl suspend
