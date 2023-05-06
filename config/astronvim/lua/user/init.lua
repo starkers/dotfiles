@@ -5,7 +5,6 @@
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
 local config = {
-
 	-- -- Configure AstroNvim updates
 	-- updater = {
 	--   remote = "origin", -- remote to use
@@ -231,92 +230,90 @@ local config = {
 
 	-- Configure plugins
 	plugins = {
-		init = {
-			{ "Glench/Vim-Jinja2-Syntax" },
-			{ "lukoshkin/trailing-whitespace" },
-			["Darazaki/indent-o-matic"] = { disable = true },
-			{ "Vimjas/vim-python-pep8-indent" },
-			{
-				"folke/trouble.nvim",
-				cmd = "TroubleToggle",
-			},
-			-- { "navarasu/onedark.nvim" },
-			{ "dag/vim-fish" }, -- basic fish syntax awareness
-			{ "isobit/vim-caddyfile" },
-			{
-				"ethanholz/nvim-lastplace",
-				event = "BufRead",
-				config = function()
-					require("nvim-lastplace").setup({
-						lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-						lastplace_ignore_filetype = {
-							"gitcommit",
-							"gitrebase",
-							"svn",
-							"hgcommit",
-						},
-						lastplace_open_folds = true,
-					})
-				end,
-			},
-			{ "folke/tokyonight.nvim" },
-			-- You can disable default plugins as follows:
-			-- ["goolord/alpha-nvim"] = { disable = true },
-			--
-			-- You can also add new plugins here as well:
-			-- Add plugins, the packer syntax without the "use"
-			-- { "andweeb/presence.nvim" },
-			-- {
-			--   "ray-x/lsp_signature.nvim",
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
-			--
-			-- We also support a key value style plugin definition similar to NvChad:
-			-- ["ray-x/lsp_signature.nvim"] = {
-			--   event = "BufRead",
-			--   config = function()
-			--     require("lsp_signature").setup()
-			--   end,
-			-- },
+		{ "Glench/Vim-Jinja2-Syntax" },
+		{ "lukoshkin/trailing-whitespace" },
+		["Darazaki/indent-o-matic"] = { disable = true },
+		{ "Vimjas/vim-python-pep8-indent" },
+		{
+			"folke/trouble.nvim",
+			cmd = "TroubleToggle",
 		},
-
-		-- All other entries override the require("<key>").setup({...}) call for default plugins
-		["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
-			-- config variable is the default configuration table for the setup function call
-			local null_ls = require("null-ls")
-			-- Check supported formatters and linters
-			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-			-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-			config.sources = {
-				-- Set a formatter
-				null_ls.builtins.formatting.goimports,
-				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.formatting.terraform_fmt,
-				-- null_ls.builtins.formatting.prettier,
-			}
-			return config -- return final config table
-		end,
-		-- treesitter = { -- overrides `require("treesitter").setup(...)`
-		-- 	indent = {
-		-- 		enable = false,
-		-- 	},
+		-- { "navarasu/onedark.nvim" },
+		{ "dag/vim-fish" }, -- basic fish syntax awareness
+		{ "isobit/vim-caddyfile" },
+		{
+			"ethanholz/nvim-lastplace",
+			event = "BufRead",
+			config = function()
+				require("nvim-lastplace").setup({
+					lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+					lastplace_ignore_filetype = {
+						"gitcommit",
+						"gitrebase",
+						"svn",
+						"hgcommit",
+					},
+					lastplace_open_folds = true,
+				})
+			end,
+		},
+		{ "folke/tokyonight.nvim" },
+		-- You can disable default plugins as follows:
+		-- ["goolord/alpha-nvim"] = { disable = true },
+		--
+		-- You can also add new plugins here as well:
+		-- Add plugins, the packer syntax without the "use"
+		-- { "andweeb/presence.nvim" },
+		-- {
+		--   "ray-x/lsp_signature.nvim",
+		--   event = "BufRead",
+		--   config = function()
+		--     require("lsp_signature").setup()
+		--   end,
 		-- },
-		-- use mason-lspconfig to configure LSP installations
-		["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
-			-- ensure_installed = { "sumneko_lua" },
-		},
-		-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
-		["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
-			ensure_installed = {
-				"black",
-				"ftlint",
-				"terraformls",
-				-- "prettier",
-				-- "stylua",
-			},
+		--
+		-- We also support a key value style plugin definition similar to NvChad:
+		-- ["ray-x/lsp_signature.nvim"] = {
+		--   event = "BufRead",
+		--   config = function()
+		--     require("lsp_signature").setup()
+		--   end,
+		-- },
+	},
+
+	-- All other entries override the require("<key>").setup({...}) call for default plugins
+	["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
+		-- config variable is the default configuration table for the setup function call
+		local null_ls = require("null-ls")
+		-- Check supported formatters and linters
+		-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+		-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+		config.sources = {
+			-- Set a formatter
+			null_ls.builtins.formatting.goimports,
+			null_ls.builtins.formatting.stylua,
+			null_ls.builtins.formatting.terraform_fmt,
+			-- null_ls.builtins.formatting.prettier,
+		}
+		return config -- return final config table
+	end,
+	-- treesitter = { -- overrides `require("treesitter").setup(...)`
+	-- 	indent = {
+	-- 		enable = false,
+	-- 	},
+	-- },
+	-- use mason-lspconfig to configure LSP installations
+	["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
+		-- ensure_installed = { "sumneko_lua" },
+	},
+	-- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
+	["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
+		ensure_installed = {
+			"black",
+			"ftlint",
+			"terraformls",
+			-- "prettier",
+			-- "stylua",
 		},
 	},
 
