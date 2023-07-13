@@ -1,27 +1,72 @@
---              AstroNvim Configuration Table
--- All configuration changes should go inside of the table below
-
--- You can think of a Lua "table" as a dictionary like data structure the
--- normal format is "key = value". These also handle array like data structures
--- where a value with no key simply has an implicit numeric key
-local config = {
+-- https://github.com/AstroNvim/user_example
+return {
 	-- -- Configure AstroNvim updates
-	-- updater = {
-	--   remote = "origin", -- remote to use
-	--   channel = "nightly", -- "stable" or "nightly"
-	--   version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-	--   branch = "main", -- branch name (NIGHTLY ONLY)
-	--   commit = nil, -- commit hash (NIGHTLY ONLY)
-	--   pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
-	--   skip_prompts = false, -- skip prompts about breaking changes
-	--   show_changelog = true, -- show the changelog after performing an update
-	--   auto_reload = false, -- automatically reload and sync packer after a successful update
-	--   auto_quit = false, -- automatically quit the current session after a successful update
-	--   -- remotes = { -- easily add new remotes to track
-	--   --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
-	--   --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
-	--   --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
-	--   -- },
+	updater = {
+		remote = "origin", -- remote to use
+		-- version = "v1.*", --neovim 0.7
+		-- version = "v2.*", --neovim 0.8
+		version = "v3.*", --neovim 0.9
+		--   channel = "nightly", -- "stable" or "nightly"
+
+		--   version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+		--   branch = "main", -- branch name (NIGHTLY ONLY)
+		--   commit = nil, -- commit hash (NIGHTLY ONLY)
+		--   pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+		--   skip_prompts = false, -- skip prompts about breaking changes
+		--   show_changelog = true, -- show the changelog after performing an update
+		--   auto_reload = false, -- automatically reload and sync packer after a successful update
+		--   auto_quit = false, -- automatically quit the current session after a successful update
+		--   -- remotes = { -- easily add new remotes to track
+		--   --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
+		--   --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
+		--   --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
+		--   -- },
+	},
+
+	-- -- set up UI icons
+	-- icons = {
+	-- 	ActiveLSP = "",
+	-- 	ActiveTS = " ",
+	-- 	BufferClose = "",
+	-- 	DapBreakpoint = "",
+	-- 	DapBreakpointCondition = "",
+	-- 	DapBreakpointRejected = "",
+	-- 	DapLogPoint = "",
+	-- 	DapStopped = "",
+	-- 	DefaultFile = "",
+	-- 	Diagnostic = "",
+	-- 	DiagnosticError = "",
+	-- 	DiagnosticHint = "",
+	-- 	DiagnosticInfo = "",
+	-- 	DiagnosticWarn = "",
+	-- 	Ellipsis = "",
+	-- 	FileModified = "",
+	-- 	FileReadOnly = "",
+	-- 	FoldClosed = "",
+	-- 	FoldOpened = "",
+	-- 	FolderClosed = "",
+	-- 	FolderEmpty = "",
+	-- 	FolderOpen = "",
+	-- 	Git = "",
+	-- 	GitAdd = "",
+	-- 	GitBranch = "",
+	-- 	GitChange = "",
+	-- 	GitConflict = "",
+	-- 	GitDelete = "",
+	-- 	GitIgnored = "",
+	-- 	GitRenamed = "",
+	-- 	GitStaged = "",
+	-- 	GitUnstaged = "",
+	-- 	GitUntracked = "",
+	-- 	LSPLoaded = "",
+	-- 	LSPLoading1 = "",
+	-- 	LSPLoading2 = "",
+	-- 	LSPLoading3 = "",
+	-- 	MacroRecording = "",
+	-- 	Paste = "",
+	-- 	Search = "",
+	-- 	Selected = "",
+	-- 	TabClose = "",
 	-- },
 
 	-- Set colorscheme to use
@@ -49,6 +94,8 @@ local config = {
 			-- spell = false, -- sets vim.opt.spell
 			-- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
 			wrap = true, -- sets vim.opt.wrap
+			list = true, -- show whitespace characters
+			-- listchars = { tab = " ", extends = "⟩", precedes = "⟨", trail = "·", eol = "﬋" },
 		},
 
 		-- g = {
@@ -80,48 +127,6 @@ local config = {
 	--     "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
 	--     "    ██   ████   ████   ██ ██      ██",
 	--     " ",
-	-- },
-
-	-- -- Default theme configuration
-	-- default_theme = {
-	--     -- Modify the color palette for the default theme
-	--     colors = {
-	--         fg = "#abb2bf",
-	--         bg = "#1e222a",
-	--     },
-	--     highlights = function(hl) -- or a function that returns a new table of colors to set
-	--         local C = require "default_theme.colors"
-	--         hl.Normal = { fg = C.fg, bg = C.bg }
-	--         -- New approach instead of diagnostic_style
-	--         hl.DiagnosticError.italic = true
-	--         hl.DiagnosticHint.italic = true
-	--         hl.DiagnosticInfo.italic = true
-	--         hl.DiagnosticWarn.italic = true
-	--         return hl
-	--     end,
-	--
-	--     -- enable or disable highlighting for extra plugins
-	--     plugins = {
-	--         aerial = true,
-	--         beacon = false,
-	--         bufferline = true,
-	--         cmp = true,
-	--         dashboard = true,
-	--         highlighturl = true,
-	--         hop = false,
-	--         indent_blankline = true,
-	--         lightspeed = false,
-	--         ["neo-tree"] = true,
-	--         notify = true,
-	--         ["nvim-tree"] = false,
-	--         ["nvim-web-devicons"] = true,
-	--         rainbow = true,
-	--         symbols_outline = false,
-	--         telescope = true,
-	--         treesitter = true,
-	--         vimwiki = false,
-	--         ["which-key"] = true,
-	--     },
 	-- },
 
 	-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
@@ -230,6 +235,26 @@ local config = {
 
 	-- Configure plugins
 	plugins = {
+		{
+			"onsails/lspkind.nvim",
+			opts = function(_, opts)
+				-- use codicons preset
+				opts.preset = "codicons"
+				-- set some missing symbol types
+				opts.symbol_map = {
+					Array = "",
+					Boolean = "",
+					Key = "",
+					Namespace = "",
+					Null = "",
+					Number = "",
+					Object = "",
+					Package = "",
+					String = "",
+				}
+				return opts
+			end,
+		},
 		{ "Glench/Vim-Jinja2-Syntax" },
 		{ "lukoshkin/trailing-whitespace" },
 		["Darazaki/indent-o-matic"] = { disable = true },
@@ -377,6 +402,8 @@ local config = {
 	polish = function()
 		local cmd = vim.cmd
 		cmd("au TextYankPost * lua vim.highlight.on_yank {}")
+		cmd("vnoremap < <gv")
+		cmd("vnoremap > >gv")
 		-- Set up custom filetypes
 
 		vim.filetype.add({
@@ -412,5 +439,3 @@ local config = {
 		-- ]])
 	end,
 }
-
-return config
