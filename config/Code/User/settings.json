@@ -1,10 +1,16 @@
 {
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "editor.fontFamily": "'ComicCode Nerd Font'",
+    "editor.fontFamily": "'Comic Code Nerd Font'",
     "editor.fontLigatures": false,
-    "terminal.integrated.fontFamily": "'ComicCode Nerd Font'",
+    "terminal.integrated.fontFamily": "monospace",
     "workbench.colorTheme": "Material Deep Ocean",
+    "window.menuBarVisibility": "toggle",
     "window.zoomLevel": 1,
-    "window.menuBarVisibility": "toggle"
+    "terminal.integrated.fontWeight": "normal",
+    "files.associations": {
+        "*.py": "python"
+    },
+    "redhat.telemetry.enabled": false,
+    "editor.minimap.enabled": false
 }
