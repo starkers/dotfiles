@@ -77,7 +77,7 @@ truncate_to_repo = false
 
 [kubernetes]
 format = '[⎈ $context ](yellow)'
-disabled = true
+disabled = false
 
 [kubernetes.context_aliases]
 "foo" = "💚 dev"

@@ -13,6 +13,13 @@ function fish_greeting
 end
 
 if status is-interactive
+
+    if command -s starship-cfg >/dev/null
+        starship-cfg
+    else
+        echo '#WARN: starship-cfg not installed'
+    end
+
     if command -s starship >/dev/null
         starship init fish | source
     else
@@ -28,14 +35,12 @@ if test -z "$XDG_DATA_HOME"
     set -Ux XDG_DATA_HOME $HOME/.local/share
 end
 
-
 set -Ux CHEATCOLORS true
 set -Ux AWS_SDK_LOAD_CONFIG 1
 set -Ux CHEATPATH /keybase/private/starkers/home/cheats
 set -Ux TF_PLUGIN_CACHE_DIR $HOME/.tf_cache
 
-
-# krew
+# TODO: put in its own krew file
 set -gx PATH $PATH $HOME/.krew/bin
 
 fish_add_path -aP /sbin
