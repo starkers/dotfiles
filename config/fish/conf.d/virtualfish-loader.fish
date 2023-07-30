@@ -13,12 +13,12 @@ set ASDF_PY_VER_MINOR 3.8
 
 
 if test -d $ASDF_PY_PATH/$ASDF_PY_VER_FULL/bin
-  set -g VIRTUALFISH_VERSION 2.5.4
-  set -g VIRTUALFISH_PYTHON_EXEC $ASDF_PY_PATH/$ASDF_PY_VER_FULL/bin/python
-  if test -f $ASDF_PY_PATH/$ASDF_PY_VER_FULL/lib/python$ASDF_PY_VER_MINOR/site-packages/virtualfish/virtual.fish
-    source $ASDF_PY_PATH/$ASDF_PY_VER_FULL/lib/python$ASDF_PY_VER_MINOR/site-packages/virtualfish/virtual.fish
-  end
-  emit virtualfish_did_setup_plugins
+    set -g VIRTUALFISH_VERSION 2.5.4
+    set -g VIRTUALFISH_PYTHON_EXEC $ASDF_PY_PATH/$ASDF_PY_VER_FULL/bin/python
+    if test -f $ASDF_PY_PATH/$ASDF_PY_VER_FULL/lib/python$ASDF_PY_VER_MINOR/site-packages/virtualfish/virtual.fish
+        source $ASDF_PY_PATH/$ASDF_PY_VER_FULL/lib/python$ASDF_PY_VER_MINOR/site-packages/virtualfish/virtual.fish
+    end
+    emit virtualfish_did_setup_plugins
 end
 
 

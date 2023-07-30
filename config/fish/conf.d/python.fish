@@ -5,5 +5,5 @@
 
 
 if test -d $HOME/.local/bin
-  fish_add_path -a $HOME/.local/bin
+    fish_add_path -a $HOME/.local/bin
 end

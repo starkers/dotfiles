@@ -2,479 +2,479 @@
 set -q FISH_KUBECTL_COMPLETION_TIMEOUT; or set FISH_KUBECTL_COMPLETION_TIMEOUT 5s
 set -q FISH_KUBECTL_COMPLETION_COMPLETE_CRDS; or set FISH_KUBECTL_COMPLETION_COMPLETE_CRDS 1
 set __fish_kubectl_timeout "--request-timeout=$FISH_KUBECTL_COMPLETION_TIMEOUT"
-set __fish_kubectl_all_namespaces_flags "--all-namespaces" "--all-namespaces=true"
+set __fish_kubectl_all_namespaces_flags --all-namespaces "--all-namespaces=true"
 set __fish_kubectl_subresource_commands get describe delete edit label explain
 set __fish_kubectl_commands alpha \
-  annotate \
-  api-resources \
-  api-versions \
-  apply \
-  attach \
-  auth \
-  autoscale \
-  certificate \
-  cluster-info \
-  completion \
-  config \
-  cordon \
-  cp \
-  create \
-  debug \
-  delete \
-  describe \
-  diff \
-  drain \
-  edit \
-  exec \
-  explain \
-  expose \
-  get \
-  kustomize \
-  label \
-  logs \
-  options \
-  patch \
-  plugin \
-  port-forward \
-  proxy \
-  replace \
-  rollout \
-  run \
-  scale \
-  set \
-  taint \
-  top \
-  uncordon \
-  version \
-  wait
+    annotate \
+    api-resources \
+    api-versions \
+    apply \
+    attach \
+    auth \
+    autoscale \
+    certificate \
+    cluster-info \
+    completion \
+    config \
+    cordon \
+    cp \
+    create \
+    debug \
+    delete \
+    describe \
+    diff \
+    drain \
+    edit \
+    exec \
+    explain \
+    expose \
+    get \
+    kustomize \
+    label \
+    logs \
+    options \
+    patch \
+    plugin \
+    port-forward \
+    proxy \
+    replace \
+    rollout \
+    run \
+    scale \
+    set \
+    taint \
+    top \
+    uncordon \
+    version \
+    wait
 
 function __fish_kubectl
-	set -l context_args
+    set -l context_args
 
-	if set -l context_flags (__fish_kubectl_get_context_flags | string split " ")
-		for c in $context_flags
-			set context_args $context_args $c
-		end
-	end
+    if set -l context_flags (__fish_kubectl_get_context_flags | string split " ")
+        for c in $context_flags
+            set context_args $context_args $c
+        end
+    end
 
-	set -l kubeconfig_args
+    set -l kubeconfig_args
 
-	if set -l kubeconfig_args (__fish_kubectl_get_kubeconfig_flags | string split " ")
-		for c in $kubeconfig_args
-			set kubeconfig_args $kubeconfig_args $c
-		end
-	end
+    if set -l kubeconfig_args (__fish_kubectl_get_kubeconfig_flags | string split " ")
+        for c in $kubeconfig_args
+            set kubeconfig_args $kubeconfig_args $c
+        end
+    end
 
-  command kubectl $__fish_kubectl_timeout $context_args $kubeconfig_args $argv
+    command kubectl $__fish_kubectl_timeout $context_args $kubeconfig_args $argv
 end
 
 function __fish_kubectl_get_commands
-  echo alpha\t'Commands for features in alpha'
-  echo annotate\t'Update the annotations on a resource'
-  echo api-resources\t'Print the supported API resources on the server'
-  echo api-versions\t'Print the supported API versions on the server, in the form of "group/version"'
-  echo apply\t'Apply a configuration to a resource by filename or stdin'
-  echo attach\t'Attach to a running container'
-  echo auth\t'Inspect authorization'
-  echo autoscale\t'Auto-scale a Deployment, ReplicaSet, or ReplicationController'
-  echo certificate\t'Modify certificate resources.'
-  echo cluster-info\t'Display cluster info'
-  echo completion\t'Output shell completion code for the specified shell (bash or zsh)'
-  echo config\t'Modify kubeconfig files'
-  echo cordon\t'Mark node as unschedulable'
-  echo cp\t'Copy files and directories to and from containers.'
-  echo create\t'Create a resource from a file or from stdin.'
-  echo debug\t'Create debugging sessions for troubleshooting workloads and nodes'
-  echo delete\t'Delete resources by filenames, stdin, resources and names, or by resources and label selector'
-  echo describe\t'Show details of a specific resource or group of resources'
-  echo diff\t'Diff live version against would-be applied version'
-  echo drain\t'Drain node in preparation for maintenance'
-  echo edit\t'Edit a resource on the server'
-  echo exec\t'Execute a command in a container'
-  echo explain\t'Documentation of resources'
-  echo expose\t'Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service'
-  echo get\t'Display one or many resources'
-  echo kustomize\t'Build a kustomization target from a directory or a remote url.'
-  echo label\t'Update the labels on a resource'
-  echo logs\t'Print the logs for a container in a pod'
-  echo options\t'Print the list of flags inherited by all commands'
-  echo patch\t'Update field(s) of a resource'
-  echo plugin\t'Provides utilities for interacting with plugins.'
-  echo port-forward\t'Forward one or more local ports to a pod'
-  echo proxy\t'Run a proxy to the Kubernetes API server'
-  echo replace\t'Replace a resource by filename or stdin'
-  echo rollout\t'Manage the rollout of a resource'
-  echo run\t'Run a particular image on the cluster'
-  echo scale\t'Set a new size for a Deployment, ReplicaSet or Replication Controller'
-  echo set\t'Set specific features on objects'
-  echo taint\t'Update the taints on one or more nodes'
-  echo top\t'Display Resource (CPU/Memory/Storage) usage.'
-  echo uncordon\t'Mark node as schedulable'
-  echo version\t'Print the client and server version information'
-  echo wait\t'Experimental: Wait for a specific condition on one or many resources.'
+    echo alpha\t'Commands for features in alpha'
+    echo annotate\t'Update the annotations on a resource'
+    echo api-resources\t'Print the supported API resources on the server'
+    echo api-versions\t'Print the supported API versions on the server, in the form of "group/version"'
+    echo apply\t'Apply a configuration to a resource by filename or stdin'
+    echo attach\t'Attach to a running container'
+    echo auth\t'Inspect authorization'
+    echo autoscale\t'Auto-scale a Deployment, ReplicaSet, or ReplicationController'
+    echo certificate\t'Modify certificate resources.'
+    echo cluster-info\t'Display cluster info'
+    echo completion\t'Output shell completion code for the specified shell (bash or zsh)'
+    echo config\t'Modify kubeconfig files'
+    echo cordon\t'Mark node as unschedulable'
+    echo cp\t'Copy files and directories to and from containers.'
+    echo create\t'Create a resource from a file or from stdin.'
+    echo debug\t'Create debugging sessions for troubleshooting workloads and nodes'
+    echo delete\t'Delete resources by filenames, stdin, resources and names, or by resources and label selector'
+    echo describe\t'Show details of a specific resource or group of resources'
+    echo diff\t'Diff live version against would-be applied version'
+    echo drain\t'Drain node in preparation for maintenance'
+    echo edit\t'Edit a resource on the server'
+    echo exec\t'Execute a command in a container'
+    echo explain\t'Documentation of resources'
+    echo expose\t'Take a replication controller, service, deployment or pod and expose it as a new Kubernetes Service'
+    echo get\t'Display one or many resources'
+    echo kustomize\t'Build a kustomization target from a directory or a remote url.'
+    echo label\t'Update the labels on a resource'
+    echo logs\t'Print the logs for a container in a pod'
+    echo options\t'Print the list of flags inherited by all commands'
+    echo patch\t'Update field(s) of a resource'
+    echo plugin\t'Provides utilities for interacting with plugins.'
+    echo port-forward\t'Forward one or more local ports to a pod'
+    echo proxy\t'Run a proxy to the Kubernetes API server'
+    echo replace\t'Replace a resource by filename or stdin'
+    echo rollout\t'Manage the rollout of a resource'
+    echo run\t'Run a particular image on the cluster'
+    echo scale\t'Set a new size for a Deployment, ReplicaSet or Replication Controller'
+    echo set\t'Set specific features on objects'
+    echo taint\t'Update the taints on one or more nodes'
+    echo top\t'Display Resource (CPU/Memory/Storage) usage.'
+    echo uncordon\t'Mark node as schedulable'
+    echo version\t'Print the client and server version information'
+    echo wait\t'Experimental: Wait for a specific condition on one or many resources.'
 end
 
-set __fish_kubectl_resources        \
-  all                               \
-  certificatesigningrequests csr    \
-  clusterrolebindings               \
-  clusterroles                      \
-  clusters                          \
-  componentstatuses cs              \
-  configmaps configmap cm           \
-  controllerrevisions               \
-  cronjobs cj                       \
-  customresourcedefinition crd crds \
-  daemonsets ds                     \
-  deployments deployment deploy     \
-  endpoints ep                      \
-  events ev                         \
-  horizontalpodautoscalers hpa      \
-  ingresses ingress ing             \
-  jobs job                          \
-  limitranges limits                \
-  namespaces namespace ns           \
-  networkpolicies netpol            \
-  nodes node no                     \
-  persistentvolumeclaims pvc        \
-  persistentvolumes pv              \
-  poddisruptionbudgets pdb          \
-  podpreset                         \
-  pods pod po                       \
-  podsecuritypolicies psp           \
-  podtemplates                      \
-  replicasets rs                    \
-  replicationcontrollers rc         \
-  resourcequotas quota              \
-  rolebindings                      \
-  roles                             \
-  secrets secret                    \
-  serviceaccounts sa                \
-  services service svc              \
-  statefulsets sts                  \
-  storageclass storageclasses sc
+set __fish_kubectl_resources \
+    all \
+    certificatesigningrequests csr \
+    clusterrolebindings \
+    clusterroles \
+    clusters \
+    componentstatuses cs \
+    configmaps configmap cm \
+    controllerrevisions \
+    cronjobs cj \
+    customresourcedefinition crd crds \
+    daemonsets ds \
+    deployments deployment deploy \
+    endpoints ep \
+    events ev \
+    horizontalpodautoscalers hpa \
+    ingresses ingress ing \
+    jobs job \
+    limitranges limits \
+    namespaces namespace ns \
+    networkpolicies netpol \
+    nodes node no \
+    persistentvolumeclaims pvc \
+    persistentvolumes pv \
+    poddisruptionbudgets pdb \
+    podpreset \
+    pods pod po \
+    podsecuritypolicies psp \
+    podtemplates \
+    replicasets rs \
+    replicationcontrollers rc \
+    resourcequotas quota \
+    rolebindings \
+    roles \
+    secrets secret \
+    serviceaccounts sa \
+    services service svc \
+    statefulsets sts \
+    storageclass storageclasses sc
 
 set __fish_kubectl_cached_crds ""
 set __fish_kubectl_last_crd_fetch ""
 
 function __fish_kubectl_actually_get_crds
-  set __fish_kubectl_cached_crds (__fish_kubectl get crd -o jsonpath='{range .items[*]}{.spec.names.plural}{"\n"}{.spec.names.singular}{"\n"}{range .spec.names.shortNames[]}{@}{"\n"}{end}{end}' 2>/dev/null)
-  set __fish_kubectl_last_crd_fetch (__fish_kubectl_get_current_time)
-	for i in $__fish_kubectl_cached_crds
-		echo $i
-	end
+    set __fish_kubectl_cached_crds (__fish_kubectl get crd -o jsonpath='{range .items[*]}{.spec.names.plural}{"\n"}{.spec.names.singular}{"\n"}{range .spec.names.shortNames[]}{@}{"\n"}{end}{end}' 2>/dev/null)
+    set __fish_kubectl_last_crd_fetch (__fish_kubectl_get_current_time)
+    for i in $__fish_kubectl_cached_crds
+        echo $i
+    end
 end
 
 function __fish_kubectl_get_current_time
-  date +'%s'
+    date +'%s'
 end
 
 function __fish_kubectl_get_crds
-  if test -z "$__fish_kubectl_last_crd_fetch"; or test -z "$__fish_kubectl_cached_crds"
-    __fish_kubectl_actually_get_crds
-    return 0
-  end
+    if test -z "$__fish_kubectl_last_crd_fetch"; or test -z "$__fish_kubectl_cached_crds"
+        __fish_kubectl_actually_get_crds
+        return 0
+    end
 
-  set -l ct (__fish_kubectl_get_current_time)
-	set -l duration (math $ct-$__fish_kubectl_last_crd_fetch)
-	# Only fetch crds if we have not fetched them within the past 30 seconds.
-  if test "$duration" -gt 30
-    __fish_kubectl_actually_get_crds
-    return 0
-  end
+    set -l ct (__fish_kubectl_get_current_time)
+    set -l duration (math $ct-$__fish_kubectl_last_crd_fetch)
+    # Only fetch crds if we have not fetched them within the past 30 seconds.
+    if test "$duration" -gt 30
+        __fish_kubectl_actually_get_crds
+        return 0
+    end
 
-  for i in $__fish_kubectl_cached_crds
-		echo $i
-	end
+    for i in $__fish_kubectl_cached_crds
+        echo $i
+    end
 end
 
 function __fish_kubectl_seen_subcommand_from_regex
-  set -l cmd (commandline -poc)
-  set -e cmd[1]
-  for i in $cmd
-    for r in $argv
-      if string match -r -- $r $i
-        return 0
-      end
+    set -l cmd (commandline -poc)
+    set -e cmd[1]
+    for i in $cmd
+        for r in $argv
+            if string match -r -- $r $i
+                return 0
+            end
+        end
     end
-  end
-  return 1
+    return 1
 end
 
 function __fish_kubectl_needs_command -d 'Test if kubectl has yet to be given the subcommand'
-  for i in (commandline -opc)
-    if contains -- $i $__fish_kubectl_commands
-      echo "$i"
-      return 1
+    for i in (commandline -opc)
+        if contains -- $i $__fish_kubectl_commands
+            echo "$i"
+            return 1
+        end
     end
-  end
-  return 0
+    return 0
 end
 
 function __fish_kubectl_needs_resource -d 'Test if kubectl has yet to be given the subcommand resource'
-  set -l resources (__fish_kubectl_print_resource_types)
-  for i in (commandline -opc)
-    if contains -- $i $resources
-      return 1
+    set -l resources (__fish_kubectl_print_resource_types)
+    for i in (commandline -opc)
+        if contains -- $i $resources
+            return 1
+        end
     end
-  end
-  return 0
+    return 0
 end
 
 function __fish_kubectl_using_command
-  set -l cmd (__fish_kubectl_needs_command)
-  test -z "$cmd"
-  and return 1
+    set -l cmd (__fish_kubectl_needs_command)
+    test -z "$cmd"
+    and return 1
 
-  contains -- $cmd $argv
-  and echo "$cmd"
-  and return 0
+    contains -- $cmd $argv
+    and echo "$cmd"
+    and return 0
 
-  return 1
+    return 1
 end
 
 function __fish_kubectl_using_resource
-  set -l cmd (__fish_kubectl_needs_resource)
-  test -z "$cmd"
-  and return 1
+    set -l cmd (__fish_kubectl_needs_resource)
+    test -z "$cmd"
+    and return 1
 
-  contains -- $cmd $argv
-  and echo "$cmd"
-  and return 0
+    contains -- $cmd $argv
+    and echo "$cmd"
+    and return 0
 
-  return 1
+    return 1
 end
 
 function __fish_kubectl_has_partial_resource_match
-  set -l last (commandline -opt)
-  if not set -l matches (string match -- "(.*)/" $last)
-    return
-  end
+    set -l last (commandline -opt)
+    if not set -l matches (string match -- "(.*)/" $last)
+        return
+    end
 
-  if string match -q -- "(.*)/" $last
-    return 0
-  end
+    if string match -q -- "(.*)/" $last
+        return 0
+    end
 
-  return 1
+    return 1
 end
 
 function __fish_kubectl_print_matching_resources
-  set -l last (commandline -opt)
-  if not set -l matches (string match -r -- "(.*)/" $last)
-    return
-  end
-  set -l prefix $matches[2]
-  set -l resources (__fish_kubectl_print_resource "$prefix")
-  for i in $resources
-    echo "$prefix/$i"
-  end
+    set -l last (commandline -opt)
+    if not set -l matches (string match -r -- "(.*)/" $last)
+        return
+    end
+    set -l prefix $matches[2]
+    set -l resources (__fish_kubectl_print_resource "$prefix")
+    for i in $resources
+        echo "$prefix/$i"
+    end
 end
 
 function __fish_kubectl_get_context_flags
-	set -l cmd (commandline -opc)
-	if [ (count $cmd) -eq 0 ]
-		return 1
-	end
+    set -l cmd (commandline -opc)
+    if [ (count $cmd) -eq 0 ]
+        return 1
+    end
 
-	set -l foundContext 0
+    set -l foundContext 0
 
-	for c in $cmd
-		test $foundContext -eq 1
-		set -l out "--context" "$c"
-		and echo $out
-		and return 0
+    for c in $cmd
+        test $foundContext -eq 1
+        set -l out --context "$c"
+        and echo $out
+        and return 0
 
-		if string match -q -r -- "--context=" "$c"
-			set -l out (string split -- "=" "$c" | string join " ")
-			and echo $out
-			and return 0
-		else if contains -- "$c" "--context"
-			set foundContext 1
-		end
-	end
+        if string match -q -r -- "--context=" "$c"
+            set -l out (string split -- "=" "$c" | string join " ")
+            and echo $out
+            and return 0
+        else if contains -- "$c" --context
+            set foundContext 1
+        end
+    end
 
-	return 1
+    return 1
 end
 
 function __fish_kubectl_get_kubeconfig_flags
-	set -l cmd (commandline -opc)
-	if [ (count $cmd) -eq 0 ]
-		return 1
-	end
+    set -l cmd (commandline -opc)
+    if [ (count $cmd) -eq 0 ]
+        return 1
+    end
 
-	set -l foundKubeconfig 0
+    set -l foundKubeconfig 0
 
-	for c in $cmd
-		test $foundKubeconfig -eq 1
-		set -l out "--kubeconfig" "$c"
-		and echo $out
-		and return 0
+    for c in $cmd
+        test $foundKubeconfig -eq 1
+        set -l out --kubeconfig "$c"
+        and echo $out
+        and return 0
 
-		if string match -q -r -- "--kubeconfig=" "$c"
-			set -l out (string split -- "=" "$c" | string join " ")
-			and echo $out
-			and return 0
-		else if contains -- "$c" "--kubeconfig"
-			set foundKubeconfig 1
-		end
-	end
+        if string match -q -r -- "--kubeconfig=" "$c"
+            set -l out (string split -- "=" "$c" | string join " ")
+            and echo $out
+            and return 0
+        else if contains -- "$c" --kubeconfig
+            set foundKubeconfig 1
+        end
+    end
 
-	return 1
+    return 1
 end
 
 function __fish_kubectl_get_ns_flags
-  set -l cmd (commandline -opc)
-  if [ (count $cmd) -eq 0 ]
+    set -l cmd (commandline -opc)
+    if [ (count $cmd) -eq 0 ]
+        return 1
+    end
+
+    set -l foundNamespace 0
+
+    for c in $cmd
+        test $foundNamespace -eq 1
+        set -l out --namespace "$c"
+        and echo $out
+        and return 0
+
+        if contains -- $c $__kubectl_all_namespaces_flags
+            echo --all-namespaces
+            return 0
+        end
+
+        if contains -- $c --namespace -n
+            set foundNamespace 1
+        end
+    end
+
     return 1
-  end
-
-  set -l foundNamespace 0
-
-  for c in $cmd
-    test $foundNamespace -eq 1
-    set -l out "--namespace" "$c"
-    and echo $out
-    and return 0
-
-    if contains -- $c $__kubectl_all_namespaces_flags
-      echo "--all-namespaces"
-      return 0
-    end
-
-    if contains -- $c "--namespace" "-n"
-      set foundNamespace 1
-    end
-  end
-
-  return 1
 end
 
 function __fish_kubectl_print_resource_types
-  for r in $__fish_kubectl_resources
-    echo $r
-  end
+    for r in $__fish_kubectl_resources
+        echo $r
+    end
 
-	if test $FISH_KUBECTL_COMPLETION_COMPLETE_CRDS -eq 1
-		set -l crds (__fish_kubectl_get_crds)
+    if test $FISH_KUBECTL_COMPLETION_COMPLETE_CRDS -eq 1
+        set -l crds (__fish_kubectl_get_crds)
 
-		for r in $crds
-			echo $r
-		end
-	end
+        for r in $crds
+            echo $r
+        end
+    end
 end
 
 function __fish_kubectl_print_current_resources -d 'Prints current resources'
-  set -l found 0
-  # There is probably a better way to do this...
-  # found === 1 means that we have not yet found the crd type
-  # found === 2 means that we have not yet found the crd name, but have found the type
-  set -l current_resource
-  set -l crd_types (__fish_kubectl_get_crds)
-  for i in (commandline -opc)
-    if test $found -eq 0
-      if contains -- $i $__fish_kubectl_subresource_commands
-        set found 1
-      end
-    end
-
-    if test $found -eq 1
-      if contains -- $i $crd_types
-        set -l out (__fish_kubectl_print_resource $i)
-        for item in $out
-          echo "$item"
+    set -l found 0
+    # There is probably a better way to do this...
+    # found === 1 means that we have not yet found the crd type
+    # found === 2 means that we have not yet found the crd name, but have found the type
+    set -l current_resource
+    set -l crd_types (__fish_kubectl_get_crds)
+    for i in (commandline -opc)
+        if test $found -eq 0
+            if contains -- $i $__fish_kubectl_subresource_commands
+                set found 1
+            end
         end
-        return 0
-      end
+
+        if test $found -eq 1
+            if contains -- $i $crd_types
+                set -l out (__fish_kubectl_print_resource $i)
+                for item in $out
+                    echo "$item"
+                end
+                return 0
+            end
+        end
     end
-  end
 end
 
 function __fish_kubectl_print_resource -d 'Print a list of resources' -a resource
-  set -l args
-  if set -l ns_flags (__fish_kubectl_get_ns_flags | string split " ")
-    for ns in $ns_flags
-      set args $args $ns
+    set -l args
+    if set -l ns_flags (__fish_kubectl_get_ns_flags | string split " ")
+        for ns in $ns_flags
+            set args $args $ns
+        end
     end
-  end
 
-  set args $args get "$resource"
-  __fish_kubectl $args --no-headers 2>/dev/null | awk '{print $1}' | string replace -r '(.*)/' ''
+    set args $args get "$resource"
+    __fish_kubectl $args --no-headers 2>/dev/null | awk '{print $1}' | string replace -r '(.*)/' ''
 end
 
 function __fish_kubectl_get_config -a type
-  set -l template "{{ range .$type }}"'{{ .name }}{{"\n"}}{{ end }}'
-  __fish_kubectl config view -o template --template="$template"
+    set -l template "{{ range .$type }}"'{{ .name }}{{"\n"}}{{ end }}'
+    __fish_kubectl config view -o template --template="$template"
 end
 
 function __fish_kubectl_get_rollout_resources
-  set -l args
-  if set -l ns_flags (__fish_kubectl_get_ns_flags | string split " ")
-    for ns in $ns_flags
-      set args $args $ns
+    set -l args
+    if set -l ns_flags (__fish_kubectl_get_ns_flags | string split " ")
+        for ns in $ns_flags
+            set args $args $ns
+        end
     end
-  end
 
-  set -l template '{range .items[*]}{.metadata.name}{"\n"}{end}'
+    set -l template '{range .items[*]}{.metadata.name}{"\n"}{end}'
 
-  set -l deploys (__fish_kubectl $args get deploy -o jsonpath="$template" 2>/dev/null)
-  set -l daemonsets (__fish_kubectl $args get ds -o jsonpath="$template" 2>/dev/null)
-  set -l sts (__fish_kubectl $args get sts -o jsonpath="$template" 2>/dev/null)
+    set -l deploys (__fish_kubectl $args get deploy -o jsonpath="$template" 2>/dev/null)
+    set -l daemonsets (__fish_kubectl $args get ds -o jsonpath="$template" 2>/dev/null)
+    set -l sts (__fish_kubectl $args get sts -o jsonpath="$template" 2>/dev/null)
 
-  for i in $deploys
-    echo "deploy/$i"
-    echo "deployment/$i"
-    echo "deployments/$i"
-  end
+    for i in $deploys
+        echo "deploy/$i"
+        echo "deployment/$i"
+        echo "deployments/$i"
+    end
 
-  for i in $daemonsets
-    echo "daemonset/$i"
-    echo "daemonsets/$i"
-    echo "ds/$i"
-  end
+    for i in $daemonsets
+        echo "daemonset/$i"
+        echo "daemonsets/$i"
+        echo "ds/$i"
+    end
 
-  for i in $sts
-    echo "statefulset/$i"
-    echo "statefulsets/$i"
-    echo "sts/$i"
-  end
+    for i in $sts
+        echo "statefulset/$i"
+        echo "statefulsets/$i"
+        echo "sts/$i"
+    end
 end
 
-complete -c kubectl -f -n '__fish_kubectl_needs_command' -a '(__fish_kubectl_get_commands)'
+complete -c kubectl -f -n __fish_kubectl_needs_command -a '(__fish_kubectl_get_commands)'
 
 for subcmd in $__fish_kubectl_subresource_commands
-  complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and not __fish_seen_subcommand_from (__fish_kubectl_print_resource_types)" -a '(__fish_kubectl_print_resource_types)' -d 'Resource'
-  complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_kubectl_has_partial_resource_match" -a '(__fish_kubectl_print_matching_resources)' -d 'Resource'
-  for resource in $__fish_kubectl_resources
-    complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_seen_subcommand_from $resource" -a "(__fish_kubectl_print_resource $resource)" -d "$resource"
-  end
+    complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and not __fish_seen_subcommand_from (__fish_kubectl_print_resource_types)" -a '(__fish_kubectl_print_resource_types)' -d Resource
+    complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_kubectl_has_partial_resource_match" -a '(__fish_kubectl_print_matching_resources)' -d Resource
+    for resource in $__fish_kubectl_resources
+        complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_seen_subcommand_from $resource" -a "(__fish_kubectl_print_resource $resource)" -d "$resource"
+    end
 
-	if test $FISH_KUBECTL_COMPLETION_COMPLETE_CRDS -eq 1
-		complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_seen_subcommand_from (__fish_kubectl_get_crds)" -a '(__fish_kubectl_print_current_resources)' -d 'CRD'
-	end
+    if test $FISH_KUBECTL_COMPLETION_COMPLETE_CRDS -eq 1
+        complete -c kubectl -f -n "__fish_kubectl_using_command $subcmd; and __fish_seen_subcommand_from (__fish_kubectl_get_crds)" -a '(__fish_kubectl_print_current_resources)' -d CRD
+    end
 end
 
-complete -c kubectl -f -n "__fish_seen_subcommand_from log logs exec port-forward" -a '(__fish_kubectl_print_resource pods)' -d 'Pod'
-complete -c kubectl -f -n "__fish_seen_subcommand_from top; and __fish_seen_subcommand_from po pod pods" -a '(__fish_kubectl_print_resource pods)' -d 'Pod'
-complete -c kubectl -f -n "__fish_seen_subcommand_from top; and __fish_seen_subcommand_from no node nodes" -a '(__fish_kubectl_print_resource nodes)' -d 'Node'
+complete -c kubectl -f -n "__fish_seen_subcommand_from log logs exec port-forward" -a '(__fish_kubectl_print_resource pods)' -d Pod
+complete -c kubectl -f -n "__fish_seen_subcommand_from top; and __fish_seen_subcommand_from po pod pods" -a '(__fish_kubectl_print_resource pods)' -d Pod
+complete -c kubectl -f -n "__fish_seen_subcommand_from top; and __fish_seen_subcommand_from no node nodes" -a '(__fish_kubectl_print_resource nodes)' -d Node
 
 for subcmd in cordon uncordon drain taint
-  complete -c kubectl -f -n "__fish_seen_subcommand_from $subcmd" -a '(__fish_kubectl_print_resource nodes)' -d 'Node'
+    complete -c kubectl -f -n "__fish_seen_subcommand_from $subcmd" -a '(__fish_kubectl_print_resource nodes)' -d Node
 end
 
 set -l __fish_kubectl_config_complete_contexts \
-  delete-context \
-  get-contexts \
-  rename-contexts \
-  set-context \
-  use-context
+    delete-context \
+    get-contexts \
+    rename-contexts \
+    set-context \
+    use-context
 
 set -l __fish_kubectl_config_complete_clusters \
-  delete-cluster \
-  get-clusters \
-  set-cluster
+    delete-cluster \
+    get-clusters \
+    set-cluster
 
-complete -c kubectl -f -n "__fish_seen_subcommand_from config; and __fish_seen_subcommand_from $__fish_kubectl_config_complete_contexts" -a '(__fish_kubectl_get_config contexts)' -d 'Context'
-complete -c kubectl -f -n "__fish_seen_subcommand_from config; and __fish_seen_subcommand_from $__fish_kubectl_config_complete_clusters" -a '(__fish_kubectl_get_config clusters)' -d 'Cluster'
+complete -c kubectl -f -n "__fish_seen_subcommand_from config; and __fish_seen_subcommand_from $__fish_kubectl_config_complete_contexts" -a '(__fish_kubectl_get_config contexts)' -d Context
+complete -c kubectl -f -n "__fish_seen_subcommand_from config; and __fish_seen_subcommand_from $__fish_kubectl_config_complete_clusters" -a '(__fish_kubectl_get_config clusters)' -d Cluster
 complete -c kubectl -f -n "__fish_seen_subcommand_from rollout; and __fish_seen_subcommand_from (__fish_kubectl_get_rollout_commands_without_descriptions)" -a '(__fish_kubectl_get_rollout_resources)'
 complete -c kubectl -f -r -l as -d 'Username to impersonate for the operation'
 complete -c kubectl -f -r -l as-group -d 'Group to impersonate for the operation, this flag can be repeated to specify multiple groups.'
@@ -501,11 +501,11 @@ complete -c kubectl -f -l warnings-as-errors -d 'Treat warnings received from th
 
 # Completions for the "kubectl alpha" command
 function __fish_kubectl_get_alpha_commands
-  echo debug\t'Create debugging sessions for troubleshooting workloads and nodes'
+    echo debug\t'Create debugging sessions for troubleshooting workloads and nodes'
 end
 
 function __fish_kubectl_get_alpha_commands_without_descriptions
-  __fish_kubectl_get_alpha_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_alpha_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command alpha; and not __fish_seen_subcommand_from (__fish_kubectl_get_alpha_commands_without_descriptions)" -a '(__fish_kubectl_get_alpha_commands)'
@@ -579,13 +579,13 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from apply' -r -l timeout -d '
 complete -c kubectl -f -n '__fish_seen_subcommand_from apply' -l validate -d 'If true, use a schema to validate the input before sending it'
 complete -c kubectl -f -n '__fish_seen_subcommand_from apply' -l wait -d 'If true, wait for resources to be gone before returning. This waits for finalizers.'
 function __fish_kubectl_get_apply_commands
-  echo edit-last-applied\t'Edit latest last-applied-configuration annotations of a resource/object'
-  echo set-last-applied\t'Set the last-applied-configuration annotation on a live object to match the contents of a file.'
-  echo view-last-applied\t'View latest last-applied-configuration annotations of a resource/object'
+    echo edit-last-applied\t'Edit latest last-applied-configuration annotations of a resource/object'
+    echo set-last-applied\t'Set the last-applied-configuration annotation on a live object to match the contents of a file.'
+    echo view-last-applied\t'View latest last-applied-configuration annotations of a resource/object'
 end
 
 function __fish_kubectl_get_apply_commands_without_descriptions
-  __fish_kubectl_get_apply_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_apply_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command apply; and not __fish_seen_subcommand_from (__fish_kubectl_get_apply_commands_without_descriptions)" -a '(__fish_kubectl_get_apply_commands)'
@@ -625,12 +625,12 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from attach' -s t -l tty -d 'S
 
 # Completions for the "kubectl auth" command
 function __fish_kubectl_get_auth_commands
-  echo can-i\t'Check whether an action is allowed'
-  echo reconcile\t'Reconciles rules for RBAC Role, RoleBinding, ClusterRole, and ClusterRole binding objects'
+    echo can-i\t'Check whether an action is allowed'
+    echo reconcile\t'Reconciles rules for RBAC Role, RoleBinding, ClusterRole, and ClusterRole binding objects'
 end
 
 function __fish_kubectl_get_auth_commands_without_descriptions
-  __fish_kubectl_get_auth_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_auth_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command auth; and not __fish_seen_subcommand_from (__fish_kubectl_get_auth_commands_without_descriptions)" -a '(__fish_kubectl_get_auth_commands)'
@@ -671,12 +671,12 @@ complete -c kubectl -n '__fish_seen_subcommand_from autoscale' -r -l template -d
 
 # Completions for the "kubectl certificate" command
 function __fish_kubectl_get_certificate_commands
-  echo approve\t'Approve a certificate signing request'
-  echo deny\t'Deny a certificate signing request'
+    echo approve\t'Approve a certificate signing request'
+    echo deny\t'Deny a certificate signing request'
 end
 
 function __fish_kubectl_get_certificate_commands_without_descriptions
-  __fish_kubectl_get_certificate_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_certificate_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command certificate; and not __fish_seen_subcommand_from (__fish_kubectl_get_certificate_commands_without_descriptions)" -a '(__fish_kubectl_get_certificate_commands)'
@@ -701,11 +701,11 @@ complete -c kubectl -n '__fish_seen_subcommand_from certificate deny' -r -l temp
 
 # Completions for the "kubectl cluster-info" command
 function __fish_kubectl_get_cluster_info_commands
-  echo dump\t'Dump lots of relevant info for debugging and diagnosis'
+    echo dump\t'Dump lots of relevant info for debugging and diagnosis'
 end
 
 function __fish_kubectl_get_cluster_info_commands_without_descriptions
-  __fish_kubectl_get_cluster_info_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_cluster_info_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command cluster-info; and not __fish_seen_subcommand_from (__fish_kubectl_get_cluster_info_commands_without_descriptions)" -a '(__fish_kubectl_get_cluster_info_commands)'
@@ -721,26 +721,26 @@ complete -c kubectl -n '__fish_seen_subcommand_from cluster-info dump' -r -l tem
 
 # Completions for the "kubectl config" command
 function __fish_kubectl_get_config_commands
-  echo current-context\t'Displays the current-context'
-  echo delete-cluster\t'Delete the specified cluster from the kubeconfig'
-  echo delete-context\t'Delete the specified context from the kubeconfig'
-  echo delete-user\t'Delete the specified user from the kubeconfig'
-  echo get-clusters\t'Display clusters defined in the kubeconfig'
-  echo get-contexts\t'Describe one or many contexts'
-  echo get-users\t'Display users defined in the kubeconfig'
-  echo rename-context\t'Renames a context from the kubeconfig file.'
-  echo set\t'Sets an individual value in a kubeconfig file'
-  echo set-cluster\t'Sets a cluster entry in kubeconfig'
-  echo set-context\t'Sets a context entry in kubeconfig'
-  echo set-credentials\t'Sets a user entry in kubeconfig'
-  echo unset\t'Unsets an individual value in a kubeconfig file'
-  echo use-context\t'Sets the current-context in a kubeconfig file'
-  echo use\t'Sets the current-context in a kubeconfig file'
-  echo view\t'Display merged kubeconfig settings or a specified kubeconfig file'
+    echo current-context\t'Displays the current-context'
+    echo delete-cluster\t'Delete the specified cluster from the kubeconfig'
+    echo delete-context\t'Delete the specified context from the kubeconfig'
+    echo delete-user\t'Delete the specified user from the kubeconfig'
+    echo get-clusters\t'Display clusters defined in the kubeconfig'
+    echo get-contexts\t'Describe one or many contexts'
+    echo get-users\t'Display users defined in the kubeconfig'
+    echo rename-context\t'Renames a context from the kubeconfig file.'
+    echo set\t'Sets an individual value in a kubeconfig file'
+    echo set-cluster\t'Sets a cluster entry in kubeconfig'
+    echo set-context\t'Sets a context entry in kubeconfig'
+    echo set-credentials\t'Sets a user entry in kubeconfig'
+    echo unset\t'Unsets an individual value in a kubeconfig file'
+    echo use-context\t'Sets the current-context in a kubeconfig file'
+    echo use\t'Sets the current-context in a kubeconfig file'
+    echo view\t'Display merged kubeconfig settings or a specified kubeconfig file'
 end
 
 function __fish_kubectl_get_config_commands_without_descriptions
-  __fish_kubectl_get_config_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_config_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command config; and not __fish_seen_subcommand_from (__fish_kubectl_get_config_commands_without_descriptions)" -a '(__fish_kubectl_get_config_commands)'
@@ -801,36 +801,36 @@ complete -c kubectl -n '__fish_seen_subcommand_from create' -r -l template -d 'T
 complete -c kubectl -f -n '__fish_seen_subcommand_from create' -l validate -d 'If true, use a schema to validate the input before sending it'
 complete -c kubectl -f -n '__fish_seen_subcommand_from create' -l windows-line-endings -d 'Only relevant if --edit=true. Defaults to the line ending native to your platform.'
 function __fish_kubectl_get_create_commands
-  echo clusterrole\t'Create a ClusterRole.'
-  echo clusterrolebinding\t'Create a ClusterRoleBinding for a particular ClusterRole'
-  echo configmap\t'Create a configmap from a local file, directory or literal value'
-  echo cm\t'Create a configmap from a local file, directory or literal value'
-  echo cronjob\t'Create a cronjob with the specified name.'
-  echo cj\t'Create a cronjob with the specified name.'
-  echo deployment\t'Create a deployment with the specified name.'
-  echo deploy\t'Create a deployment with the specified name.'
-  echo ingress\t'Create an ingress with the specified name.'
-  echo ing\t'Create an ingress with the specified name.'
-  echo job\t'Create a job with the specified name.'
-  echo namespace\t'Create a namespace with the specified name'
-  echo ns\t'Create a namespace with the specified name'
-  echo poddisruptionbudget\t'Create a pod disruption budget with the specified name.'
-  echo pdb\t'Create a pod disruption budget with the specified name.'
-  echo priorityclass\t'Create a priorityclass with the specified name.'
-  echo pc\t'Create a priorityclass with the specified name.'
-  echo quota\t'Create a quota with the specified name.'
-  echo resourcequota\t'Create a quota with the specified name.'
-  echo role\t'Create a role with single rule.'
-  echo rolebinding\t'Create a RoleBinding for a particular Role or ClusterRole'
-  echo secret\t'Create a secret using specified subcommand'
-  echo service\t'Create a service using specified subcommand.'
-  echo svc\t'Create a service using specified subcommand.'
-  echo serviceaccount\t'Create a service account with the specified name'
-  echo sa\t'Create a service account with the specified name'
+    echo clusterrole\t'Create a ClusterRole.'
+    echo clusterrolebinding\t'Create a ClusterRoleBinding for a particular ClusterRole'
+    echo configmap\t'Create a configmap from a local file, directory or literal value'
+    echo cm\t'Create a configmap from a local file, directory or literal value'
+    echo cronjob\t'Create a cronjob with the specified name.'
+    echo cj\t'Create a cronjob with the specified name.'
+    echo deployment\t'Create a deployment with the specified name.'
+    echo deploy\t'Create a deployment with the specified name.'
+    echo ingress\t'Create an ingress with the specified name.'
+    echo ing\t'Create an ingress with the specified name.'
+    echo job\t'Create a job with the specified name.'
+    echo namespace\t'Create a namespace with the specified name'
+    echo ns\t'Create a namespace with the specified name'
+    echo poddisruptionbudget\t'Create a pod disruption budget with the specified name.'
+    echo pdb\t'Create a pod disruption budget with the specified name.'
+    echo priorityclass\t'Create a priorityclass with the specified name.'
+    echo pc\t'Create a priorityclass with the specified name.'
+    echo quota\t'Create a quota with the specified name.'
+    echo resourcequota\t'Create a quota with the specified name.'
+    echo role\t'Create a role with single rule.'
+    echo rolebinding\t'Create a RoleBinding for a particular Role or ClusterRole'
+    echo secret\t'Create a secret using specified subcommand'
+    echo service\t'Create a service using specified subcommand.'
+    echo svc\t'Create a service using specified subcommand.'
+    echo serviceaccount\t'Create a service account with the specified name'
+    echo sa\t'Create a service account with the specified name'
 end
 
 function __fish_kubectl_get_create_commands_without_descriptions
-  __fish_kubectl_get_create_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_create_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command create; and not __fish_seen_subcommand_from (__fish_kubectl_get_create_commands_without_descriptions)" -a '(__fish_kubectl_get_create_commands)'
@@ -1073,13 +1073,13 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from create rolebinding' -l va
 
 # Completions for the "kubectl create secret" command
 function __fish_kubectl_get_create_secret_commands
-  echo docker-registry\t'Create a secret for use with a Docker registry'
-  echo generic\t'Create a secret from a local file, directory or literal value'
-  echo tls\t'Create a TLS secret'
+    echo docker-registry\t'Create a secret for use with a Docker registry'
+    echo generic\t'Create a secret from a local file, directory or literal value'
+    echo tls\t'Create a TLS secret'
 end
 
 function __fish_kubectl_get_create_secret_commands_without_descriptions
-  __fish_kubectl_get_create_secret_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_create_secret_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command secret; and not __fish_seen_subcommand_from (__fish_kubectl_get_create_secret_commands_without_descriptions)" -a '(__fish_kubectl_get_create_secret_commands)'
@@ -1127,14 +1127,14 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from create secret tls' -l val
 
 # Completions for the "kubectl create service" command
 function __fish_kubectl_get_create_service_commands
-  echo clusterip\t'Create a ClusterIP service.'
-  echo externalname\t'Create an ExternalName service.'
-  echo loadbalancer\t'Create a LoadBalancer service.'
-  echo nodeport\t'Create a NodePort service.'
+    echo clusterip\t'Create a ClusterIP service.'
+    echo externalname\t'Create an ExternalName service.'
+    echo loadbalancer\t'Create a LoadBalancer service.'
+    echo nodeport\t'Create a NodePort service.'
 end
 
 function __fish_kubectl_get_create_service_commands_without_descriptions
-  __fish_kubectl_get_create_service_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_create_service_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command service; and not __fish_seen_subcommand_from (__fish_kubectl_get_create_service_commands_without_descriptions)" -a '(__fish_kubectl_get_create_service_commands)'
@@ -1389,11 +1389,11 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from patch' -r -l type -d 'The
 
 # Completions for the "kubectl plugin" command
 function __fish_kubectl_get_plugin_commands
-  echo list\t'list all visible plugin executables on a user\'s PATH'
+    echo list\t'list all visible plugin executables on a user\'s PATH'
 end
 
 function __fish_kubectl_get_plugin_commands_without_descriptions
-  __fish_kubectl_get_plugin_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_plugin_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command plugin; and not __fish_seen_subcommand_from (__fish_kubectl_get_plugin_commands_without_descriptions)" -a '(__fish_kubectl_get_plugin_commands)'
@@ -1439,16 +1439,16 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from replace' -l wait -d 'If t
 
 # Completions for the "kubectl rollout" command
 function __fish_kubectl_get_rollout_commands
-  echo history\t'View rollout history'
-  echo pause\t'Mark the provided resource as paused'
-  echo restart\t'Restart a resource'
-  echo resume\t'Resume a paused resource'
-  echo status\t'Show the status of the rollout'
-  echo undo\t'Undo a previous rollout'
+    echo history\t'View rollout history'
+    echo pause\t'Mark the provided resource as paused'
+    echo restart\t'Restart a resource'
+    echo resume\t'Resume a paused resource'
+    echo status\t'Show the status of the rollout'
+    echo undo\t'Undo a previous rollout'
 end
 
 function __fish_kubectl_get_rollout_commands_without_descriptions
-  __fish_kubectl_get_rollout_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_rollout_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command rollout; and not __fish_seen_subcommand_from (__fish_kubectl_get_rollout_commands_without_descriptions)" -a '(__fish_kubectl_get_rollout_commands)'
@@ -1564,17 +1564,17 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from scale' -r -l timeout -d '
 
 # Completions for the "kubectl set" command
 function __fish_kubectl_get_set_commands
-  echo env\t'Update environment variables on a pod template'
-  echo image\t'Update image of a pod template'
-  echo resources\t'Update resource requests/limits on objects with pod templates'
-  echo selector\t'Set the selector on a resource'
-  echo serviceaccount\t'Update ServiceAccount of a resource'
-  echo sa\t'Update ServiceAccount of a resource'
-  echo subject\t'Update User, Group or ServiceAccount in a RoleBinding/ClusterRoleBinding'
+    echo env\t'Update environment variables on a pod template'
+    echo image\t'Update image of a pod template'
+    echo resources\t'Update resource requests/limits on objects with pod templates'
+    echo selector\t'Set the selector on a resource'
+    echo serviceaccount\t'Update ServiceAccount of a resource'
+    echo sa\t'Update ServiceAccount of a resource'
+    echo subject\t'Update User, Group or ServiceAccount in a RoleBinding/ClusterRoleBinding'
 end
 
 function __fish_kubectl_get_set_commands_without_descriptions
-  __fish_kubectl_get_set_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_set_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command set; and not __fish_seen_subcommand_from (__fish_kubectl_get_set_commands_without_descriptions)" -a '(__fish_kubectl_get_set_commands)'
@@ -1696,16 +1696,16 @@ complete -c kubectl -f -n '__fish_seen_subcommand_from taint' -l validate -d 'If
 
 # Completions for the "kubectl top" command
 function __fish_kubectl_get_top_commands
-  echo node\t'Display Resource (CPU/Memory/Storage) usage of nodes'
-  echo nodes\t'Display Resource (CPU/Memory/Storage) usage of nodes'
-  echo no\t'Display Resource (CPU/Memory/Storage) usage of nodes'
-  echo pod\t'Display Resource (CPU/Memory/Storage) usage of pods'
-  echo pods\t'Display Resource (CPU/Memory/Storage) usage of pods'
-  echo po\t'Display Resource (CPU/Memory/Storage) usage of pods'
+    echo node\t'Display Resource (CPU/Memory/Storage) usage of nodes'
+    echo nodes\t'Display Resource (CPU/Memory/Storage) usage of nodes'
+    echo no\t'Display Resource (CPU/Memory/Storage) usage of nodes'
+    echo pod\t'Display Resource (CPU/Memory/Storage) usage of pods'
+    echo pods\t'Display Resource (CPU/Memory/Storage) usage of pods'
+    echo po\t'Display Resource (CPU/Memory/Storage) usage of pods'
 end
 
 function __fish_kubectl_get_top_commands_without_descriptions
-  __fish_kubectl_get_top_commands | string replace -r '\t.*$' ''
+    __fish_kubectl_get_top_commands | string replace -r '\t.*$' ''
 end
 
 complete -c kubectl -f -n "__fish_kubectl_using_command top; and not __fish_seen_subcommand_from (__fish_kubectl_get_top_commands_without_descriptions)" -a '(__fish_kubectl_get_top_commands)'
