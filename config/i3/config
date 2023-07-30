@@ -158,8 +158,9 @@ bindsym $mod+Shift+s     sticky toggle
 bindsym $mod+Shift+a     focus       child
 bindsym $mod+a           focus       parent
 
-bindsym $mod+Shift+c     rELoad
+bindsym $mod+Shift+c     reload
 bindsym $mod+Shift+r     restart
+bindsym $mod+Shift+w     exit
 bindsym $mod+Tab         workspace back_and_forth
 bindsym $mod+f           fullscreen
 bindsym $mod+w           kill
