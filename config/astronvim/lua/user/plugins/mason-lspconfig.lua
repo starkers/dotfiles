@@ -6,7 +6,7 @@ return {
 		ensure_installed = {
 			-- "black",
 			"tflint",
-			"terraformls",
+			-- "terraformls",
 			"marksman",
 
 			-- "clangd",

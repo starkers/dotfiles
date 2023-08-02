@@ -16,6 +16,22 @@ return {
 			desc = "Comment line",
 		},
 
+		-- TODO: "align" keymaps in its own config file?
+		["gaa"] = {
+			desc = "Align by character",
+			function()
+				local a = require("align")
+				a.operator(a.align_to_char, { length = 1, reverse = true })
+			end,
+		},
+		["gaw"] = {
+			desc = "Align by string",
+			function()
+				local a = require("align")
+				a.operator(a.align_to_string, { is_pattern = false, reverse = true, preview = true })
+			end,
+		},
+
 		["<S-l>"] = {
 			function()
 				buffer.nav(vim.v.count > 0 and vim.v.count or 1)
@@ -42,7 +58,7 @@ return {
 		["<up>"] = { "<C-w>k", desc = "move to window using just arrows" },
 		["<right>"] = { "<C-w>l", desc = "move to window using just arrows" },
 
-		-- Resize window using <ctrl> arrow keys
+		-- Resize win                                dow using <ctrl> arrow keys
 		["<S-Up>"] = { ":resize +2<CR>", desc = "resize using Shift+arrow" },
 		["<S-Down>"] = { ":resize -2<CR>", desc = "resize using Shift+arrow" },
 		["<S-Left>"] = { ":vertical resize -2<CR>", desc = "resize using Shift+arrow" },
