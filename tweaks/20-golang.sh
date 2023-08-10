@@ -17,11 +17,12 @@ done
 #############################################################
 
 declare -a globalPlugins=(
-	bou.ke/babelfish@latest # https://github.com/bouk/babelfish
+	# bou.ke/babelfish@latest # https://github.com/bouk/babelfish
 	github.com/hidetatz/kubecolor/cmd/kubecolor@latest
 	github.com/rakyll/gotest@latest
 	github.com/spf13/cobra-cli@latest
 	github.com/starkers/ggg@latest
+	github.com/starkers/starship-cfg@latest
 	github.com/xxxserxxx/gotop/v4/cmd/gotop@latest
 	golang.org/x/tools/cmd/goimports@latest
 )
