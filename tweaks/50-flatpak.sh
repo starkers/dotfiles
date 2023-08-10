@@ -19,10 +19,10 @@ declare -a flathub=(
 	com.discordapp.Discord
 	com.slack.Slack
 	# com.spotify.Client
-	dev.alextren.Spot
+	# dev.alextren.Spot
 	# us.zoom.Zoom
 	# com.jetbrains.GoLand
-	com.mattjakeman.ExtensionManager
+	# com.mattjakeman.ExtensionManager
 )
 
 try flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
