@@ -24,7 +24,7 @@ banner installing fonts
 VER=v2.1.0
 
 ## where to store the fonts after install
-FONTDIR="${XDG_DATA_HOME}/fonts"
+FONTDIR="${XDG_DATA_HOME:-~/.local/share/}fonts"
 try mkdir -p ${FONTDIR}
 
 # storing the downloaded .zip files (to make the script idempotent)
@@ -72,6 +72,6 @@ done
 #- https://tosche.net/fonts/comic-code
 #- https://fonts.ilovetypography.com/fonts/tabular-type-foundry/comic-code
 
-try cp /keybase/private/starkers/fonts/* ${FONTDIR}
+# try cp /keybase/private/starkers/fonts/* ${FONTDIR}
 try fc-cache -f
 banner done
