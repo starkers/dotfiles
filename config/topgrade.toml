@@ -1,3 +1,4 @@
+[misc]
 # Additional git repositories to pull
 #git_repos = [
 #    "~/src/*/",
