@@ -1,6 +1,6 @@
 if status is-interactive
     if command -s fnm >/dev/null
-        fnm env --use-on-cd | source
+        fnm env --use-on-cd --shell fish | source
 
         # add auto-complete
         fnm completions --shell fish | source
