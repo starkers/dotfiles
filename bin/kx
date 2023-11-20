@@ -65,7 +65,7 @@ list_contexts() {
 	cur_ctx_fg=${KUBECTX_CURRENT_FGCOLOR:-$yellow}
 	cur_ctx_bg=${KUBECTX_CURRENT_BGCOLOR:-$darkbg}
 
-	local selected=$(get_contexts | grep -v "\/" | sort | fzf)
+	local selected=$(get_contexts | grep -v "/" | sort | fzf)
 	if [ ! X${selected} == X ]; then
 		set_context ${selected}
 	fi
