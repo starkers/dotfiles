@@ -241,8 +241,8 @@ exec_always --no-startup-id $HOME/.config/polybar/polybar.sh
 bindsym $mod+n                exec --no-startup-id nautilus --no-desktop "${HOME}/"
 bindsym $mod+Shift+s          exec --no-startup-id flameshot gui
 # bindsym $mod+Print           exec --no-startup-id flameshot full
-bindsym XF86MonBrightnessDown exec --no-startup-id ${HOME}/.config/i3/scripts/backlight.sh -dec 5
-bindsym XF86MonBrightnessUp   exec --no-startup-id ${HOME}/.config/i3/scripts/backlight.sh -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set 5%+
 bindsym $mod+Return           exec --no-startup-id $term
 # bindsym $mod+d                exec --no-startup-id $HOME/.config/i3/rof
 
@@ -272,7 +272,13 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl $HOME/.config/i3/script
 exec        --no-startup-id picom
 
 ## import GTK/GnomeSessions settings (EG: dark mode gtk3 please)
+## fedora
 exec        --no-startup-id /usr/libexec/gsd-xsettings
+## arch
+exec        --no-startup-id /usr/lib/gsd-xsettings
+# exec        --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+
+
 # exec        --no-startup-id /usr/bin/gnome-keyring-daemon --daemonize --login &
 exec        --no-startup-id /usr/bin/gnome-keyring-daemon --start --replace --components=ssh,secrets,pkcs11 &
 # exec        --no-startup-id /usr/bin/gnome-keyring-daemon --start --replace --components=ssh,secrets,pkcs11 --login &
