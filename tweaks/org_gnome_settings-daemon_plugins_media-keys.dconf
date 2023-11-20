@@ -12,7 +12,7 @@ command='copyq show'
 name='copyq show'
 
 [custom-keybindings/custom2]
-binding='Print'
+binding='<Shift><Super>s'
 command='flameshot gui'
 name='flameshot gui'
 

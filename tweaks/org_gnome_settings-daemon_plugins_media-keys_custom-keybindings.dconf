@@ -9,7 +9,7 @@ command='copyq show'
 name='copyq show'
 
 [custom2]
-binding='Print'
+binding='<Shift><Super>s'
 command='flameshot gui'
 name='flameshot gui'
 
