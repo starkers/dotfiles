@@ -1,54 +1,78 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
+    "height": 10, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-      "wlr/workspaces",
-      // "wlr/mode",
-      // "wlr/scratchpad",
-      "custom/media",
+        // "wlr/workspaces",
+        // "wlr/mode",
+        // "wlr/scratchpad",
+        "hyprland/workspaces",
+        "custom/media",
     ],
-    "modules-center": ["hyprland/window"],
+    "modules-center": [
+        "hyprland/window"
+    ],
     "modules-right": [
-      // "mpd",
-      // "idle_inhibitor",
-      "pulseaudio",
-      "network",
-      // "cpu",
-      // "memory",
-      "temperature",
-      "backlight",
-      // "keyboard-state",
-      // "sway a/language",
-      "battery",
-      "battery#bat2",
-      "clock",
-      "tray",
+        // "mpd",
+        // "idle_inhibitor",
+        "pulseaudio",
+        // "network",
+        // "cpu",
+        // "memory",
+        // "temperature",
+        "backlight",
+        // "keyboard-state",
+        // "sway a/language",
+        "custom/power_profile",
+        "battery",
+        "battery#bat2",
+        "tray",
+        "clock",
     ],
     // Modules configuration
-
-        "hyprland/window": {
-        "format": "{}"
+    // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland
+    "hyprland/window": {
+        "format": "👉 {}",
+        "seperate-outputs": false
     },
-    "wlr/workspaces": {
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "all-outputs": true,
-        "on-click": "activate",
-        "format": "{icon}",
+    "hyprland/workspaces": {
+        "format": "{name}: {icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "active": "",
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            // "active": "",
             "default": ""
-          }
+        },
+        "persistent-workspaces": {
+            "*": 5, // 5 workspaces by default on every monitor
+            // "HDMI-A-1": 3 // but only three on HDMI-A-1
+        }
+        // "on-scroll-up": "hyprctl dispatch workspace e+1",
+        // "on-scroll-down": "hyprctl dispatch workspace e-1",
+        // "all-outputs": false,
+        // "on-click": "activate",
+        // "format": "{icon}",
+        // "format-icons": {
+        //     "1": "1",
+        //     "2": "2",
+        //     "3": "3",
+        //     "4": "4",
+        //     "5": "5",
+        //     "6": "6",
+        //     "7": "7",
+        //     "8": "8",
+        //     "9": "9",
+        //     "0": "0",
+        //     "urgent": "",
+        //     "active": "",
+        //     "default": ""
+        // }
     },
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -80,7 +104,10 @@
     "sway/scratchpad": {
         "format": "{icon} {count}",
         "show-empty": false,
-        "format-icons": ["", ""],
+        "format-icons": [
+            "",
+            ""
+        ],
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
@@ -133,18 +160,28 @@
     "memory": {
         "format": "{}% "
     },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
+    // "temperature": {
+    //     // "thermal-zone": 2,
+    //     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    //     "critical-threshold": 80,
+    //     // "format-critical": "{temperatureC}°C {icon}",
+    //     "format": "{temperatureC}°C {icon}",
+    //     "format-icons": ["", "", ""]
+    // },
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "battery": {
         "states": {
@@ -158,20 +195,26 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "battery#bat2": {
-        "bat": "BAT2"
+        "bat": "bat2"
     },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
+    // "network": {
+    //     // "interface": "wlp2*", // (Optional) To force the use of this interface
+    //     "format-wifi": "{essid} ({signalStrength}%) ",
+    //     "format-ethernet": "{ipaddr}/{cidr} ",
+    //     "tooltip-format": "{ifname} via {gwaddr} ",
+    //     "format-linked": "{ifname} (No IP) ",
+    //     "format-disconnected": "Disconnected ⚠",
+    //     "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    // },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -187,7 +230,11 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "on-click": "pavucontrol"
     },
@@ -202,6 +249,11 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+    "custom/power_profile": {
+        "exec": "sleep 0.3 && ~/.config/hypr/scripts/powerprofile-cycle.sh -m",
+        "interval": 120,
+        "on-click": "~/.config/hypr/scripts/powerprofile-cycle.sh",
+        "exec-on-event": true
+    },
 }
-
