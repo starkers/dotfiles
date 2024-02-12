@@ -18,12 +18,14 @@ done
 
 declare -a globalPlugins=(
 	# bou.ke/babelfish@latest # https://github.com/bouk/babelfish
+	github.com/a-h/templ/cmd/templ@latest
+	github.com/wailsapp/wails/v2/cmd/wails@latest
 	github.com/hidetatz/kubecolor/cmd/kubecolor@latest
 	github.com/rakyll/gotest@latest
 	github.com/spf13/cobra-cli@latest
 	github.com/starkers/ggg@latest
 	github.com/starkers/starship-cfg@latest
-	github.com/xxxserxxx/gotop/v4/cmd/gotop@latest
+	# github.com/xxxserxxx/gotop/v4/cmd/gotop@latest
 	golang.org/x/tools/cmd/goimports@latest
 )
 
@@ -31,3 +33,5 @@ for data in "${globalPlugins[@]}"; do
 	say installing "${data}"
 	try go install -x "${data}"
 done
+
+try asdf reshim golang
