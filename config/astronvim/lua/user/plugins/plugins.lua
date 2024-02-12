@@ -58,4 +58,50 @@ return {
 			})
 		end,
 	},
+
+	{
+		"github/copilot.vim",
+		enabled = true,
+		cmd = "Copilot",
+	},
+
+	{
+		"kcl-lang/vim-kcl",
+		init = function()
+			vim.api.nvim_command([[autocmd BufRead,BufNewFile *.k set filetype=kcl]])
+		end,
+		ft = {
+			"kcl",
+		},
+	},
+
+	{
+		"joerdav/templ.vim",
+		init = function()
+			vim.api.nvim_command([[autocmd BufRead,BufNewFile *.templ set filetype=templ]])
+		end,
+		ft = {
+			"templ",
+		},
+	},
+
+	{
+		"gsuuon/note.nvim",
+		opts = {
+			-- Spaces are note roots. These directories should contain a `./notes` directory (will be made if not).
+			-- Defaults to { '~' }.
+			spaces = {
+				"~",
+				-- '~/projects/foo'
+			},
+
+			-- Set keymap = false to disable keymapping
+			-- keymap = {
+			--   prefix = '<leader>n'
+			-- }
+		},
+		cmd = "Note",
+		ft = "note",
+	},
+	-- end
 }

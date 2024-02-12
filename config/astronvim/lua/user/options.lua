@@ -12,6 +12,7 @@ return {
 	opt = {
 		-- set to true or false etc.
 		mouse = "a",
+		-- mouse = "",
 		clipboard = "unnamedplus", -- TODO: bind something to explicitly yank to clipboard
 		-- relativenumber = true, -- sets vim.opt.relativenumber
 		-- number = true, -- sets vim.opt.number
@@ -19,7 +20,19 @@ return {
 		-- signcolumn = "auto", -- sets vim.opt.signcolumn to auto
 		wrap = true, -- sets vim.opt.wrap
 		list = true, -- show whitespace characters
-		-- listchars = { tab = " ", extends = "⟩", precedes = "⟨", trail = "·", eol = "﬋" },
+		foldcolumn = "0",
+		shell = "fish",
+
+		listchars = {
+			tab = "  ",
+			-- tab = " ",
+			-- extends = "⟩",
+			-- precedes = "⟨",
+			trail = "·",
+			-- nbsp = "+",
+			-- eol = "﬋",
+		},
+
 		-- loaded_clipboard_provider = false,  -- TODO: what is this in neovim?
 	},
 	-- g = {

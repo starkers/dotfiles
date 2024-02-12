@@ -31,7 +31,6 @@ return {
 				a.operator(a.align_to_string, { is_pattern = false, reverse = true, preview = true })
 			end,
 		},
-
 		["<S-l>"] = {
 			function()
 				buffer.nav(vim.v.count > 0 and vim.v.count or 1)
@@ -70,15 +69,20 @@ return {
 			-- group name in which-key top level menu
 			["b"] = {
 				name = "Buffer",
+				["b"] = { "<cmd>:Telescope buffers<CR>", "Browse buffers (Telescope)" },
 				["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
 				["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
 				["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-				["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
+				-- ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
 				["d"] = { "<cmd>:BDelete this<CR>", "Delete Buffer" },
 				["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
 				["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
 				["p"] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
-				["y"] = { "<cmd>:%!yamlfmt<CR>", "yaml fmt" },
+				-- ["y"] = { "<cmd>:%!yamlfmt<CR>", "yaml fmt" },
+			},
+			["v"] = {
+				name = "Vim",
+				["c"] = { "<cmd>:edit ~/.config/astronvim/lua/user/<CR>", "Config" },
 			},
 			["T"] = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
 			["-"] = { "<cmd>:%!yamlfmt<CR>", "Yaml fmt" },
