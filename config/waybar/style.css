@@ -1,49 +1,70 @@
+/* from: https://github.com/dracula/waybar/blob/main/waybar/colors.css */
+
+@define-color background-darker rgba(30, 31, 41, 230);
+@define-color background #282a36;
+@define-color selection #44475a;
+@define-color foreground #f8f8f2;
+@define-color comment #6272a4;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color red #ff5555;
+@define-color yellow #f1fa8c;
+
+
 * {
     border: none;
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     border-radius: 0;
-    /*font-family: "Hack", "Noto Color Emoji", sans-serif;*/
-    font-size: 12px;
+    font-size: 13px;
     /*font-weight: bold;*/
     min-height: 0;
 }
 
 window#waybar {
-    background: #000000;
-    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
-    color: #e5e9f0;
+    opacity: 0.9;
+    background: @background-darker;
+    color: @foreground;
+    border-bottom: 2px solid @background;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button {
-    padding: 0 5px;
-    background: transparent;
-    color: #ffffff;
-    border-bottom: 3px solid transparent;
+    padding: 0 10px;
+    background: @background;
+    color: @foreground;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background-image: linear-gradient(0deg, @selection, @background-darker);
 }
 #workspaces button.active {
-    background: #4c566a;
-    border-bottom: 3px solid #e5e9f0;
+    background-image: linear-gradient(0deg, @purple, @selection);
 }
-
-#workspaces button.focused {
-    background: #4c566a;
-    border-bottom: 3px solid #e5e9f0;
-}
-
 #workspaces button.urgent {
-    background-color: #bf616a;
+    background-image: linear-gradient(0deg, @red, @background-darker);
 }
 
-#mode {
-    background: #64727D;
-    border-bottom: 3px solid #ffffff;
+#taskbar button.active {
+    background-image: linear-gradient(0deg, @selection, @background-darker);
 }
+
+#clock {
+    padding: 0 4px;
+    background: @background;
+}
+
+/* #mode { */
+/*     background: #64727D; */
+/*     border-bottom: 3px solid #ffffff; */
+/* } */
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    /* background-color: rgba(43, 48, 59, 0.5); */
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    /* color: #ffffff; */
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -61,14 +82,13 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
+/* window#waybar.termite { */
+/*     background-color: #3F3F3F; */
+/* } */
+/* window#waybar.chromium { */
+/*     background-color: #000000; */
+/*     border: none; */
+/* } */
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
@@ -84,25 +104,25 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
-}
-
+/* #workspaces button { */
+/*     padding: 0 5px; */
+/*     background-color: transparent; */
+/*     color: #ffffff; */
+/* } */
+/**/
+/* #workspaces button:hover { */
+/*     background: rgba(0, 0, 0, 0.2); */
+/* } */
+/**/
+/* #workspaces button.focused { */
+/*     background-color: #64727D; */
+/*     box-shadow: inset 0 -3px #ffffff; */
+/* } */
+/**/
+/* #workspaces button.urgent { */
+/*     background-color: #eb4d4b; */
+/* } */
+/**/
 #mode {
     background-color: #64727D;
     border-bottom: 3px solid #ffffff;
@@ -144,9 +164,9 @@ button:hover {
     margin-right: 0;
 }
 
-#clock {
-    background-color: #64727D;
-}
+/* #clock { */
+/*     background-color: #64727D; */
+/* } */
 
 #battery, #custom-power_profile {
     background: transparent;

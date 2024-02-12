@@ -1,7 +1,7 @@
 {
-    // "layer": "top", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 10, // Waybar height (to be removed for auto height)
+    // "height": 10, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
@@ -13,41 +13,45 @@
         "custom/media",
     ],
     "modules-center": [
-        "hyprland/window"
+        // "hyprland/window",
+        "mpris",
     ],
     "modules-right": [
-        // "mpd",
+        "tray",
         // "idle_inhibitor",
-        "pulseaudio",
         // "network",
         // "cpu",
-        // "memory",
-        // "temperature",
+        "pulseaudio",
         "backlight",
+        "memory",
+        // "temperature",
         // "keyboard-state",
         // "sway a/language",
+        // "battery#bat2",
         "custom/power_profile",
         "battery",
-        "battery#bat2",
-        "tray",
         "clock",
     ],
     // Modules configuration
     // https://github.com/Alexays/Waybar/wiki/Module:-Hyprland
     "hyprland/window": {
-        "format": "👉 {}",
+        "format": "{}",
         "seperate-outputs": false
     },
     "hyprland/workspaces": {
         "format": "{name}: {icon}",
         "format-icons": {
             "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "9": "",
             // "active": "",
-            "default": ""
+            "default": "",
+            "urgent": "",
+            // 
+            // 
         },
         "persistent-workspaces": {
             "*": 5, // 5 workspaces by default on every monitor
@@ -111,31 +115,17 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "▶",
+            "mpv": "🎵"
         },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
+        "status-icons": {
+            "paused": "⏸"
         },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        // "ignored-players": ["firefox"]
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -151,14 +141,16 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "format": "{:%T}",
+        "interval": 1
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": true
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% 󰍛"
     },
     // "temperature": {
     //     // "thermal-zone": 2,
@@ -203,9 +195,9 @@
             ""
         ]
     },
-    "battery#bat2": {
-        "bat": "bat2"
-    },
+    // "battery#bat2": {
+    //     "bat": "bat2"
+    // },
     // "network": {
     //     // "interface": "wlp2*", // (Optional) To force the use of this interface
     //     "format-wifi": "{essid} ({signalStrength}%) ",
@@ -219,14 +211,17 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        // "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth-muted": "🔇 {format_source}",
+        "format-muted": "🔇 {format_source}",
+        // "format-source": "{volume}% ",
+        "format-source": "",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
+            // "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
