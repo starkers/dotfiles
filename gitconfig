@@ -53,8 +53,6 @@
 #   exec = "!exec "
 #   root = rev-parse --show-toplevel
 #
-[github]
-  user = starkers
 [core]
   excludesfile = /home/starkers/.git_global_ignore
 
