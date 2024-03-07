@@ -17,8 +17,14 @@ return {
 			"pyright",
 			-- "sqlls",
 			"lua_ls",
+
+			-- js
 			"tsserver",
+
+			-- misc
 			"yamlls",
+
+			"taplo", -- toml
 		},
 	},
 }
