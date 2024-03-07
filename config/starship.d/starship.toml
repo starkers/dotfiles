@@ -5,20 +5,33 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Which is equivalent to
-format = """$username\
+# https://starship.rs/advanced-config/#enable-right-prompt
+# format = """$character"""
+format = '''
+[┌ ](bold green)$directory
+[└─$character](bold green)'''
+
+
+# right_format = """$all"""
+right_format = """
+$username\
 $hostname\
+$localip\
 $shlvl\
+$singularity\
 $kubernetes\
 $git_branch\
 $git_commit\
 $git_state\
+$git_metrics\
 $git_status\
 $hg_branch\
 $docker_context\
 $package\
+$c\
 $cmake\
 $dart\
+$deno\
 $dotnet\
 $elixir\
 $elm\
@@ -27,40 +40,61 @@ $golang\
 $helm\
 $java\
 $julia\
-$nim\
-$ocaml\
+$kotlin\
+$gradle\
+$lua\
 $nodejs\
-$perl\
-$php\
-$purescript\
+$ocaml\
+$opa\
+$pulumi\
 $python\
-$ruby\
+$raku\
+$rlang\
 $rust\
+$scala\
 $swift\
 $terraform\
+$typst\
 $zig\
-$nix_shell\
+$buf\
 $conda\
+$meson\
 $memory_usage\
 $aws\
 $gcloud\
 $openstack\
+$azure\
+$direnv\
 $env_var\
-$crystal\
 $custom\
+$sudo\
 $cmd_duration\
-$jobs\
-$directory\
-$status\
 $line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
 $character"""
 
-# $lua\
+
+# I don't like the wasted top newline
+add_newline = false
+
 [aws]
 disabled = true
 
-[python]
+[lua]
 disabled = true
+
+[package]
+format = '[🎁 $version](208 bold) '
+# disabled = true
+
+[python]
+disabled = false
 
 [golang]
 disabled = true
@@ -72,7 +106,7 @@ disabled = true
 # disabled = true
 
 [directory]
-truncation_length = 3
+truncation_length = 5
 truncate_to_repo = false
 
 [kubernetes]
@@ -88,8 +122,6 @@ disabled = false
 [gcloud]
 disabled = true
 
-
-
 [git_branch]
 symbol = " "
 truncation_length = 30
@@ -97,33 +129,32 @@ truncation_length = 30
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
 # [git_commit]
-# tag_disabled = false
-# tag_symbol = "🏷 "
 
 
 [git_status]
+disabled = true
 conflicted = "⚔️ "
-ahead = "🏎️ 💨 ×${count}"
+# ahead = "🏎️ 💨 ×${count}"
 behind = "🐢×${count}"
 diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
-untracked = "🛤️ ×${count} "
+# untracked = "🛤️ ×${count} "
 stashed = "📦 "
-modified = "📝×${count} "
+# modified = "📝×${count} "
 staged = "🗃️  ×${count}"
 renamed = "📛 ×${count}"
 deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
-
 [git_commit]
-commit_hash_length = 4
-tag_symbol = "ﰗ "
-
-
+commit_hash_length = 6
+# tag_symbol = "ﰗ "
+# tag_disabled = false
+tag_symbol = "🏷 "
 
 
 [nodejs]
-format = ""
+disabled = true
+# format = ""
 #via [🤖 $version](bold green) "
 # # format = "[ $symbol($version )]($style)"

@@ -1,10 +1,10 @@
 # vi: ft=fish
 
 
-# this section ensures the right side of the prompt stays clear
-function fish_right_prompt
-    #intentionally left blank
-end
+# # this section ensures the right side of the prompt stays clear
+# function fish_right_prompt
+#     #intentionally left blank
+# end
 
 # this disables the greeting/fortune by running an empty function
 function fish_greeting
@@ -21,7 +21,14 @@ if status is-interactive
     end
 
     if command -s starship >/dev/null
+        function starship_transient_prompt_func
+          starship module character
+        end
+        function starship_transient_rprompt_func
+          starship module time
+        end
         starship init fish | source
+        enable_transience
     else
         echo '#WARN: starship not installed'
     end
