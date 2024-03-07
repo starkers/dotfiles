@@ -17,16 +17,24 @@ done
 #############################################################
 
 declare -a globalPlugins=(
-	# bou.ke/babelfish@latest # https://github.com/bouk/babelfish
-	github.com/a-h/templ/cmd/templ@latest
-	github.com/wailsapp/wails/v2/cmd/wails@latest
-	github.com/hidetatz/kubecolor/cmd/kubecolor@latest
-	github.com/rakyll/gotest@latest
-	github.com/spf13/cobra-cli@latest
+	## misc helpers
 	github.com/starkers/ggg@latest
 	github.com/starkers/starship-cfg@latest
-	# github.com/xxxserxxx/gotop/v4/cmd/gotop@latest
+	github.com/hidetatz/kubecolor/cmd/kubecolor@latest
+
+
+	##### go dev tooling
+	# bou.ke/babelfish@latest # https://github.com/bouk/babelfish
+	github.com/a-h/templ/cmd/templ@latest
+	github.com/cosmtrek/air@latest
+	github.com/incu6us/goimports-reviser/v3@latest
+	github.com/rakyll/gotest@latest
+	github.com/segmentio/golines@latest
+	github.com/spf13/cobra-cli@latest
+	github.com/wailsapp/wails/v2/cmd/wails@latest
 	golang.org/x/tools/cmd/goimports@latest
+	mvdan.cc/gofumpt@latest
+
 )
 
 for data in "${globalPlugins[@]}"; do
