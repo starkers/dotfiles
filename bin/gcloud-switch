@@ -57,7 +57,7 @@ set_account() {
 }
 
 set_project() {
-	local RAW="$(gcloud alpha projects list | fzf ${args})"
+	local RAW="$(gcloud projects list | fzf ${args})"
 	local RAW_PROJECT="$(echo ${RAW} | awk '{print $1}')"
 	if [ ! "X${PROJECT_CURRENT}" == "X${RAW_PROJECT}" ]; then
 		echo "[] exec: gcloud config set project ${RAW_PROJECT}"
@@ -73,7 +73,7 @@ set_cluster() {
 	local RAW_LOCATION="$(echo ${RAW} | awk '{print $2}')"
 	echo "[] exec: gcloud container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}"
 	gcloud container clusters get-credentials ${RAW_NAME} --region ${RAW_LOCATION} --project ${PROJECT_CURRENT}
-	rename_kubecontext
+	# rename_kubecontext
 }
 
 rename_kubecontext(){
@@ -156,7 +156,7 @@ project-and-cluster)
 	set_project
 	set_cluster
 	;;
-rename-kube)
-  rename_kubecontext
-  ;;
+# rename-kube)
+#   rename_kubecontext
+#   ;;
 esac
