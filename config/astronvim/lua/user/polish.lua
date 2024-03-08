@@ -14,7 +14,8 @@ return function()
   -- Set up custom filetypes
   vim.filetype.add {
     extension = {
-      star = "python", -- pretend starlark is python I guess
+      star = "python",   -- pretend starlark is python I guess
+      hcl = "terraform", -- meh
     },
     -- filename = {
     -- 	["Foofile"] = "fooscript",

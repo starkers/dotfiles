@@ -20,6 +20,7 @@ return {
       --   args = { "-i", "2" },
       --
       -- },
+      -- null_ls.builtins.formatting.hclfmt,
 
       -- python
       null_ls.builtins.formatting.black,
