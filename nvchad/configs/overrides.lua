@@ -2,16 +2,24 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
-    "vim",
-    "lua",
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
+    -- "autotools-language-server",
     "c",
+    "css",
+    "go",
+    "gomod",
+    "gosum",
+    "html",
+    "javascript",
+    "lua",
+    "make",
     "markdown",
+    -- "marksman",
     "markdown_inline",
+    "python",
+    "tsx",
+    "typescript",
+    "vim",
+    "yaml",
   },
   indent = {
     enable = true,
@@ -34,6 +42,7 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
+    "htmx-lsp",
 
     -- c/cpp stuff
     "clangd",
@@ -42,6 +51,21 @@ M.mason = {
     -- shell stuff
     "shfmt",
     "bash-language-server",
+
+    -- go
+    "gopls",
+    "golangci-lint-langserver",
+    "goimports-reviser",
+    "golines",
+    "gofumpt",
+    "templ",
+
+
+
+    -- misc
+    "autotools-language-server", -- make
+    "taplo", -- toml
+    "terraform-ls",
   },
 }
 

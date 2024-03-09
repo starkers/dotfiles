@@ -16,6 +16,10 @@ local generic_servers = {
   "templ",
   "bashls",
   "lua_ls",
+  "gopls",
+  "golangci_lint_ls",
+  "marksman",
+  -- "autotools-language-server",
 }
 
 -- do setup for vanilla/unchange servers listed above
