@@ -14,7 +14,7 @@ local generic_servers = {
   "tsserver",
   "clangd" ,
   "templ",
-  "asdasd",
+  -- "lua_ls",
 }
 
 for _, lsp in ipairs(generic_servers) do

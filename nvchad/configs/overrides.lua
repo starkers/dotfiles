@@ -12,18 +12,6 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
-    "go",
-    "gomod",
-    "gosum",
-    "make",
-    "templ",
-    "yaml",
-    "fish",
-    "bash",
-    "python",
-    "json",
-    "jsonc",
-    "jsonnet",
   },
   indent = {
     enable = true,
@@ -45,7 +33,6 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
-    "htmx-lsp",
 
     -- c/cpp stuff
     "clangd",
@@ -53,24 +40,6 @@ M.mason = {
 
     -- shell stuff
     "shfmt",
-
-    -- go
-    "golines",
-    "gofumpt",
-    "golangci-lint-langserver",
-    "goimports",
-    "gotests",
-    "gopls",
-
-    -- py
-    "black",
-    "pyright",
-
-    -- misc
-    "terraform-ls",
-    "yaml-language-server",
-    "yamlfmt",
-    "yamlfix",
   },
 }
 
