@@ -14,9 +14,11 @@ local generic_servers = {
   "tsserver",
   "clangd" ,
   "templ",
-  -- "lua_ls",
+  "bashls",
+  "lua_ls",
 }
 
+-- do setup for vanilla/unchange servers listed above
 for _, lsp in ipairs(generic_servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -24,14 +26,14 @@ for _, lsp in ipairs(generic_servers) do
   }
 end
 
--- 
+
+-- -- this section for extending specific ones
 -- lspconfig.pyright.setup { blabla}
 lspconfig.pyright.setup({
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "python" },
 })
-
 
 
 lspconfig.eslint.setup({

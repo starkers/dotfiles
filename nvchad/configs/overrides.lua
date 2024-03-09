@@ -22,6 +22,7 @@ M.treesitter = {
 }
 
 M.mason = {
+  -- see: https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#available-lsp-servers
   ensure_installed = {
     -- lua stuff
     "lua-language-server",
@@ -40,6 +41,7 @@ M.mason = {
 
     -- shell stuff
     "shfmt",
+    "bash-language-server",
   },
 }
 
