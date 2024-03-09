@@ -1,5 +1,8 @@
 --- 
 
+# Dotbot config
+# See: https://github.com/anishathalye/dotbot
+
 - defaults:
     link:
       create: true
@@ -10,7 +13,11 @@
   - ~/
   - ~/.config/
 
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
 - link:
+    # maintains links under ~/.config from the "config" subdirectory of this repo
     ~/.config:
       path: 'config/*'
       create: true
@@ -19,6 +26,7 @@
       relink: true
 
 - link:
+    # maintains links in my $HOME dir from files at top level of this repo
     ~/:
       path: "*"
       prefix: "."
@@ -32,6 +40,7 @@
       - mc
       - packer-snapshots
       - README.md
+      - nvchad
       create: true
       # force: true
       glob: true
@@ -43,7 +52,12 @@
   - mkdir -p ~/.local/share/mc
   - cp -rvp mc/* ~/.local/share/mc/.
 
-  - [git submodule update --init --recursive, Installing submodules]                                                 
+
+# create link to ~/.config/nvim/lua/custom which contains my nvchad settings
+- link:
+    ~/.config/nvim/lua/custom:
+      path: "nvchad"
+      force: true
 
 
   # # TODO: get ssh keys from bitwarden CLI
@@ -52,5 +66,5 @@
   # - chmod 0700 ~/.ssh/
   # - chmod 0600 ~/.ssh/id_*
 
-- link:
-    ~/.cache/nvim/packer.nvim: 'packer-snapshots'
+# - link:
+#     ~/.cache/nvim/packer.nvim: 'packer-snapshots'
