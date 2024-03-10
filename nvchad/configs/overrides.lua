@@ -60,6 +60,9 @@ M.mason = {
     "gofumpt",
     "templ",
 
+    -- py
+    "pyright",
+    "black",
 
 
     -- misc

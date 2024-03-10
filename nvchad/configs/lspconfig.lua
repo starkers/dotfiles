@@ -19,6 +19,7 @@ local generic_servers = {
   "gopls",
   "golangci_lint_ls",
   "marksman",
+  "pyright",
   -- "autotools-language-server",
 }
 
