@@ -53,11 +53,11 @@
   - cp -rvp mc/* ~/.local/share/mc/.
 
 
-# create link to ~/.config/nvim/lua/custom which contains my nvchad settings
-- link:
-    ~/.config/nvim/lua/custom:
-      path: "nvchad"
-      force: true
+# # create link to ~/.config/nvim/lua/custom which contains my nvchad settings
+# - link:
+#     ~/.config/nvim/lua/custom:
+#       path: "nvchad"
+#       force: true
 
 
   # # TODO: get ssh keys from bitwarden CLI
