@@ -2,7 +2,7 @@ bun 1.0.25
 caddy 2.7.6
 deno 1.26.1
 direnv 2.32.1
-dive 0.10.0
+dive 0.12.0
 dyff 1.4.7
 fd 8.3.1
 flux2 0.40.2
