@@ -11,17 +11,19 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
-  "containers",
+  "asdf",
   "conda",
+  "containers",
   "firmware",
   "gcloud",
   "git_repos",
+  "gnome_shell_extensions",
   "home_manager",
   "node",
   "pip3",
   "shell",
   "vim",
-  ]
+]
 
 # Run specific steps - same options as the command line flag
 #only = ["system", "emacs"]
