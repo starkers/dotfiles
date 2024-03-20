@@ -7,7 +7,3 @@
 [submodule "asdf"]
 	path = asdf
 	url = https://github.com/asdf-vm/asdf.git
-[submodule "config/nvim"]
-	path = config/nvim
-  url = https://github.com/NvChad/NvChad.git
-	branch = v3.0
