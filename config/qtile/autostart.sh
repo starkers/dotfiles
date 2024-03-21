@@ -12,7 +12,7 @@ picom &
 /usr/bin/xautolock -time 30 -locker ~/.config/i3/scripts/i3lock.sh &
 # blueman-applet &
 # wicd-gtk -t &
-# nm-applet &
+nm-applet &
 # run_keybase -a &
 # copyq &
 nitrogen --restore &
