@@ -22,7 +22,6 @@ declare -a globalPlugins=(
 	github.com/starkers/starship-cfg@latest
 	github.com/hidetatz/kubecolor/cmd/kubecolor@latest
 
-
 	##### go dev tooling
 	# bou.ke/babelfish@latest # https://github.com/bouk/babelfish
 	github.com/a-h/templ/cmd/templ@latest
@@ -34,7 +33,7 @@ declare -a globalPlugins=(
 	github.com/wailsapp/wails/v2/cmd/wails@latest
 	golang.org/x/tools/cmd/goimports@latest
 	mvdan.cc/gofumpt@latest
-
+	github.com/binxio/gcp-get-secret@latest
 )
 
 for data in "${globalPlugins[@]}"; do
