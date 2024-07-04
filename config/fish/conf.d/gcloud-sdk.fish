@@ -1,8 +1,15 @@
 
+# Linux default path typically
 set INC_FILE $HOME/.google-cloud-sdk/path.fish.inc
 
 if test -f $INC_FILE
     . $INC_FILE
+    set USE_GKE_GCLOUD_AUTH_PLUGIN True
+
+    # or for OSX
+    elif test -f '/Users/david.stark/Downloads/google-cloud-sdk/path.fish.inc'
+    . '/Users/david.stark/Downloads/google-cloud-sdk/path.fish.inc'
+    set USE_GKE_GCLOUD_AUTH_PLUGIN True
 end
 
 # https://git.polarian.dev/AUR/google-cloud-cli/pulls/10#issuecomment-291
