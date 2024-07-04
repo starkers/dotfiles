@@ -19,7 +19,8 @@ if status is-interactive
         oh-my-posh init fish | source
 
         # maybe fallback to starship?
-        elif command -s starship >/dev/null
+  else
+        if command -s starship >/dev/null
         if command -s starship-cfg >/dev/null
             starship-cfg
         else
@@ -33,6 +34,7 @@ if status is-interactive
         end
         starship init fish | source
         enable_transience
+    end
     end
 end
 
