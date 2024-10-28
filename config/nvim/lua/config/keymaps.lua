@@ -18,20 +18,37 @@ vim.keymap.del("n", "<s-l>")
 vim.keymap.set("n", "<c-Left>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<c-Right>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
+-- -- comment+terminal keybind changes
+-- -- I prefer Control+/ to be reserved for comment toggles
+-- vim.keymap.del("t", "<c-_>")
+-- vim.keymap.del("n", "<c-_>")
+
 -- ctrl+l is a standard shortcut to clear a terminal.. please ignore it in terminal windows
--- in fact scrap all the "hjkl" ones.. just use toggle
+-- in fact scrap all the "hjkl" ones.. I'm not gonna use em
 vim.keymap.del("t", "<c-h>")
 vim.keymap.del("t", "<c-j>")
 vim.keymap.del("t", "<c-k>")
 vim.keymap.del("t", "<c-l>")
-vim.keymap.del("t", "<c-_>")
-
+-- instead of Control+/  use Control+\ for terminal
 local Util = require("lazyvim.util")
 local lazyterm = function()
   Util.terminal(nil, { cwd = Util.root() })
 end
-vim.keymap.set("n", "<c-#>", lazyterm, { desc = "Terminal (root dir)" })
-vim.keymap.set("t", "<c-#>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+vim.keymap.del("n", "<c-_>")
+vim.keymap.del("t", "<c-_>")
+local lineWise = function()
+  require("Comment.api").toggle.linewise.current()
+end
+vim.keymap.set("n", "<c-_>", lineWise, { desc = "Comment linewise" })
+vim.keymap.set("t", "<c-_>", lineWise, { desc = "Comment linewise" })
+vim.keymap.set("v", "<c-_>", lineWise, { desc = "Comment linewise" })
+
+-- vim.keymap.set("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
+-- vim.keymap.set("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
+
+vim.keymap.set("n", "<F5>", lazyterm, { desc = "Terminal (root dir)" })
+vim.keymap.set("t", "<F5>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- vim.keymap.del("n", "<C-h>")
 -- vim.keymap.del("n", "<C-j>")

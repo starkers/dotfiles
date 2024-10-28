@@ -4,6 +4,7 @@ return {
   "stevearc/conform.nvim",
   optional = true,
   opts = {
+
     formatters_by_ft = {
       -- See: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
       ["hcl"] = { "terragrunt_hclfmt", "terraform_fmt" },

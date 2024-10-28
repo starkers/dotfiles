@@ -14,27 +14,29 @@ end
 
 if status is-interactive
 
-    # oh-my-posh on default
     if command -s oh-my-posh >/dev/null
         oh-my-posh init fish | source
+    else
+        echo '#WARN: oh-my-posh not installed'
 
-        # maybe fallback to starship?
-  else
-        if command -s starship >/dev/null
         if command -s starship-cfg >/dev/null
             starship-cfg
         else
             echo '#WARN: starship-cfg not installed'
         end
-        function starship_transient_prompt_func
-            starship module character
+
+        if command -s starship >/dev/null
+            function starship_transient_prompt_func
+                starship module character
+            end
+            function starship_transient_rprompt_func
+                starship module time
+            end
+            starship init fish | source
+            enable_transience
+        else
+            echo '#WARN: starship not installed'
         end
-        function starship_transient_rprompt_func
-            starship module time
-        end
-        starship init fish | source
-        enable_transience
-    end
     end
 end
 

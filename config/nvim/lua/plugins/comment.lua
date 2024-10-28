@@ -6,13 +6,13 @@ return {
   --   --   -- add any options here
   -- },
   lazy = false,
-  keys = {
-    {
-      "<C-/>",
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      desc = "Comment linewise",
-    },
-  },
+  -- keys = {
+  --   {
+  --     "<C-_>",
+  --     function()
+  --       require("Comment.api").toggle.linewise.current()
+  --     end,
+  --     desc = "Comment linewise",
+  --   },
+  -- },
 }

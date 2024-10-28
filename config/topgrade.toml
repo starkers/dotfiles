@@ -12,6 +12,9 @@
 # Disable specific steps - same options as the command line flag
 disable = [
   "asdf",
+  "bun",
+  "bun_packages",
+  "cargo",
   "conda",
   "containers",
   "firmware",
@@ -23,6 +26,7 @@ disable = [
   "pip3",
   "shell",
   "vim",
+  "vscode",
 ]
 
 # Run specific steps - same options as the command line flag

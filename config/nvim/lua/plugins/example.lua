@@ -10,6 +10,8 @@
 -- * override the configuration of LazyVim plugins
 return {
 
+  -- make a function that tests if input is a boolean
+
   -- -- add gruvbox
   -- { "ellisonleao/gruvbox.nvim" },
 
@@ -72,19 +74,19 @@ return {
     -- },
   },
 
-  -- add telescope-fzf-native
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
+  -- -- add telescope-fzf-native
+  -- {
+  --   "telescope.nvim",
+  --   dependencies = {
+  --     "nvim-telescope/telescope-fzf-native.nvim",
+  --     build = "make",
+  --     config = function()
+  --       require("telescope").load_extension("fzf")
+  --     end,
+  --   },
+  -- },
 
-  -- add pyright to lspconfig
+  -- add LSP's to lspconfig
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -93,7 +95,7 @@ return {
       servers = {
         -- automatically installed with mason and loaded with lspconfig
         -- See :MasonInstall
-        -- pyright = {},
+        pyright = {},
         -- kcl = {},
         gopls = {},
         templ = {},

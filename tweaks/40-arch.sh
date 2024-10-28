@@ -18,23 +18,26 @@ declare -a Apps=(
 	v4l2loopback-dkms
 	flameshot
 
-	# term essentials
-	neovim
-	fish
+	# essentials
 	bat
-	ranger
-	the_silver_searcher
-	jq
-	yq
 	btop
-	tig
+	fish
+	jq
 	lazygit
 	lsd
+	neovim
+	ranger
+	the_silver_searcher
+	tig
+	xclip
+	yq
+	mc
+	tmux
 
-	tilix
 	alacritty
-	powertop
 	drun
+	powertop
+	tilix
 
 	docker
 	docker-compose

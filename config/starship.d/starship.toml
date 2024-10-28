@@ -6,10 +6,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # https://starship.rs/advanced-config/#enable-right-prompt
-# format = """$character"""
-format = '''
-[┌ ](bold green)$directory
-[└─$character](bold green)'''
+format = """$character"""
+# format = '''
+# [┌ ](bold green)$directory
+# [└─$character](bold green)'''
 
 
 # right_format = """$all"""

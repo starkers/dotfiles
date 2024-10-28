@@ -1,3 +1,4 @@
 " https://superuser.com/questions/622898/how-to-turn-off-the-bell-sound-in-intellij
 set noerrorbells
 set visualbell
+set relativenumber
