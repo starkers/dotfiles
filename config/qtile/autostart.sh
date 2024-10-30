@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -f "${HOME}/.screenlayout/default.sh" ]; then
+  "${HOME}/.screenlayout/default.sh" &
+fi
+
 #$HOME/.config/polybar/polybar.sh
 picom &
 /usr/bin/setxkbmap gb &

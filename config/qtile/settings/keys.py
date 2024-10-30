@@ -68,7 +68,7 @@ keys = [
         # ([mod], "space", lazy.spawn("copyq show")),
         ([mod], "space", lazy.spawn("rofi-gpaste")),
         ([mod], "Escape", lazy.spawn("rofi -show window")),
-        ([mod], "d", lazy.spawn("rofi -show drun")),
+        ([mod], "d", lazy.spawn("rof")),
         # Window Nav
         ([mod, "shift"], "m", lazy.spawn("rofi -show")),
         # # Browser
