@@ -1,6 +1,5 @@
 # vi: ft=fish
 
-if test -f ~/.asdf/asdf.fish
-  set -gx ASDF_GOLANG_MOD_VERSION_ENABLED true
-  source ~/.asdf/asdf.fish
-end
+fish_add_path -a ~/bin
+set -gx ASDF_DATA_DIR ~/.asdf
+set -gx PATH $PATH $ASDF_DATA_DIR/shims

@@ -1,1 +1,0 @@
-/home/starkers/.asdf/completions/asdf.fish
