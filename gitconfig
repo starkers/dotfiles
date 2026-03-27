@@ -2,7 +2,7 @@
 [user]
   name = David Stark
   email = david@starkers.org
-  signingkey = ~/.ssh/id_rsa_clovis
+  signingkey = ~/.ssh/main_key
 
 ;;; use SSH to sign on default
 [commit]
@@ -67,5 +67,5 @@
   defaultBranch = develop
 
 ;;; alternative profiles
-[includeIf "gitdir:~/src/github.com/Ki-Insurance/"]
-  path = ~/.gitconfig-Ki-Insurance
+[includeIf "gitdir:~/src/github.com/acmecorp/"]
+  path = ~/.gitconfig-acmecorp
