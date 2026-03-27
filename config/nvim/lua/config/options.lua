@@ -5,7 +5,7 @@ vim.filetype.add({
 
   extension = {
     star = "python", -- pretend starlark is python I guess
-    -- hcl = "terraform", -- meh.. maybe its terraform?
+    hcl = "terraform", -- meh.. maybe its terraform?
     templ = "templ",
   },
   -- filename = {
