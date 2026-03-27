@@ -1,6 +1,5 @@
 # vi: ft=fish
 
-
 # # this section ensures the right side of the prompt stays clear
 # function fish_right_prompt
 #     #intentionally left blank
@@ -14,29 +13,23 @@ end
 
 if status is-interactive
 
-    if command -s oh-my-posh >/dev/null
-        oh-my-posh init fish | source
-    else
-        echo '#WARN: oh-my-posh not installed'
-
+    if command -s starship >/dev/null
         if command -s starship-cfg >/dev/null
             starship-cfg
         else
             echo '#WARN: starship-cfg not installed'
         end
 
-        if command -s starship >/dev/null
-            function starship_transient_prompt_func
-                starship module character
-            end
-            function starship_transient_rprompt_func
-                starship module time
-            end
-            starship init fish | source
-            enable_transience
-        else
-            echo '#WARN: starship not installed'
+        function starship_transient_prompt_func
+            starship module character
         end
+        function starship_transient_rprompt_func
+            starship module time
+        end
+        starship init fish | source
+        enable_transience
+    else
+        echo '#WARN: starship not installed'
     end
 end
 
