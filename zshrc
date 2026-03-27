@@ -140,18 +140,20 @@ function my_load_starship(){
   fi
 }
 
-  
+function my_load_cachyos(){
+  FILE=/usr/share/cachyos-zsh-config/cachyos-config.zsh
+  if [ -f ${FILE} ]; then
+    source ${FILE}
+	fi
+}
+
 
 if [[ -o interactive ]]; then
-
   zle -N fancy-ctrl-z
   bindkey '^Z' fancy-ctrl-z
   zstyle ":completion:*:commands" rehash 1
   bindkey '^W' vi-backward-kill-word
-
-
 fi
-
 
 
 if [[ -o interactive ]]; then
@@ -164,6 +166,7 @@ if [[ -o interactive ]]; then
   my_load_vte
   # my_load_z_and_fzf
   my_load_ggg
+  my_load_cachyos
 fi
 
 # # TODO: why isn't this being set?
