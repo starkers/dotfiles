@@ -1,5 +1,11 @@
-[shell]
+[terminal.shell]
 program = "/usr/bin/fish"
+
+
+[window]
+decorations = "None"
+opacity = 0.9
+blur = true
 
 [colors.primary]
 background = "0x282a36"
@@ -29,22 +35,20 @@ yellow = "0xf4f99d"
 size = 12
 
 [font.normal]
-family = "Hack Nerd Font Mono"
+family = "Comic Code"
 style = "Regular"
 
 [font.bold]
-family = "Hack Nerd Font Mono"
+family = "Comic Code"
 style = "Bold"
 
 [font.italic]
-family = "Hack Nerd Font Mono"
+family = "Comic Code"
 style = "Italic"
-
-
 
 
 [keyboard]
 # See defaults: https://alacritty.org/config-alacritty-bindings.html
-bindings = [
-  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-]
+bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
+
+[terminal]
