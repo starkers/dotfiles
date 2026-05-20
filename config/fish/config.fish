@@ -16,8 +16,6 @@ if status is-interactive
     if command -s starship >/dev/null
         if command -s starship-cfg >/dev/null
             starship-cfg
-        else
-            echo '#WARN: starship-cfg not installed'
         end
 
         function starship_transient_prompt_func

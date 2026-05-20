@@ -5,7 +5,6 @@ dive 0.12.0
 dyff 1.4.7
 fd 8.3.1
 fzf 0.68.0
-golangci-lint 2.11.13
 jq 1.6
 krew 0.4.3
 kubectl 1.24.13

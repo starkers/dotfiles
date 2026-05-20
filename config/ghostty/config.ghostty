@@ -1,0 +1,8 @@
+# vi:set ft=ini
+
+font-family = "ComicCode Nerd Font"
+
+# https://ghostty.org/docs/config/reference#window-decoration
+
+window-decoration = false
+

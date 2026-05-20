@@ -51,19 +51,6 @@ export PATH="$HOME/.software/bin:$PATH"
 #   # eval "$(rbenv init -)"
 # }
 
-# my_load_golang(){
-#   export GOPATH="${HOME}/go"
-#   if [ -d "${GOPATH}" ]; then
-#     export PATH="${GOPATH}/bin:${PATH}"
-#   fi
-#   export "PATH=/usr/local/go/bin:${PATH}"
-#   export GO111MODULE=on
-#   export GOPRIVATE="github.com/doddle/*"
-#   export TMPDIR=~/.gotmp/
-#   if [ ! -d ${TMPDIR} ]; then
-#     mkdir -p ${TMPDIR}
-#   fi
-# }
 
 # my_load_pip(){
 #   ##Python virtualenv / pip path

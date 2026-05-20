@@ -6,7 +6,7 @@ if test -d $D
     fish_add_path -a $D
 end
 
-## where I store misc stuff that ASDF doesn't have yet.. eg
+## where I store misc stuff sometimes
 # fnm
 # topgrade
 # ggg
