@@ -33,6 +33,7 @@
       exclude:
       - .git
       - .gitmodules
+      - autostart
       - config
       - dotbot
       - dotfiles.yaml
@@ -49,9 +50,12 @@
 - shell:
   - mkdir -p ~/.config/mc
   - cp -rvp mc/* ~/.config/mc/.
+
   - mkdir -p ~/.local/share/mc
   - cp -rvp mc/* ~/.local/share/mc/.
 
+  - mkdir -p ~/.config/autostart/
+  - cp -rvp autostart/* ~/.config/autostart/.
 
 # # create link to ~/.config/nvim/lua/custom which contains my nvchad settings
 # - link:

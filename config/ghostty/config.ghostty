@@ -6,3 +6,46 @@ font-family = "ComicCode Nerd Font"
 
 window-decoration = false
 
+
+# See:  https://ghostty.org/docs/config/keybind
+#
+# ghostty  +list-keybinds
+#   or
+# ghostty  +list-keybinds --default
+
+
+
+#keybind = ctrl+h=goto_split:left
+#keybind = ctrl+j=goto_split:bottom
+#keybind = ctrl+k=goto_split:top
+#keybind = ctrl+l=goto_split:right
+
+
+background = 282c34
+foreground = ffffff
+
+keybind = alt+k=goto_split:up
+keybind = alt+j=goto_split:down
+keybind = alt+h=goto_split:left
+keybind = alt+l=goto_split:right
+
+# keybind = ctrl+alt+k=goto_split:up
+# keybind = ctrl+alt+j=goto_split:down
+# keybind = ctrl+alt+h=goto_split:left
+# keybind = ctrl+alt+l=goto_split:right
+
+keybind = ctrl+shift+e=new_split:right
+keybind = ctrl+shift+o=new_split:down
+
+keybind = ctrl+shift+x=toggle_split_zoom
+
+
+# keybind = super+ctrl+shift+arrow_up=resize_split:up,10
+# keybind = super+ctrl+shift+arrow_down=resize_split:down,10
+# keybind = super+ctrl+shift+arrow_left=resize_split:left,10
+# keybind = super+ctrl+shift+arrow_right=resize_split:right,10
+
+keybind = ctrl+alt+arrow_up=resize_split:up,10
+keybind = ctrl+alt+arrow_down=resize_split:down,10
+keybind = ctrl+alt+arrow_left=resize_split:left,10
+keybind = ctrl+alt+arrow_right=resize_split:right,10

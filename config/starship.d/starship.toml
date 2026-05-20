@@ -14,6 +14,7 @@ format = """$character"""
 
 # right_format = """$all"""
 right_format = """
+$directory\
 $username\
 $hostname\
 $localip\
@@ -105,9 +106,9 @@ disabled = true
 # [date]
 # disabled = true
 
-[directory]
-truncation_length = 5
-truncate_to_repo = false
+# [directory]
+# truncation_length = 5
+# truncate_to_repo = true
 
 [kubernetes]
 format = '[⎈ $context ](yellow)'

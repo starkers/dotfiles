@@ -43,6 +43,6 @@ for data in $(cat ~/.tool-versions); do
       say plugin: ${plugin} already added
     fi
     try asdf install ${plugin} ${ver}
-    try asdf set --home ${tool} ${ver}
+    try asdf set --home ${plugin} ${ver}
   fi
 done

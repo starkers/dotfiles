@@ -88,7 +88,7 @@ output "eDP-1" {
     // mode "1920x1080@120.030"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.4
+    scale 1.3
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -111,7 +111,7 @@ output "eDP-1" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -159,7 +159,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 3
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -240,7 +240,7 @@ layout {
         softness 30
 
         // Spread expands the shadow.
-        spread 5
+        spread 4
 
         // Offset moves the shadow relative to the window.
         offset x=0 y=5
@@ -333,6 +333,7 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
@@ -376,7 +377,7 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "~/.bin/rof"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "~/.bin/swaylock.sh"; }
     Super+Delete hotkey-overlay-title="Lock the Screen: swaylock" { spawn "~/.bin/swaylock.sh"; }
-    Super+Space hotkey-overlay-title="Open Clipboard history" { spawn "copyq show"; }
+    Mod+space hotkey-overlay-title="Open Clipboard history" { spawn "~/.bin/copyq-show"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

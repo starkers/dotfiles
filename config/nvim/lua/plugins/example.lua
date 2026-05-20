@@ -99,6 +99,7 @@ return {
         -- kcl = {},
         gopls = {},
         templ = {},
+        terraformls = {},
       },
     },
   },
