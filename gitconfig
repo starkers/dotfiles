@@ -2,7 +2,7 @@
 [user]
   name = David Stark
   email = david@starkers.org
-  signingkey = ~/.ssh/main_key
+  signingkey = ~/.ssh/id_main.pub
 
 ;;; use SSH to sign on default
 [commit]
