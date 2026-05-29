@@ -23,23 +23,24 @@ vim.keymap.set("n", "<c-Right>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- vim.keymap.del("t", "<c-_>")
 -- vim.keymap.del("n", "<c-_>")
 
--- ctrl+l is a standard shortcut to clear a terminal.. please ignore it in terminal windows
--- in fact scrap all the "hjkl" ones.. I'm not gonna use em
-local Util = require("lazyvim.util")
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root() })
-end
-
+-- LazyVim maps BOTH <c-/> and <c-_> to the snacks terminal. Delete both.
+-- snacks also re-registers these as window-local keymaps inside terminal buffers
+-- (see the snacks.nvim plugin override below for that half of the fix).
 vim.keymap.del("n", "<c-_>")
 vim.keymap.del("t", "<c-_>")
-local lineWise = function()
-  require("Comment.api").toggle.linewise.current()
-end
-vim.keymap.set("n", "<c-_>", lineWise, { desc = "Comment linewise" })
-vim.keymap.set("t", "<c-_>", lineWise, { desc = "Comment linewise" })
-vim.keymap.set("v", "<c-_>", lineWise, { desc = "Comment linewise" })
+vim.keymap.del("n", "<c-/>")
+vim.keymap.del("t", "<c-/>")
 
-vim.keymap.set("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
+vim.keymap.set("n", "<c-_>", "gcc", { desc = "Comment linewise", remap = true })
+vim.keymap.set("x", "<c-_>", "gc",  { desc = "Comment linewise", remap = true })
+vim.keymap.set("n", "<c-/>", "gcc", { desc = "Comment linewise", remap = true })
+vim.keymap.set("x", "<c-/>", "gc",  { desc = "Comment linewise", remap = true })
+
+local lazyterm = function()
+  Snacks.terminal(nil, { cwd = LazyVim.root() })
+end
+
+-- vim.keymap.set("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
 -- vim.keymap.set("n", "<c-\\>", lazyterm, { desc = "Terminal (root dir)" })
 
 vim.keymap.set("n", "<F5>", lazyterm, { desc = "Terminal (root dir)" })

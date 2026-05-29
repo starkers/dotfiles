@@ -8,14 +8,20 @@ return {
     formatters_by_ft = {
       -- See: https://github.com/stevearc/conform.nvim?tab=readme-ov-file#formatters
       ["hcl"] = { "terragrunt_hclfmt", "terraform_fmt" },
-      ["terraform"] = { "tofu_fmt", "terraform_fmt" },
-      ["terraform-vars"] = { "tofu_fmt", "terraform_fmt" },
+      ["terraform"] = { "terraform_fmt" },
+      ["terraform-vars"] = { "terraform_fmt" },
+      ["opentofu"] = { "tofu_fmt" },
       ["yaml"] = { "yamlfmt" },
     },
 
     formatters = {
       hclfmt = {
         command = "hclfmt",
+      },
+      terraform_fmt = {
+        command = "tofu",
+        args = { "fmt", "-" },
+        stdin = true,
       },
       tofu_fmt = {
         command = "tofu",

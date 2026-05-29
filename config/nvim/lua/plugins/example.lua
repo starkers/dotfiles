@@ -99,7 +99,13 @@ return {
         -- kcl = {},
         gopls = {},
         templ = {},
-        terraformls = {},
+        terraformls = {
+          filetypes = {
+            "terraform",
+            "terraform-vars",
+            "opentofu",
+          },
+        },
       },
     },
   },
