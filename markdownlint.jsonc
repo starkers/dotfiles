@@ -1,0 +1,26 @@
+// markdownlint
+{
+  "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json",
+  // MD013/line-length : Line length : https://github.com/DavidAnson/markdownlint/blob/v0.40.0/doc/md013.md
+  "MD013": {
+    // Number of characters
+    "line_length": 9999,
+    // Number of characters for headings
+    "heading_line_length": 120,
+    // Number of characters for code blocks
+    "code_block_line_length": 120,
+    // Include code blocks
+    "code_blocks": true,
+    // Include tables
+    "tables": true,
+    // Include headings
+    "headings": true,
+    // Strict length checking
+    "strict": false,
+    // Stern length checking
+    "stern": false
+  },
+  "MD060": {
+    "enabled": false
+  }
+}

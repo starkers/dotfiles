@@ -2,7 +2,7 @@
 
 font-family = "ComicCode Nerd Font"
 
-# https://ghostty.org/docs/config/reference#window-decoration
+term = xterm
 
 window-decoration = false
 
@@ -13,39 +13,53 @@ window-decoration = false
 #   or
 # ghostty  +list-keybinds --default
 
-
-
 #keybind = ctrl+h=goto_split:left
 #keybind = ctrl+j=goto_split:bottom
 #keybind = ctrl+k=goto_split:top
 #keybind = ctrl+l=goto_split:right
-
-
-background = 282c34
-foreground = ffffff
 
 keybind = alt+k=goto_split:up
 keybind = alt+j=goto_split:down
 keybind = alt+h=goto_split:left
 keybind = alt+l=goto_split:right
 
-# keybind = ctrl+alt+k=goto_split:up
-# keybind = ctrl+alt+j=goto_split:down
-# keybind = ctrl+alt+h=goto_split:left
-# keybind = ctrl+alt+l=goto_split:right
-
 keybind = ctrl+shift+e=new_split:right
 keybind = ctrl+shift+o=new_split:down
 
 keybind = ctrl+shift+x=toggle_split_zoom
+keybind = ctrl+shift+i=unbind
+
+keybind = ctrl+shift+k=resize_split:up,10
+keybind = ctrl+shift+j=resize_split:down,10
+keybind = ctrl+shift+h=resize_split:left,10
+keybind = ctrl+shift+l=resize_split:right,10
 
 
-# keybind = super+ctrl+shift+arrow_up=resize_split:up,10
-# keybind = super+ctrl+shift+arrow_down=resize_split:down,10
-# keybind = super+ctrl+shift+arrow_left=resize_split:left,10
-# keybind = super+ctrl+shift+arrow_right=resize_split:right,10
+# # molokai
+# background             = #1b1d1e
+# foreground             = #f8f8f2
+# cursor-color           = #f8f8f0
+# cursor-text            = #1b1d1e
+# selection-background   = #49483e
+# selection-foreground   = #f8f8f2
+#
+# background-opacity     = 0.97
+unfocused-split-opacity = 0.55
+split-divider-color    = #a6e22e
 
-keybind = ctrl+alt+arrow_up=resize_split:up,10
-keybind = ctrl+alt+arrow_down=resize_split:down,10
-keybind = ctrl+alt+arrow_left=resize_split:left,10
-keybind = ctrl+alt+arrow_right=resize_split:right,10
+# palette = 0=#1b1d1e
+# palette = 1=#f92672
+# palette = 2=#a6e22e
+# palette = 3=#fd971f
+# palette = 4=#66d9ef
+# palette = 5=#ae81ff
+# palette = 6=#a1efe4
+# palette = 7=#f8f8f2
+# palette = 8=#75715e
+# palette = 9=#d4235f
+# palette = 10=#6e9e1a
+# palette = 11=#c9be58
+# palette = 12=#4bbfd8
+# palette = 13=#9b72e8
+# palette = 14=#7dcec2
+# palette = 15=#d8d7d4

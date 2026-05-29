@@ -48,12 +48,8 @@ style = "Italic"
 
 
 [keyboard]
-# See defaults: https://alacritty.org/config-alacritty-bindings.html
-bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
-
-[terminal]
-
-[[keyboard.bindings]]
-key = "Return"
-mods = "Shift"
-chars = "\u001B\r"
+bindings = [
+  # See defaults: https://alacritty.org/config-alacritty-bindings.html
+  { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+  { key = "Return", mods = "Shift", chars = "\u001B\r" },
+]
